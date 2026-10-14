@@ -15,8 +15,8 @@ such that
 
 A \term{Galilean space-time} is an affine space \(\AA^4\), together with:
 \begin{itemize}
-    \item a linear map \(\functiondomain{\tau}{\RR^4}{\RR}\) (note not from \(\AA^4\), i.e. it takes in \emph{difference} between events), where \(\tau\pqty{b - a}\) is the time elapsed between events \(a\) and \(b\). Note such map \(\tau\) will not exist in special relativity. If \(\tau\pqty{b - a} = 0\), then we say \(a, b\) are \term{simultaneous}.
-    \item a positive-definite inner product on \(\ker\pqty{\tau} = \RR^3\). If \(a, b\) are simultaneous, then we can assign the distance between them as
+    \item a linear map \(\functiondomain{\tau}{\RR^4}{\RR}\) (note not from \(\AA^4\), i.e. it takes in \emph{difference} between events), where \(\tau\pqty{b - a}\) is the \term{time elapsed} between events \(a\) and \(b\). Note such map \(\tau\) will not exist in special relativity. If \(\tau\pqty{b - a} = 0\), then we say \(a, b\) are \term{simultaneous}.
+    \item a positive-definite \term{inner product} on \(\ker\pqty{\tau} = \RR^3\). If \(a, b\) are simultaneous, then we can assign the distance between them as
     \begin{equation}
         d_{a, b} = \norm{a - b} = \sqrt{\pqty{a - b} \cdot \pqty{a - b}}.
     \end{equation}
@@ -43,13 +43,115 @@ Given an event \(o \in \AA^4\), we have a space
 \end{equation}
 of events simultaneous with \(o\). An \term{inertial frame} is a \emph{choice} of identification of \(\AA^4 = \RR \times \RR^3\) with a preferred origin. this is done by the following.
 
-
-First, pick a vector \(\vb{e} \in \RR^4\) such that \(\tau\pqty{\vb{e}} = 1\). We can use \(\vb{e}\) to \emph{identify} points on different spaces of simultaneity, by translating through \(t \vb{e}\), some multiple of \(\vb{e}\). Then \(\tau\pqty{t \vb{e}} = t \tau\pqty{\vb{e}} = t\). Parallel lines in direction \(\vb{e}\) are \term{worldline of observers at rest} in this frame.
+\begin{itemize}
+    \item We choose an event \(o \in \AA^4\) as the \term{origin}, and then
+    \item we pick a vector \(\vb{e} \in \RR^4\) such that \(\tau\pqty{\vb{e}} = 1\). We can use \(\vb{e}\) to \emph{identify} points on different spaces of simultaneity, by translating through \(t \vb{e}\), some multiple of \(\vb{e}\). Then \(\tau\pqty{t \vb{e}} = t \tau\pqty{\vb{e}} = t\). Parallel lines in direction \(\vb{e}\) are \term{worldline of observers at rest} in this frame, and the line through \(o\) is the \term{worldline of the origin}.
+\end{itemize}
     
-For any other choice of \(\vb{e}'\) with \(\tau\pqty{\vb{e}'} = 1\), we have \(\tau\pqty{\vb{e}' - \vb{e}} = \vb{0}\).
+For any other choice of \(\vb{e}'\) with \(\tau\pqty{\vb{e}'} = 1\), we have \(\tau\pqty{\vb{e}' - \vb{e}} = \vb{0}\), i.e., the two choices differ by a purely spacial vector.
 
 For any event \(p \in \AA^4\), we can always choose
 \begin{equation}
     p = o + t \vb{e} + \vb{x}
 \end{equation}
-with \(\tau\pqty{\vb{x}} = 0\). This gives our identification of coordinates \(\pqty{t, \vb{x}}\).
+with \(\tau\pqty{\vb{x}} = 0\), for \(\vb{x} \in \RR^3\). This gives our identification of \term{coordinates} \(\pqty{t, \vb{x}}\) of \(p\) in this frame.
+
+\subsection{Galilean Transformations}
+
+The group \(\Gal\pqty{3, 1}\) is the group of \term{Galilean transformations}, which consist of all linear transformations \(\functiondomain{g}{\AA^4}{\AA^4}\) that preserve \(\tau\) and \(\norm{\cdot}\), i.e.,
+\begin{itemize}
+    \item \(\tau \circ g = \tau\),
+    \item \(\norm{g\pqty{a} - g\pqty{b}} = \norm{a - b}\) for all \(a, b \in \AA^4\) which are simultaneous.
+\end{itemize}
+
+In terms of the coordinates \(\pqty{t, \vb{x}}\), all \(g \in \Gal\pqty{3, 1}\) can be composed by composing:
+\begin{itemize}
+    \item \emph{Rotations and reflections of simultaneous events}: \(\pqty{t, \vb{x}} \mapsto \pqty{t, R \vb{x}}\) for \(R \in \Or\pqty{3}\).
+    \item \emph{Galilean boosts}: \(\pqty{t, \vb{x}} \mapsto \pqty{t, \vb{x} + t \vb{u}}\) for some \(\vb{u} \in \RR^3\), a \term{uniform boost}.
+    \item \emph{Translations}: \(\pqty{t, \vb{x}} \mapsto \pqty{t + s, \vb{x} + \vb{c}}\) for some \(s \in \RR\) and \(\vb{c} \in \RR^3\).
+\end{itemize}
+
+It is clear that these transformations preserve the structure of space-time, but the fact that they generate \(\Gal\pqty{3, 1}\) will be left as an exercise to the reader.
+
+\subsection{Newton's Laws of Motion}
+
+\term{Newton's First Law of Motion} states that an inertial observer is one whose worldline is an affine line. 
+
+\term{Newton's Second Law of Motion} states that in an \(N\)-particle system, the motion of the \(i\)-th particle obeys
+\[
+    m_i \ddot{\vb{x}}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t, \ldots}.
+\]
+
+\begin{remarks}
+    \begin{enumerate}[label=(\roman*)]
+        \item This is \emph{not} the definition of the forces \(\vb{F}\), and we need to supply those forces separately in order to analyse these dynamics.
+        \item We have assumed that \(\vb{F}\) to depend on locations \(\vb{x}_j \pqty{t}\) and velocities \(\dot{\vb{x}}_j \pqty{t}\) of all the particles in the system, but no higher derivatives. The consequence is, if we are given the set \(\Bqty{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}\) at \(t = 0\), then at \(t = \delta t\), the location will be given by
+        \begin{subequations}
+            \begin{equation}
+                \vb{x}_i \pqty{\delta t} = \vb{x}_i \pqty{0} + \delta t \dot{\vb{x}}_i \pqty{0} + \cdots
+            \end{equation}
+            and
+            \begin{equation}
+                \dot{\vb{x}_i} \pqty{\delta t} = \dot{\vb{x}}_i \pqty{0} + \delta t \frac{\vb{F}_i}{m_i} \pqty{\Bqty{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}} + \cdots
+            \end{equation}
+        \end{subequations}
+
+        Iterating this in principle determines the motions, but in practice this might be very hard, since this is a non-linear (\term{quasi-linear}) system of ODEs in general. For example, the \term{three-body problem} which studies three similar masses each moving under gravitational influence of other two. Such \term{chaotic systems} are very sensitive to initial data \(\Bqty{\vb{x}_i\pqty{0}, \dot{\vb{x}}_i \pqty{0}}_{i = 1}^{n}\).
+    \end{enumerate}
+\end{remarks}
+
+\subsection{The Principle of Galilean Relativity}
+
+A \term{closed system} is one in which the force on each particle in the system depends only on \(t\) and the other particles in the system, i.e., 
+\begin{equation}
+    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
+\end{equation}
+
+For a closed system, the \term{principle of Galilean relativity} states that the physical dynamics must be invariant under \(g \in \Gal\pqty{3, 1}\) acting on the whole system. This imposes strong constraints on the possible forces, and is our first example on how symmetry principles restrict the form of forces!
+
+Consider the system
+\begin{equation}
+    \label{eq:n2-closed-system}%
+    m_i \ddot{\vb{x}}_i \pqty{t} = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
+\end{equation}
+
+\subsubsection{Time Translations}
+
+If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t + s}\) for all \(s \in \RR\) (same for all particles). This implies that the forces cannot have (explicit) time dependence
+\begin{equation}
+    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}}.
+\end{equation}
+
+Note that it is important to talk about a closed system here, since if the system is not closed, then the forces can depend on time through the motion of other particles outside the system.
+
+\subsubsection{Spacial Translations}
+
+If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + \vb{c}\) for all constant vectors \(\vb{c} \in \RR^3\). This implies that the forces can depend on the locations of the particles \emph{only through} the \term{relative separations} between particles, i.e.,
+\begin{equation}
+    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j}_{j = 1}^{n}}.
+\end{equation}
+
+\subsubsection{Uniform Boosts}
+
+If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + t \vb{u}\) for all constant vectors \(\vb{u} \in \RR^3\). This similarly implies that the forces can depend on the velocities of the particles \emph{only through} the \term{relative velocities} between particles, i.e.,
+\begin{equation}
+    \label{eq:force-form-relative-displacement-velocity}%
+    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j - \dot{\vb{x}}_k}_{j, k = 1}^{n}}.
+\end{equation}
+
+\subsubsection{Rotations and Reflections}
+
+We denote
+\begin{equation}
+    \vb{x}_{jk} = \vb{x}_j - \vb{x}_k,
+\end{equation}
+so
+\begin{equation}
+    \label{eq:force-form-relative-displacement-velocity-new}%
+    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}.
+\end{equation}
+
+If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(R \vb{x}_i \pqty{t}\) for all \(R \in \Or\pqty{3}\). This \emph{does not imply} that the forces only depend on relative separations, but instead implies that the force should not have any preferred direction in space apart from the relative positions and velocities of the particles, i.e.,
+\begin{equation}
+    R \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\Bqty{R\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}
+\end{equation}
