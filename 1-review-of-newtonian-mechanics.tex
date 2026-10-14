@@ -24,9 +24,23 @@ A \term{Galilean space-time} is an affine space \(\AA^4\), together with:
     It makes sense for two events to be simultaneous, even if separated in space, unlike special relativity, but there is no notion of ``happens at the same place/same distance apart'' if not simultaneous.
 \end{itemize}
 
-A \term{motion} of a particle is a smooth map \(\functiondomain{x}{I}{\AA^3}\) (where \(I \subset \RR\) is an interval). The \emph{image} of the map is the particle's \term{trajectory}.
+A \term{motion} of a particle is a smooth map \(\functiondomain{x}{I}{\AA^3}\) (where \(I \subset \RR\) is an interval), as illustrate in Figure \ref{fig:motion-of-particle}. The \emph{image} of the map is the particle's \term{trajectory}.
 
-The particle's \term{worldline} is the graph of of the map. In other words, it is a smooth map \(\functiondomain{\gamma}{I}{\AA^4}\), such that \(\tau\pqty{\gamma\pqty{t_1} - \gamma\pqty{t_2}} = t_1 - t_2\) for all \(t_1, t_2 \in I\). This rules out a particle moving ``backwards in time''.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/motion-of-particle.png}
+    \caption{Motion of a Particle}
+    \label{fig:motion-of-particle}
+\end{figure}
+
+The particle's \term{worldline} is the graph of of the map. In other words, it is a smooth map \(\functiondomain{\gamma}{I}{\AA^4}\), such that \(\tau\pqty{\gamma\pqty{t_1} - \gamma\pqty{t_2}} = t_1 - t_2\) for all \(t_1, t_2 \in I\). This rules out a particle moving ``backwards in time'', as illustrated in \autoref{fig:worldline-of-particle}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/worldline-of-particle.png}
+    \caption{Worldline of a Particle}
+    \label{fig:worldline-of-particle}
+\end{figure}
 
 For any motion, we define the \term{velocity} and \term{acceleration} as
 \begin{equation}
@@ -41,11 +55,11 @@ Given an event \(o \in \AA^4\), we have a space
 \begin{equation}
     \AA_o^3 = \set{a \in \AA^4}{\tau\pqty{a - o} = 0}
 \end{equation}
-of events simultaneous with \(o\). An \term{inertial frame} is a \emph{choice} of identification of \(\AA^4 = \RR \times \RR^3\) with a preferred origin. this is done by the following.
+of events simultaneous with \(o\). An \term{inertial frame} is a \emph{choice} of identification of \(\AA^4 = \RR \times \RR^3\) with a preferred origin. this is done by the following. \autoref{fig:inertial-reference-frame} illustrates this process.
 
 \begin{itemize}
-    \item We choose an event \(o \in \AA^4\) as the \term{origin}, and then
-    \item we pick a vector \(\vb{e} \in \RR^4\) such that \(\tau\pqty{\vb{e}} = 1\). We can use \(\vb{e}\) to \emph{identify} points on different spaces of simultaneity, by translating through \(t \vb{e}\), some multiple of \(\vb{e}\). Then \(\tau\pqty{t \vb{e}} = t \tau\pqty{\vb{e}} = t\). Parallel lines in direction \(\vb{e}\) are \term{worldline of observers at rest} in this frame, and the line through \(o\) is the \term{worldline of the origin}.
+    \item We choose an event \(o \in \AA^4\) as the \term{origin}.
+    \item We pick a vector \(\vb{e} \in \RR^4\) such that \(\tau\pqty{\vb{e}} = 1\). We can use \(\vb{e}\) to \emph{identify} points on different spaces of simultaneity, by translating through \(t \vb{e}\), some multiple of \(\vb{e}\). Then \(\tau\pqty{t \vb{e}} = t \tau\pqty{\vb{e}} = t\). Parallel lines in direction \(\vb{e}\) are \term{worldline of observers at rest} in this frame, and the line through \(o\) is the \term{worldline of the origin}.
 \end{itemize}
     
 For any other choice of \(\vb{e}'\) with \(\tau\pqty{\vb{e}'} = 1\), we have \(\tau\pqty{\vb{e}' - \vb{e}} = \vb{0}\), i.e., the two choices differ by a purely spacial vector.
@@ -55,6 +69,13 @@ For any event \(p \in \AA^4\), we can always choose
     p = o + t \vb{e} + \vb{x}
 \end{equation}
 with \(\tau\pqty{\vb{x}} = 0\), for \(\vb{x} \in \RR^3\). This gives our identification of \term{coordinates} \(\pqty{t, \vb{x}}\) of \(p\) in this frame.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/inertial-reference-frame.png}
+    \caption{Inertial Reference Frame}
+    \label{fig:inertial-reference-frame}
+\end{figure}
 
 \subsection{Galilean Transformations}
 
@@ -144,6 +165,13 @@ If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so
     \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j - \dot{\vb{x}}_k}_{j, k = 1}^{n}}.
 \end{equation}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/no-external-forces.png}
+    \caption{A Closed System does not allow for External Forces}
+    \label{fig:closed-system}
+\end{figure}
+
 \subsubsection{Rotations and Reflections}
 
 We denote
@@ -162,6 +190,13 @@ If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so
 \end{equation}
 and with no dependence on external vectors.
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/rotations-and-reflections-galilean.png}
+    \caption{Rotations and Reflections for Galilean Invariance}
+    \label{fig:rotations-reflections-galilean-invariance}
+\end{figure}
+
 \begin{example}
     \begin{enumerate}[label=(\roman*)]
         \item For a closed system of only one particle, we learn that \(\vb{F} = \vb{0}\) simply, since there are no other particles to depend on. Furthermore, \(\vb{F}\) cannot be a constant vector unless it is zero, the only isotropic vector in \(\RR^3\). The particle has free motion.
@@ -170,7 +205,7 @@ and with no dependence on external vectors.
             \vb{F}_i = f_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \vb{x}_{12} + g_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \dot{\vb{x}}_{12}.
         \end{align*}
 
-        To see this, suppose \(\vb{x}_{12}\) and \(\dot{\vb{x}}_{12}\) are not collinear, i.e., \(\vb{x}_{12} \cross \dot{\vb{x}}_{12} \neq \vb{0}\). Consider \(\vb{R} \in \Or\pqty{3}\) as a reflection in the plane of the relative positions and velocities, then
+        To see this, suppose \(\vb{x}_{12}\) and \(\dot{\vb{x}}_{12}\) are not collinear, i.e., \(\vb{x}_{12} \cross \dot{\vb{x}}_{12} \neq \vb{0}\). Consider \(\vb{R} \in \Or\pqty{3}\) as a reflection in the plane \(\Pi\) spanned by the relative positions and velocities, as illustrated in \autoref{fig:rotations-reflections-galilean-invariance}, then
         \begin{equation}
             R \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}} = \vb{F}_i \pqty{R\vb{x}_{12}, R\dot{\vb{x}}_{12}} = \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}},
         \end{equation}
