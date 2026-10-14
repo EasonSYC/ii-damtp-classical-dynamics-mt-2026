@@ -1,0 +1,55 @@
+\section{Review of Newtonian Mechanics}
+
+\subsection{Galilean Space-Time}
+
+The area of classical mechanics is \emph{Galilean space-time}, which is the ``space of \term{events}'' (i.e., points in space and time). Mathematically, this is an \emph{affine space}, heuristically, a ``vector space without a preferred origin''. More precisely, an \term{affine space} is a set \(\AA^n\) together with an associated vector space \(\RR^n\) that acts on \(\AA^n\) as displacements
+\begin{equation}
+    \function{+}{\AA^n \times \RR^n}{\AA^n}{\pqty{a, \vb{v}}}{a + \vb{v}}
+\end{equation}
+such that
+\begin{itemize}
+    \item \(a + \vb{v} = a\) if and only if \(\vb{v} = \vb{0} \in \RR^n\);
+    \item for every \(a, b \in \AA^n\), there is a unique \(\vb{v} \in \RR^n\) such that \(a + \vb{v} = b\);
+    \item we have \(\pqty{a + \vb{v}} + \vb{w} = a + \pqty{\vb{v} + \vb{w}}\) for all \(a \in \AA^n\) and \(\vb{v}, \vb{w} \in \RR^n\).
+\end{itemize}
+
+A \term{Galilean space-time} is an affine space \(\AA^4\), together with:
+\begin{itemize}
+    \item a linear map \(\functiondomain{\tau}{\RR^4}{\RR}\) (note not from \(\AA^4\), i.e. it takes in \emph{difference} between events), where \(\tau\pqty{b - a}\) is the time elapsed between events \(a\) and \(b\). Note such map \(\tau\) will not exist in special relativity. If \(\tau\pqty{b - a} = 0\), then we say \(a, b\) are \term{simultaneous}.
+    \item a positive-definite inner product on \(\ker\pqty{\tau} = \RR^3\). If \(a, b\) are simultaneous, then we can assign the distance between them as
+    \begin{equation}
+        d_{a, b} = \norm{a - b} = \sqrt{\pqty{a - b} \cdot \pqty{a - b}}.
+    \end{equation}
+
+    It makes sense for two events to be simultaneous, even if separated in space, unlike special relativity, but there is no notion of ``happens at the same place/same distance apart'' if not simultaneous.
+\end{itemize}
+
+A \term{motion} of a particle is a smooth map \(\functiondomain{x}{I}{\AA^3}\) (where \(I \subset \RR\) is an interval). The \emph{image} of the map is the particle's \term{trajectory}.
+
+The particle's \term{worldline} is the graph of of the map. In other words, it is a smooth map \(\functiondomain{\gamma}{I}{\AA^4}\), such that \(\tau\pqty{\gamma\pqty{t_1} - \gamma\pqty{t_2}} = t_1 - t_2\) for all \(t_1, t_2 \in I\). This rules out a particle moving ``backwards in time''.
+
+For any motion, we define the \term{velocity} and \term{acceleration} as
+\begin{equation}
+    \vb{v} = \dv{x\pqty{t}}{t}, \qand \vb{a} = \dv[2]{x\pqty{t}}{t}.
+\end{equation}
+
+Note that these are limits of \emph{displacements}, so they are vectors in \(\RR^3\).
+
+\subsection{Inertial Frames}
+
+Given an event \(o \in \AA^4\), we have a space
+\begin{equation}
+    \AA_o^3 = \set{a \in \AA^4}{\tau\pqty{a - o} = 0}
+\end{equation}
+of events simultaneous with \(o\). An \term{inertial frame} is a \emph{choice} of identification of \(\AA^4 = \RR \times \RR^3\) with a preferred origin. this is done by the following.
+
+
+First, pick a vector \(\vb{e} \in \RR^4\) such that \(\tau\pqty{\vb{e}} = 1\). We can use \(\vb{e}\) to \emph{identify} points on different spaces of simultaneity, by translating through \(t \vb{e}\), some multiple of \(\vb{e}\). Then \(\tau\pqty{t \vb{e}} = t \tau\pqty{\vb{e}} = t\). Parallel lines in direction \(\vb{e}\) are \term{worldline of observers at rest} in this frame.
+    
+For any other choice of \(\vb{e}'\) with \(\tau\pqty{\vb{e}'} = 1\), we have \(\tau\pqty{\vb{e}' - \vb{e}} = \vb{0}\).
+
+For any event \(p \in \AA^4\), we can always choose
+\begin{equation}
+    p = o + t \vb{e} + \vb{x}
+\end{equation}
+with \(\tau\pqty{\vb{x}} = 0\). This gives our identification of coordinates \(\pqty{t, \vb{x}}\).
