@@ -100,6 +100,11 @@ It is clear that these transformations preserve the structure of space-time, but
     \end{enumerate}
 \end{remarks}
 
+\term{Newton's Third Law of Motion} states that, for an \(n\)-particle system, we have \(\vb{F}_{ij} = - \vb{F}_{ji}\). The \term{strong form} of Newton's third law states that \(\vb{F}_{ij}\) acts along \(\vb{x}_{ij}\), i.e., the line of separation. In a general (non-closed) system, we have
+\begin{equation}
+    \vb{F}_i = \sum_{j \neq i} \vb{F}_{ij} + \vb{F}_{i}^{\text{ext}}.
+\end{equation}
+
 \subsection{The Principle of Galilean Relativity}
 
 A \term{closed system} is one in which the force on each particle in the system depends only on \(t\) and the other particles in the system, i.e., 
@@ -153,5 +158,116 @@ so
 
 If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(R \vb{x}_i \pqty{t}\) for all \(R \in \Or\pqty{3}\). This \emph{does not imply} that the forces only depend on relative separations, but instead implies that the force should not have any preferred direction in space apart from the relative positions and velocities of the particles, i.e.,
 \begin{equation}
-    R \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\Bqty{R\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}
+    R \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\Bqty{R\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}},
 \end{equation}
+and with no dependence on external vectors.
+
+\begin{example}
+    \begin{enumerate}[label=(\roman*)]
+        \item For a closed system of only one particle, we learn that \(\vb{F} = \vb{0}\) simply, since there are no other particles to depend on. Furthermore, \(\vb{F}\) cannot be a constant vector unless it is zero, the only isotropic vector in \(\RR^3\). The particle has free motion.
+        \item For a closed system with two particles, we must have
+        \begin{align*}
+            \vb{F}_i = f_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \vb{x}_{12} + g_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \dot{\vb{x}}_{12}.
+        \end{align*}
+
+        To see this, suppose \(\vb{x}_{12}\) and \(\dot{\vb{x}}_{12}\) are not collinear, i.e., \(\vb{x}_{12} \cross \dot{\vb{x}}_{12} \neq \vb{0}\). Consider \(\vb{R} \in \Or\pqty{3}\) as a reflection in the plane of the relative positions and velocities, then
+        \begin{equation}
+            R \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}} = \vb{F}_i \pqty{R\vb{x}_{12}, R\dot{\vb{x}}_{12}} = \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}},
+        \end{equation}
+        so \(\vb{F}_i\) must lie within this plane.
+
+        If, furthermore, we assume that the force is independent of velocities, then
+        \begin{subequations}
+            \begin{align}
+                \vb{F}_1 = f_{1} \pqty{\abs{\vb{x}_{12}}} \vb{x}_{12}, \\
+                \vb{F}_2 = f_{2} \pqty{\abs{\vb{x}_{12}}} \vb{x}_{12},
+            \end{align}
+        \end{subequations}
+        which is really close to Newton's third law -- but not quite, since we did not show that the force have equal magnitude.
+    \end{enumerate}
+\end{example}
+
+\subsection{Conserved Quantities}
+\subsubsection{Conservation of Momentum}
+
+The \term{momentum} of particle \(i\) is given by
+\begin{equation}
+    \vb{p}_i = m_i \dot{\vb{x}}_i,
+\end{equation}
+and the \term{total momentum of the system} is given by
+\begin{equation}
+    \vb{P} = \sum_{i = 1}^{n} \vb{p}_i.
+\end{equation}
+
+We have
+\begin{equation}
+    \dot{\vb{P}} = \sum_{i = 1}^{n} m_i \ddot{\vb{x}}_i = \sum_{i = 1}^{n} \vb{F}_i = \sum_{i = 1}^{n} \sum_{j \neq i} \vb{F}_{ij} + \sum_{i = 1}^{n} \vb{F}_i^{\text{ext}}.
+\end{equation}
+and by Newton's third law, we have
+\begin{equation}
+    \dot{\vb{P}} = \sum_{i = 1}^{n} \vb{F}_i^{\text{ext}},
+\end{equation}
+and in particular, if the system is closed, then \(\dot{\vb{P}} = \vb{0}\), i.e., the total momentum is conserved.
+
+\subsubsection{Conservation of Angular Momentum}
+The \term{angular momentum} of the \(i\)-th particle is \(\vb{L_i = \vb{x}_i \cross \vb{p}_i}\) (using the origin \(\vb{0}\)), and the \term{total angular momentum of the system} is given by
+\begin{equation}
+    \vb{L} = \sum_{i = 1}^{n} \vb{L}_i.
+\end{equation}
+
+therefore,
+\begin{equation}
+    \dot{\vb{L}} = \sum_{i = 1}^{n} \vb{x}_i \cross \dot{\vb{p}}_i = \sum_{i = 1}^{n} \vb{x}_i \cross \pqty{\vb{F}_i^{\text{ext}} + \sum_{j \neq i} \vb{F}_{ij}}.
+\end{equation}
+
+The first term
+\begin{equation}
+    \sum_{i = 1}^{n} \vb{x}_i \cross \vb{F}_i^{\text{ext}}
+\end{equation}
+is the \term{total external torque on the system} (about \(\vb{0}\)), and the second term given by
+\begin{equation}
+    \sum_{i = 1}^{n} \sum_{j \neq i} \vb{x}_i \cross \vb{F}_{ij} = \sum_{i < j} \pqty{\vb{x}_i - \vb{x}_j} \cross \vb{F}_{ij} = \sum_{i < j} \vb{x}_{ij} \cross \vb{F}_{ij}
+\end{equation}
+vanishes if the strong form of Newton's third law holds.
+
+Hence, the total angular momentum of closed system without external forces is conserved, whenever the strong form of Newton's third law holds.
+
+\subsubsection{Conservation of Energy}
+
+Define the \term{kinetic energy} of the \(i\)-th particle as
+\begin{equation}
+    T_i = \frac{1}{2} m_i \dot{\vb{x}}_i^2,
+\end{equation}
+and the \term{total kinetic energy} of the system as
+\begin{equation}
+    T = \sum_{i = 1}^{n} T_i.
+\end{equation}
+
+Then, differentiating with respect to time, so
+\begin{equation}
+    \dot{T} = \sum_{i = 1}^{n} m_i \dot{\vb{x}}_i \vdot \ddot{\vb{x}}_i = \sum_{i = 1}^{n} \dot{\vb{x}}_i \vdot \vb{F}_i.
+\end{equation}
+
+Hence, the \term{change in kinetic energy} is given by
+\begin{subequations}
+    \begin{align}
+        T\pqty{t_\text{f}} - T\pqty{t_\text{i}} &= \int_{t_\text{i}}^{t_\text{f}} \dot{T} \dd{t} \\
+        &= \sum_{i = 1}^{n} \int_{t_\text{i}}^{t_\text{f}} \dot{\vb{x}}_i \vdot \vb{F}_i \dd{t} \\
+        &= \sum_{i = 1}^{n} \int_{\vb{x}_i\pqty{t_\text{i}}}^{\vb{x}_i\pqty{t_\text{f}}} \vb{F}_i \vdot \dd{\vb{x}}_i,
+    \end{align}
+\end{subequations}
+and we define the \term{work done} on the \(i\)-th particle by \(\vb{F}_i\) from time \(t_\text{i}\) to \(t_\text{f}\) as
+\begin{equation}
+    W_i = \int_{\vb{x}_i\pqty{t_\text{i}}}^{\vb{x}_i\pqty{t_\text{f}}} \vb{F}_i \vdot \dd{\vb{x}}_i.
+\end{equation}
+
+The force is said to be \term{conservative} if the work done is independent of the path taken, we have a \term{potential} \(V\) such that
+\begin{equation}
+    \sum_{i = 1}^{n} \int_{\vb{x}_i\pqty{t_\text{i}}}^{\vb{x}_i\pqty{t_\text{f}}} \vb{F}_i \vdot \dd{\vb{x}}_i = - V \pqty{\Bqty{\vb{x}_j \pqty{t_{\text{f}}}}_{j = 1}^{n}} + V \pqty{\Bqty{\vb{x}_j \pqty{t_{\text{i}}}}_{j = 1}^{n}},
+\end{equation}
+and the forces are recovered by
+\begin{equation}
+    \vb{F}_i = - \grad_{\vb{x}_i} V \pqty{\Bqty{\vb{x}_j}_{j = 1}^{n}}.
+\end{equation}
+
+In this case, the \term{total energy} \(E = T + V\) obeys \(E \pqty{t_{\text{f}}} = E \pqty{t_{\text{i}}}\), and it is conserved.

@@ -1,0 +1,29 @@
+\section{Lagrangian Formulation}
+\subsection{The Principle of Least Action}
+
+We define the \term{action} of a system to be
+\begin{equation}
+    S\bqty{\vb{x}_i} = \int_{t_0}^{t_1} L \pqty{\vb{x}_i \pqty{t}, \dot{\vb{x}}_i \pqty{t}, t} \dd{t},
+\end{equation}
+where \(L\) is the \term{Lagrangian} of the system. Typically, the Lagrangian is given by
+\begin{equation}
+    L = T - V = \sum_{i = 1}^{n} \frac{1}{2} m_i \dot{\vb{x}}_i^2 - V\pqty{\Bqty{\vb{x}_j}_{j = 1}^{n}, t}.
+\end{equation}
+
+The \term{principle of least action} says if we consider all possible (smooth) paths with fixed endpoints \(\vb{x}_i \pqty{t_0}\) and \(\vb{x}_i \pqty{t_1}\), the true motion corresponds to the path that extremises the action \(S \bqty{\vb{x}_i}\).
+
+To see this, considering varying our path
+\begin{equation}
+    \vb{x}_i \pqty{t} \mapsto \vb{x}_i \pqty{t} + \var{\vb{x}_i \pqty{t}}
+\end{equation}
+with \(\var{\vb{x}_i} \pqty{t_0} = \var{\vb{x}_i} \pqty{t_1} = 0\). Then, we have
+\begin{subequations}
+    \begin{align}
+        \var{S} &= S \bqty{\vb{x}_i + \var{\vb{x}_i}} - S \bqty{\vb{x}_i} \\
+        &= \sum_{i = 1}^{n} \int_{t_0}^{t_1} \pqty{m \dot{\vb{x}}_i \vdot \var{\dot{\vb{x}}_i} -  \var{\vb{x}_i} \vdot \pdv{V}{\vb{x}_i}} \dd{t} + \bigO\pqty{\var{\vb{x}_i}^2} \\
+        &= - \sum_{i = 1}^{n} \int_{t_0}^{t_1}\pqty{m_i \ddot{\vb{x}}_i + \pdv{V}{\vb{x}_i}} \vdot \var{\vb{x}_i} \dd{t} + \rightbar{\sum_{i = 1}^{n} m_i \vb{x}_i \vdot \var{\vb{x}_i}}_{t_0}^{t_1} +\bigO\pqty{\var{\vb{x}_i}^2} \\
+        &= - \sum_{i = 1}^{n} \int_{t_0}^{t_1}\pqty{m_i \ddot{\vb{x}}_i + \pdv{V}{\vb{x}_i}} \vdot \var{\vb{x}_i} \dd{t} + +\bigO\pqty{\var{\vb{x}_i}^2}.
+    \end{align}
+\end{subequations}
+
+For an extremum, we need \(\var{S} = 0\) for any such \(\var{\vb{x}_i}\pqty{t}\), which implies that \(m \ddot{\vb{x}}_i = - \pdv{V}{\vb{x}_i}\), reducing to Newton's second law.
