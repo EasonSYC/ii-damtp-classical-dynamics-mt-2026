@@ -34,3 +34,123 @@ with \(\var{\vb{x}_i} \pqty{t_0} = \var{\vb{x}_i} \pqty{t_1} = 0\). Then, we hav
 \end{subequations}
 
 For an extremum, we need \(\var{S} = 0\) for any such \(\var{\vb{x}_i}\pqty{t}\), which implies that \(m \ddot{\vb{x}}_i = - \pdv{V}{\vb{x}_i}\), reducing to Newton's second law.
+
+We could not worry about \(L = T - V\) for now (just consider a general Lagrangian), and we consider a variation of \(\vb{x} \mapsto \vb{x} + \var{\vb{x}}\) and \(\dot{\vb{x}} \mapsto \dot{\vb{x}} + \var{\dot{\vb{x}}}\), giving
+\begin{subequations}
+    \begin{align}
+        \var{S} &= \int_{t_0}^{t_1} L \pqty{\vb{x} + \var{\vb{x}}, \dot{\vb{x}} + \var{\dot{\vb{x}}}, t} \dd{t} - \int_{t_0}^{t_1} L \pqty{\vb{x}, \dot{\vb{x}}, t} \dd{t} \\
+        &= \int_{t_0}^{t_1} \pqty{\pdv{L}{x^a} \vdot \var{x^a} + \pdv{L}{\dot{x}^a} \vdot \var{\dot{x}^a}} \dd{t} + \bigO\pqty{\var{\vb{x}}^2} &&  \var{\dot{x}^a} = \dv{t} \var{x^a} \\
+        &= \int_{t_0}^{t_1} \bqty{\pdv{L}{x^a} - \dv{t} \pdv{L}{\dot{x}^a}} \var{x^a} \dd{t} + \rightbar{\pdv{L}{\dot{x}^a} \var{x}^a}_{t_0}^{t_1} + \bigO\pqty{\var{\vb{x}}^2}.
+    \end{align}
+\end{subequations}
+where \(a = 1, 2, \ldots, 3n\) are for \(n\) particles in \(\RR^3\). Note the boundary terms vanish since \(\var{\vb{x}}\pqty{t_0} = \var{\vb{x}}\pqty{t_1} = 0\).
+
+For an extremum, we need \(\var{S} = 0\) for any such \(\var{\vb{x}}\), which leads to the \term{Euler--Lagrange equations}
+\begin{equation}
+    \dv{t} \pqty{\pdv{L}{\dot{x}^a}} - \pdv{L}{x^a} = 0.
+\end{equation}
+
+\begin{remarks}
+    \begin{enumerate}[label=(\roman*)]
+        \item The choice of the Lagrangian is not unique. Consider the new Lagrangian
+        \begin{equation}
+            L' \pqty{\vb{x}, \dot{\vb{x}}, t} = L \pqty{\vb{x}, \dot{\vb{x}}, t} + \dv{t} f\pqty{\vb{x}, t}
+        \end{equation}
+        where note \(f\) does not depend on \(\dot{\vb{x}}\). Then
+        \begin{equation}
+            S' = \int L' \dd{t} = S + \rightbar{f\pqty{x, t}}_{t_0}^{t_1}
+        \end{equation}
+        and the boundary term does not change as we vary our motion with fixed endpoints.
+        \item The true motion extremises the option, but does not necessarily \emph{minimise} it. In particular, it could be a saddle point. Consider a one-dimensional simple harmonic oscillator. The Lagrangian in this case is given by
+        \begin{equation}
+            L = \frac{1}{2} m \dot{x}^2 - \frac{1}{2} m \omega^2 x^2.
+        \end{equation}
+
+        Consider the trivial solution \(x\pqty{t} = 0\) for all \(t\), and alternatively, the motion given by
+        \begin{equation}
+            x_\epsilon \pqty{t} = \epsilon \sin \pqty{\frac{\pi \pqty{t - t_0}}{t_1 - t_0}}
+        \end{equation}
+        where \(S = \int_{t_0}^{t_1} L \dd{t}\).
+
+        The path \(x_\epsilon \pqty{t}\) is \emph{not} claimed to be a solution, but it does obey \(x_\epsilon\pqty{t_0} = x_\epsilon\pqty{t_1} = 0\).
+
+        We have
+        \begin{equation}
+            \dot{x}^2 = \pqty{\frac{\pi}{t_1 - t_0}}^2 \epsilon^2 \cos^2 \pqty{\frac{\pi \pqty{t - t_0}}{t_1 - t_0}}
+        \end{equation}
+        so
+        \begin{subequations}
+            \begin{align}
+                S\bqty{x_\epsilon} &= \frac{1}{2} m \int_{t_0}^{t_1} \bqty{\pqty{\frac{\pi}{t_1 - t_0}}^2 \epsilon^2 \cos^2 \pqty{\frac{\pi \pqty{t - t_0}}{t_1 - t_0}} - \omega^2 \epsilon^2 \sin^2 \pqty{\frac{\pi \pqty{t - t_0}}{t_1 - t_0}}} \dd{t} \\
+                &= \frac{m\epsilon^2}{4} \bqty{\pqty{\frac{\pi}{t_1 - t_0}}^2 - \omega^2} \int_{t_0}^{t_1} \bqty{1 + \cos\pqty{\frac{2\pi\pqty{t - t_0}}{t_1 - t_0}}} \dd{t} \\
+                &= \frac{m\epsilon^2}{4} \bqty{\pqty{\frac{\pi}{t_1 - t_0}}^2 - \omega^2} (t_1 - t_0)
+            \end{align}
+        \end{subequations}
+        which could be any real number, depending on the value of \(\omega\) and \(t_1 - t_0\). This concludes that \(x_b \pqty{t} = 0\) was not a minimum, but rather a saddle point.
+
+        \item When we solving for Newton's Second Law, we usually specify the initial location \(\vb{x} \pqty{0}\) and \(\dot{\vb{x}} \pqty{0}\), whereas in obtaining the Euler--Lagrange equations, we instead specified an initial location \(\vb{x} \pqty{0}\) and a final location \(\vb{x} \pqty{t_{\text{f}}}\). This does \emph{not} always give a unique solution. For example, if we recall from \textit{IB Variational Principles} about geodesics on a sphere being great circles, when we specify two points which are directly opposite each other on a sphere, there are infinitely many great circles connecting them.
+        
+        \item The action \(S\) has dimensions of \(\bqty{S} = \dimM \dimL^2 \dimT^{-2}\), which is the same as \(\hbar\), so \(\flatfrac{S}{\hbar}\) is dimensionless.
+        
+        In Feynmann's approach to quantum mechanics, we consider all possible paths from \(\vb{x}_0\) to \(\vb{x}_1\), we conduct a ``path integral'' integrating over the space of \emph{all} possible paths, in the form
+        \[
+            \bra{\vb{x}_1, t_1} \ket{\vb{x}_0, t_0} = \int \mathcal{D}\vb{x} \exp\pqty{\frac{i}{\hbar} S\bqty{\vb{x}}}
+        \]
+        weighted by the action \(S\). Since \(\hbar \ll 1\) is very small, the path integral is dominated by the classical path that extremises the action, and in the limit \(\hbar \to 0\) is exactly what we have derived here.
+    \end{enumerate}
+\end{remarks}
+
+\subsection{Generalised Coordinates}
+
+An advantage of the Lagrangian formulation is that we can describe our motion using whatever coordinates we like. Suppose the coordinate transformation is given by
+\begin{equation}
+    x^a = x^a \pqty{q^b, t}
+\end{equation}
+for some other coordinates \(q^a\) (for example, polar coordinates given by \(x = r \cos \theta\) and \(y = r \sin \theta\)). Then
+\begin{subequations}
+    \begin{align}
+        L\pqty{x\pqty{t}, \dot{x}\pqty{t}, t} &= L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t} \\
+        &= \tilde{L}\pqty{q\pqty{t}, \dot{q}\pqty{t}, t}
+    \end{align}
+\end{subequations}
+
+By the partial derivatives chain rule,
+\begin{equation}
+    \label{eq:xdot-chain-rule-in-qdot}%
+    \dot{x}^b = \pdv{x^b}{q^c} \dot{q}^c + \pdv{x^b}{t}
+\end{equation}
+and hence
+\begin{equation}
+    \label{eq:xdot-qdot-partial}%
+    \rightbar{\pdv{\dot{x}^b}{\dot{q}^a}}_{t} = \pdv{x^b}{q^a}.
+\end{equation}
+
+We have
+\begin{equation}
+    \label{eq:x-q-partial-time}%
+    \dv{t} \pqty{\pdv{x^b}{q^a}} = \pdv{x^b}{q^d}{q^a} \dot{q}^d + \pdv{x^b}{t}{q^a}.
+\end{equation}
+
+Notice also from \autoref{eq:xdot-chain-rule-in-qdot} that
+\begin{equation}
+    \label{eq:xdot-q-partial}%
+    \pdv{\dot{x}^b}{q^a} = \pdv{q^a} \pqty{\pdv{x^b}{q^c} \dot{q}^c + \pdv{x^b}{t}} = \pdv{x^b}{q^a}{q^c} \dot{q}^c + \pdv{x^b}{q^a}{t},
+\end{equation}
+and since mixed partials commute, from \autoref{eq:x-q-partial-time} and \autoref{eq:xdot-q-partial}, we have
+\begin{equation}
+    \label{eq:xdot-q-partial-x-q-partial-time-equality}%
+    \dv{t} \pqty{\pdv{x^b}{q^a}} - \pdv{\dot{x}^b}{q^a} = 0.
+\end{equation}
+
+Now, consider using \(\tilde{L}\) and writing the Euler--Lagrange equations from varying \(q^a \pqty{t}\), we have
+\begin{subequations}
+    \begin{align}
+        0 &= \dv{t} \pqty{\pdv{\tilde{L}}{\dot{q}^a}} - \pdv{\tilde{L}}{q^a} \\
+        &= \dv{T} \pdv{L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t}}{\dot{q}^a} - \pdv{L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t}}{q^a} \\
+        &= \dv{t} \pqty{\pdv{L}{\dot{x}^b} \pdv{\dot{x}^b}{\dot{q}^a}} - \pqty{\pdv{L}{x^b} \pdv{x^b}{q^a} + \pdv{L}{\dot{x}^b} \pdv{\dot{x}^b}{q^a}} \\
+        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a} + \pdv{L}{\dot{x}^b} \pqty{\dv{t} \pqty{\pdv{x^b}{q^a}} - \pdv{\dot{x}^b}{q^a}} && \text{by \autoref{eq:xdot-qdot-partial}} \\
+        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a}. && \text{by \autoref{eq:xdot-q-partial-x-q-partial-time-equality}}
+    \end{align}
+\end{subequations}
+
+So provided the matrix \(\pdv*{x^b}{q^a}\) is invertible, for all \(t\), i.e., change of coordinates is invertible, the Euler--Lagrange equations in \(q^a\) are equivalent to the Euler--Lagrange equations in \(x^b\).
