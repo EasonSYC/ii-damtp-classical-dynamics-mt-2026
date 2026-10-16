@@ -61,7 +61,15 @@ For an extremum, we need \(\var{S} = 0\) for any such \(\var{\vb{x}}\), which le
             S' = \int L' \dd{t} = S + \rightbar{f\pqty{x, t}}_{t_0}^{t_1}
         \end{equation}
         and the boundary term does not change as we vary our motion with fixed endpoints.
-        \item The true motion extremises the option, but does not necessarily \emph{minimise} it. In particular, it could be a saddle point. Consider a one-dimensional simple harmonic oscillator. The Lagrangian in this case is given by
+
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.5\textwidth]{fig/simple-harmonic-oscillator.png}
+            \caption{Simple Harmonic Oscillator}
+            \label{fig:simple-harmonic-oscillator}
+        \end{figure}
+
+        \item The true motion extremises the option, but does not necessarily \emph{minimise} it. In particular, it could be a saddle point. Consider a one-dimensional simple harmonic oscillator as given in \autoref{fig:simple-harmonic-oscillator}. The Lagrangian in this case is given by
         \begin{equation}
             L = \frac{1}{2} m \dot{x}^2 - \frac{1}{2} m \omega^2 x^2.
         \end{equation}
@@ -88,7 +96,14 @@ For an extremum, we need \(\var{S} = 0\) for any such \(\var{\vb{x}}\), which le
         \end{subequations}
         which could be any real number, depending on the value of \(\omega\) and \(t_1 - t_0\). This concludes that \(x_b \pqty{t} = 0\) was not a minimum, but rather a saddle point.
 
-        \item When we solving for Newton's Second Law, we usually specify the initial location \(\vb{x} \pqty{0}\) and \(\dot{\vb{x}} \pqty{0}\), whereas in obtaining the Euler--Lagrange equations, we instead specified an initial location \(\vb{x} \pqty{0}\) and a final location \(\vb{x} \pqty{t_{\text{f}}}\). This does \emph{not} always give a unique solution. For example, if we recall from \textit{IB Variational Principles} about geodesics on a sphere being great circles, when we specify two points which are directly opposite each other on a sphere, there are infinitely many great circles connecting them.
+        \item When we solving for Newton's Second Law, we usually specify the initial location \(\vb{x} \pqty{0}\) and \(\dot{\vb{x}} \pqty{0}\), whereas in obtaining the Euler--Lagrange equations, we instead specified an initial location \(\vb{x} \pqty{0}\) and a final location \(\vb{x} \pqty{t_{\text{f}}}\). This does \emph{not} always give a unique solution. For example, if we recall from \textit{IB Variational Principles} about geodesics on a sphere being great circles, when we specify two points which are directly opposite each other on a sphere, there are infinitely many great circles connecting them, as shown in \autoref{fig:geodesics-on-sphere}.
+        
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.7\textwidth]{fig/geodesics-on-sphere.png}
+            \caption{Geodesics on a Sphere}
+            \label{fig:geodesics-on-sphere}
+        \end{figure}
         
         \item The action \(S\) has dimensions of \(\bqty{S} = \dimM \dimL^2 \dimT^{-2}\), which is the same as \(\hbar\), so \(\flatfrac{S}{\hbar}\) is dimensionless.
         
