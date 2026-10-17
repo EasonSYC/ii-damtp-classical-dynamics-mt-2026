@@ -121,7 +121,7 @@ An advantage of the Lagrangian formulation is that we can describe our motion us
 \begin{equation}
     x^a = x^a \pqty{q^b, t}
 \end{equation}
-for some other coordinates \(q^a\) (for example, polar coordinates given by \(x = r \cos \theta\) and \(y = r \sin \theta\)). Then
+for some other coordinates \(q^a\), known as \term{generalised coordinates} (for example, polar coordinates given by \(x = r \cos \theta\) and \(y = r \sin \theta\)). Then
 \begin{subequations}
     \begin{align}
         L\pqty{x\pqty{t}, \dot{x}\pqty{t}, t} &= L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t} \\
@@ -168,4 +168,140 @@ Now, consider using \(\tilde{L}\) and writing the Euler--Lagrange equations from
     \end{align}
 \end{subequations}
 
-So provided the matrix \(\pdv*{x^b}{q^a}\) is invertible, for all \(t\), i.e., change of coordinates is invertible, the Euler--Lagrange equations in \(q^a\) are equivalent to the Euler--Lagrange equations in \(x^b\).
+So provided the matrix \(\pdv*{x^b}{q^a}\) is invertible, for all \(t\), i.e., change of coordinates is invertible, the Euler--Lagrange equations in \(q^a\) are equivalent to the Euler--Lagrange equations in \(x^b\), i.e.,
+\begin{equation}
+    \dv{t} \pqty{\pdv{L}{\dot{x}^a}} - \pdv{L}{x^a} = 0 \iff \dv{t} \pqty{\pdv{\tilde{L}}{\dot{q}^a}} - \pdv{\tilde{L}}{q^a} = 0.
+\end{equation}
+
+For the case where the Lagrangian is given by \(L = T - V\), we have
+\begin{equation}
+    \pdv{L}{\dot{\vb{x}}} = m \dot{\vb{x}} = \vb{p}
+\end{equation}
+which is the standard momentum. For the generalised coordinates, we define the partial derivatives
+\begin{equation}
+    \pdv{\tilde{L}}{\dot{q}^a} = p_a
+\end{equation}
+which is the \term{generalised momentum} by analogy.
+
+\begin{example}
+    Suppose a particle has motion \(\vb{r} = \vb{r}\pqty{t}\) in some inertial frame, and suppose another frame rotates with angular velocity \(\vb*{\omega} = \vb*{\omega} \pqty{t}\) with respect to our inertial frame. Then, in the rotating frame, the particle's velocity is described by 
+    \begin{equation}
+        \dot{\vb{r}} \pqty{t} = \dot{\vb{r}}' \pqty{t} + \vb*{\omega} \pqty{t} \cross \vb{r}' \pqty{t}.
+    \end{equation}
+
+    If this particle travels freely with constant potential \(V = 0\), then the Lagrangian will be
+    \begin{equation}
+        L = \frac{1}{2} m \dot{\vb{r}}^2 = \frac{1}{2} m \pqty{\dot{\vb{r}}' + \vb*{\omega} \cross \vb{r}'}^2 = \tilde{L} \pqty{\vb{r}', \dot{\vb{r}}', t}.
+    \end{equation}
+
+    Hence, the Euler--Lagrange equations for \(\tilde{L}\) are given by
+    \begin{subequations}
+        \begin{align}
+            0 &= \dv{t} \pqty{\pdv{\tilde{L}\pqty{\dot{\vb{r}}'}}} - \pdv{L}{\vb{r}'} \\
+            &= \dv{t} \pqty{m \pqty{\dot{\vb{r}}' + \vb*{\omega} \cross \vb{r}'}} - m \pqty{\dot{\vb{r}}' + \vb*{\omega} \cross \vb{r}'} \cross \vb*{\omega},
+        \end{align}
+    \end{subequations}
+    i.e.,
+    \begin{equation}
+        \ddot{\vb{r}}' + 2 \vb*{\omega} \cross \dot{\vb{r}}' + \dot{\vb*{\omega}} \cross \vb{r}' + \vb*{\omega} \cross \pqty{\vb*{\omega} \cross \vb{r}'} = 0
+    \end{equation}
+    which recovers the \term{Coriolis force} \(2 m \vb*{\omega} \cross \dot{\vb{r}}'\), the \term{Euler force} \(m \dot{\vb*{\omega}} \cross \vb{r}'\), and the \term{centrifugal force} \(m \vb*{\omega} \cross \pqty{\vb*{\omega} \cross \vb{r}'}\) from \textit{IA Dynamics and Relativity}.
+\end{example}
+
+\subsection{Constraints and LAgrange Multipliers}
+
+Suppose a system of \(n\) particles in \(\RR^3\) has degrees of freedom \(x^a \pqty{t}\) which are subject to constraints of the form
+\begin{equation}
+    f_A \pqty{x^a\pqty{t}, t} = 0, \quad A = 1, 2, \ldots, m.
+\end{equation}
+
+Such conditions where the constraints are equalities, and which satisfy
+\begin{equation}
+    \pdv{f_A}{\dot{x}^a} = 0
+\end{equation}
+are called \term{holonomic}.
+
+The special case where the constraints have no explicit time dependence, i.e.,
+\begin{equation}
+    \pdv*{f_A}{t} = 0
+\end{equation}
+is called a \term{scleronomous} constraint, and otherwise   is called a \term{rheonomic} constraint.
+
+We may enforce these constraints using \term{Lagrange multipliers}. We set
+\begin{equation}
+    L'\pqty{x^a, \dot{x}^a, \lambda^A, t} = L\pqty{x^a, \dot{x}^a, t} + \sum_{A = 1}^{k}\lambda^A \pqty{t} f_A \pqty{x^a, t}
+\end{equation}
+where \(L\) is the original Lagrangian for \emph{unconstrained} motion, and \(\lambda^A \pqty{t}\) are the Lagrange multipliers. Such Lagrange multipliers should be time-dependent, since we want the constraints to hold at \emph{all} times, rather than simply holding \emph{on average}.
+
+We treat the set of Lagrange multipliers \(\Bqty{\lambda^A \pqty{t}}\) as the new coordinates for the system. The Euler--Lagrange equations for \(L'\) give
+\begin{equation}
+    \label{eq:euler-lagrange-with-constraints}%
+    \dv{t} \pqty{\pdv{L}{\dot{x}^a}} - \pdv{L}{x^a} = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{f_A}{x^a},
+\end{equation}
+for the original coordinates \(x^a\), and varying with respect to Lagrange multipliers, this simply recovers the constraints
+\begin{equation}
+    f_A \pqty{x^a, t} = 0.
+\end{equation}
+
+The left-hand side of \autoref{eq:euler-lagrange-with-constraints} is the same as the unconstrained Euler--Lagrange equations, and the right-hand side given by
+\begin{equation}
+    R_a = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{f_A}{x^a}
+\end{equation}
+is known as the \term{constraint force}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/constraint-surface.png}
+    \caption{Constraint Surface}
+    \label{fig:constraint-surface}
+\end{figure}
+
+If \(\var{x^a}\) is any variation tangent to the constraint surface, as sketched in \autoref{fig:constraint-force}, then the constraint force does no work, i.e.,
+\begin{equation}
+    \sum_{a = 1}^{3n} R_a \var{x^a} = 0.
+\end{equation}
+
+In other words, the equation
+\begin{equation}
+    R_a = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{f_A}{x^a}
+\end{equation}
+is normal to the constraint surface, and in a way, a force that we would have to overcome to move off the constraint surface.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{fig/pendulum.png}
+    \caption{Constraint Motion of Pendulum}
+    \label{fig:constraint-motion-of-pendulum}
+\end{figure}
+
+\begin{example}
+    Consider a mass on a rod of fixed length \(l\) divided at one end and swinging under gravity, as demonstrated in \autoref{fig:constraint-motion-of-pendulum}, with the constrained Lagrangian therefore given by
+    \begin{equation}
+        L' = \frac{1}{2} m \pqty{\dot{x}^2 + \dot{y}^2} - m g y + \lambda \pqty{x^2 + y^2 - l^2}.
+    \end{equation}
+
+    We get
+    \begin{subequations}
+        \begin{align}
+            m \ddot{x} &= 2 \lambda x \\
+            m \ddot{y} &= - mg 2 \lambda y \\
+            l^2 &= x^2 + y^2 
+        \end{align}
+    \end{subequations}
+    and in this case, the constrained force is \(2 \lambda \pqty{x, y}\transpose\), where we identify \(\lambda \sim T\) is the tension in the rod.
+\end{example}
+
+It is often very useful to solve the constraints before computing the Euler--Lagrange equations. For example, suppose we have a system of coordinates \(q^b\), such that \(q^b\) for \(b = 1, 2, \ldots, 3b - k\) are coordinates along the constraint surface, while the remaining coordinates
+\begin{equation}
+    q^{3n - k + A} = f_A
+\end{equation}
+for \(A = 1, 2, \ldots, k\) are just the constraints themselves. For example, if we lie on a sphere, we might have chosen the standard Cartesian coordinates with constraint \(x^2 + y^2 + z^2 = l^2\). Instead, we could choose the natural spherical coordinates \(q^1 = \theta\), \(q^2 = \phi\) and \(q^3 = r - l\). Then, our constraint surface simply becomes \(q^3 = 0\), and \(\pqty{q^1, q^2} = \pqty{\theta, \phi}\) parametrises the surface of the sphere. In these coordinates, the Lagrangian will be given by
+\begin{equation}
+    \tilde{L}' \pqty{q, \dot{q}, \lambda, t} = \tilde{L} \pqty{q^a, \dot{q}^a, t} + \sum_{A = 1}^{k} \lambda^A \pqty{t} q^{3n - k + A}.
+\end{equation} 
+
+Imposing the constraint amounts to setting \(q^{3n - k + A} = 0\) for \(A = 1, 2, \ldots, k\), and the motion reduces to the motion along the surface, in particular,
+\begin{equation}
+    \dv{t} \pqty{\pdv{\tilde{L}}{\dot{q}^b}} - \pdv{\tilde{L}}{q^b} = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{q^{3n - k + A}}{q^b} = 0
+\end{equation}
+for \(b = 1, 2, \ldots, 3n - k\), and the coordinates along the constraint surface are free of the Lagrange multipliers, which is identical to simply the free, unconstrained motion in the first place.
