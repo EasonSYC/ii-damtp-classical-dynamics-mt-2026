@@ -308,8 +308,15 @@ for \(b = 1, 2, \ldots, 3n - k\), and the coordinates along the constraint surfa
 
 Which of the two strategies above is simpler depends on the problem.
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/bead-on-rotating-hoop.png}
+    \caption{Bead on Rotating Hoop}
+    \label{fig:bead-on-rotating-hoop}
+\end{figure}
+
 \begin{example}[Bead and Rotating Hoop]
-    Consider a bead sliding on a rotation hoop of radius \(a\), whose axis is aligned with the \(z\)-axis, and the plane of the hoop makes an angle \(\phi\) to the \(x\) axis, rotating with angular speed \(\omega\). The mass is free to move along the hoop, with an angle \(\psi\) from vertical (from negative \(z\)-direction).
+    Consider the setup in \autoref{fig:bead-on-rotating-hoop}. A bead is sliding on a rotation hoop of radius \(a\), whose axis is aligned with the \(z\)-axis, and the plane of the hoop makes an angle \(\phi\) to the \(x\) axis, rotating with angular speed \(\omega\). The mass is free to move along the hoop, with an angle \(\psi\) from vertical (from negative \(z\)-direction).
 
     In this case we have two constraints.
     \begin{itemize}
@@ -354,8 +361,15 @@ Which of the two strategies above is simpler depends on the problem.
 
     If \(\sin \psi = 0\), then \(\psi = 0\) or \(\psi = \pi\), and if \(g - a \omega^2 \cos \psi = 0\), then \(\cos \psi = \flatfrac{g}{a \omega^2}\), provided \(\omega^2 \geq \flatfrac{g}{a}\).
 
-    We consider the stability of these solutions by sketching the effective potential \(V_{\text{eff}}\) against \(\psi\). Observe that \(\psi = \pi\) is always unstable, while \(\psi = 0\) is stable when \(\omega^2 < \flatfrac{g}{a}\) and unstable when \(\omega^2 > \flatfrac{g}{a}\). The solution \(\cos \psi = \flatfrac{g}{a \omega^2}\) is stable whenever it exists.
+    We consider the stability of these solutions by sketching the effective potential \(V_{\text{eff}}\) against \(\psi\), as in \autoref{fig:effective-potential-stability}. Observe that \(\psi = \pi\) is always unstable, while \(\psi = 0\) is stable when \(\omega^2 < \flatfrac{g}{a}\) and unstable when \(\omega^2 > \flatfrac{g}{a}\). The solution \(\cos \psi = \flatfrac{g}{a \omega^2}\) is stable whenever it exists.
 \end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/effective-potential-stability.png}
+    \caption{Effective Potential and Stability of Bead on Rotating Hoop}
+    \label{fig:effective-potential-stability}%
+\end{figure}
 
 \subsection{Noether's Theorem}
 
@@ -369,11 +383,18 @@ Consider continuously deforming a path \(q^a\pqty{t}\) to a path
 \begin{equation}
     Q^a\pqty{t} = q^a\pqty{t} + \epsilon \eta^a\pqty{t} + \bigO\pqty{\epsilon^2}
 \end{equation}
-where \(\eta^a\pqty{t} = \eta^a\pqty{q\pqty{t}, \dot{q}\pqty{t}, t}\) in general. We say this generates a \term{symmetry} of \(L\), if
+where \(\eta^a\pqty{t} = \eta^a\pqty{q\pqty{t}, \dot{q}\pqty{t}, t}\) in general, as illustrated in \autoref{fig:symmetry-of-lagrangian}. We say this generates a \term{symmetry} of \(L\), if
 \begin{equation}
     \rightbar{\pdv{\epsilon} L\pqty{Q^a, \dot{Q}^a, t}}_{\epsilon = 0} = \dv{t} f\pqty{q, \dot{q}, t}
 \end{equation}
 for some function \(f\pqty{q, \dot{q}, t}\).
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/variation-of-path-symmetry.png}
+    \caption{Deforming a Path and Symmetry of Lagrangian}
+    \label{fig:symmetry-of-lagrangian}%
+\end{figure}
 
 \begin{remarks}
     \begin{enumerate}
@@ -416,12 +437,19 @@ is conserved, whenever the Euler--Lagrange equations hold.
     \end{equation}
     i.e., the total momentum in the \(\vb{a}\) direction. But since \(\vb{a}\) is arbitrary, the total momentum \(\vb{P} = \sum_{i = 1}^{n} m_i \dot{\vb{x}}_i\) is conserved.
 
-    In addition, consider rotating every particle infinitesimally about some axis \(\vb{n}\), so we have \(\vb{x}_i \mapsto \vb{x}_i + \epsilon \vb{n} \cross \vb{x}_i\). But since \(L\) is rotationally invariant, we have \(\rightbar{\pdv*{L}{\epsilon}}_{\epsilon = 0} = 0\), so \(f = 0\). Then, by Noether's Theorem, we have a conserved quantity
+    In addition, consider rotating every particle infinitesimally about some axis \(\vb{n}\), so we have \(\vb{x}_i \mapsto \vb{x}_i + \epsilon \vb{n} \cross \vb{x}_i + \bigO\pqty{\epsilon^2}\) as in \autoref{fig:rotate-coordinates}. But since \(L\) is rotationally invariant, we have \(\rightbar{\pdv*{L}{\epsilon}}_{\epsilon = 0} = 0\), so \(f = 0\). Then, by Noether's Theorem, we have a conserved quantity
     \begin{equation}
         F = \sum_{i = 1}^{n} \pqty{\vb{n} \cross \vb{x}_i} \vdot \pdv{L}{\dot{\vb{x}}_i} = \sum_{i = 1}^{n} \pqty{\vb{n} \cross \vb{x}_i} \vdot m_i \dot{\vb{x}}_i = \vb{n} \vdot \pqty{\sum_{i = 1}^{n} m_i \vb{x}_i \cross \dot{\vb{x}}_i},
     \end{equation}
     so the rotational invariance of \(L\) gives the total angular momentum \(\vb{L} = \sum_{i = 1}^{n} m_i \vb{x}_i \cross \dot{\vb{x}}_i\) is conserved.
 \end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/rotate-coordinates.png}
+    \caption{Rotating the Coordinate System}
+    \label{fig:rotate-coordinates}%
+\end{figure}
 
 In general, if the Lagrangian is independent for some (generalised) coordinates \(q^b\) with \(\pdv*{L}{q^b} = 0\), this coordinate is called \term{ignorable}, or \term{cyclic}, and the corresponding generalised momentum \(\pdv*{L}{\dot{q}^b}\) is conserved.
 
@@ -446,8 +474,15 @@ The relation between symmetries of Lagrangian and conserved quantities was one o
 
 \subsection{Constrained Motions and Conservation Laws}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/pendulum-on-moving-support.png}
+    \caption{Pendulum on a Moving Support}
+    \label{fig:pendulum-on-moving-support}%
+\end{figure}
+
 \begin{example}[Pendulum on a Moving Support]
-    Suppose a mass \(M\) is attached to a support, free to move along a horizontal line, and a pendulum of length \(l\) is attached between it and a second mass \(m\), with coordinates \(\pqty{x, y}\) and angle \(\theta\) from vertical. Suppose \(M\) is \(X\) from some horizontal origin. Then the physical constraints give
+    Refer to \autoref{fig:pendulum-on-moving-support}. Suppose a mass \(M\) is attached to a support, free to move along a horizontal line, and a pendulum of length \(l\) is attached between it and a second mass \(m\), with coordinates \(\pqty{x, y}\) and angle \(\theta\) from vertical. Suppose \(M\) is \(X\) from some horizontal origin. Then the physical constraints give
     \begin{subequations}
         \begin{align}
             x &= X + l \sin \theta \\
@@ -517,8 +552,15 @@ The relation between symmetries of Lagrangian and conserved quantities was one o
     It is important to first obtain \emph{all} equations of motions, and then simplify using conserved quantities, e.g. it would \emph{not} be correct to first find \(\dot{X} = \dot{X}\pqty{p_X, \theta, \dot{\theta}}\) and substitute this back into \(L\) before finding \(\theta\) equation of motion. This is \emph{incorrect}, since the conservation laws are only valid along the true trajectory, and not for all paths. Then if we substitute this back into \(L\), we are effectively restricting the set of paths to only those that satisfy the conservation law, which is not the set of all paths, and hence the Euler--Lagrange equations will not be valid.
 \end{remark}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{fig/spherical-pendulum.png}
+    \caption{Spherical Pendulum}
+    \label{fig:spherical-pendulum}%
+\end{figure}
+
 \begin{example}[Spherical Pendulum]
-    The location of the mass (with respect to the centre of sphere) is given by
+    We setup a spherical pendulum as illustrated in \autoref{fig:spherical-pendulum}. The location of the mass (with respect to the centre of sphere) is given by
     \begin{subequations}
         \begin{align}
             x &= l \sin \theta \cos \phi \\
@@ -556,8 +598,22 @@ The relation between symmetries of Lagrangian and conserved quantities was one o
     \end{equation}
     which reduces to a quadrature.
 
-    Although this is very tough to solve, we can try to understand the motion by plotting \(V_{\text{eff}} \pqty{\theta}\), assuming \(p_\phi \neq 0\). For a fixed \(p_{\phi}\), \(V_{\text{eff}}\) looks quadratic, and the motion will be confined within some range of \(\oointv{\theta_0}{\theta_1}\) where \(V_{\text{eff}}\pqty{\theta_0} = V_{\text{eff}}\pqty{\theta_1} = E\). The ball will therefore ``bob up and down'' between the two angles
+    Although this is very tough to solve, we can try to understand the motion by plotting \(V_{\text{eff}} \pqty{\theta}\), assuming \(p_\phi \neq 0\). For a fixed \(p_{\phi}\), \(V_{\text{eff}}\) looks quadratic, and the motion will be confined within some range of \(\oointv{\theta_0}{\theta_1}\) where \(V_{\text{eff}}\pqty{\theta_0} = V_{\text{eff}}\pqty{\theta_1} = E\), as demonstrated in \autoref{fig:spherical-pendulum-effective-potential} -- there is a ``centrifugal barrier'' term here, just like planetary circular motion. The ball will therefore ``bob up and down'' between the two angles, as illustrated in \autoref{fig:spherical-pendulum-motion}.
 \end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/spherical-pendulum-effective-potential.png}
+    \caption{Effective Potential of Spherical Pendulum}
+    \label{fig:spherical-pendulum-effective-potential}%
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/spherical-pendulum-motion.png}
+    \caption{Motion of Spherical Pendulum}
+    \label{fig:spherical-pendulum-motion}%
+\end{figure}
 
 \subsection{Charged Particle in an Electromagnetic Field}
 
