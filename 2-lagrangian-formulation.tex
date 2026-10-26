@@ -305,3 +305,385 @@ Imposing the constraint amounts to setting \(q^{3n - k + A} = 0\) for \(A = 1, 2
     \dv{t} \pqty{\pdv{\tilde{L}}{\dot{q}^b}} - \pdv{\tilde{L}}{q^b} = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{q^{3n - k + A}}{q^b} = 0
 \end{equation}
 for \(b = 1, 2, \ldots, 3n - k\), and the coordinates along the constraint surface are free of the Lagrange multipliers, which is identical to simply the free, unconstrained motion in the first place.
+
+Which of the two strategies above is simpler depends on the problem.
+
+\begin{example}[Bead and Rotating Hoop]
+    Consider a bead sliding on a rotation hoop of radius \(a\), whose axis is aligned with the \(z\)-axis, and the plane of the hoop makes an angle \(\phi\) to the \(x\) axis, rotating with angular speed \(\omega\). The mass is free to move along the hoop, with an angle \(\psi\) from vertical (from negative \(z\)-direction).
+
+    In this case we have two constraints.
+    \begin{itemize}
+        \item the bead lies on the hoop;
+        \item the hoop rotates with frequency \(\omega\).
+    \end{itemize}
+
+    Here it's simplest to parametrise solutions to these constraints using \(\psi\pqty{t}\) as a generalised coordinate, as the only degree of freedom. Then we have
+    \begin{subequations}
+        \begin{align}
+            x\pqty{t} &= a \sin \psi\pqty{t} \cos \pqty{\omega t} \\
+            y\pqty{t} &= a \sin \psi\pqty{t} \sin \pqty{\omega t} \\
+            z\pqty{t} &= a - a \cos \psi\pqty{t}
+        \end{align}
+    \end{subequations}
+    
+    The Lagrangian then becomes
+    \begin{subequations}
+        \begin{align}
+            L &= \frac{1}{2} m \dot{\vb{x}}^2 - mg z \\
+            &= ma^2 \pqty{\frac{1}{2} \dot{\psi}^2 - V_{\text{eff}}},
+        \end{align}
+    \end{subequations}
+    where the effective potential is given by
+    \begin{equation}
+        V_{\text{eff}} \pqty{\psi} = \frac{1}{a} \pqty{- g \cos \psi - \frac{1}{2} a \omega^2 \sin^2 \psi}.
+    \end{equation}
+
+    Then the Euler--Lagrange equations give
+    \begin{equation}
+        0 = \dv{t} \pqty{\pdv{L}{\dot{\psi}}} - \pdv{L}{\psi}
+    \end{equation}
+    which gives
+    \begin{equation}
+        \ddot{\psi} = - \pdv{V_{\text{eff}}}{\psi}.
+    \end{equation}
+
+    Consider a solution of the form \(\dot{\psi} = 0\), so the bead sits at fixed angle in the \(z\)-axis. This solution must be at a critical point of the effective potential, i.e., \(\pdv*{V_{\text{eff}}}{\psi} = 0\), which gives
+    \begin{equation}
+        \sin \psi \pqty{g - a \omega^2 \cos \psi} = 0.
+    \end{equation}
+
+    If \(\sin \psi = 0\), then \(\psi = 0\) or \(\psi = \pi\), and if \(g - a \omega^2 \cos \psi = 0\), then \(\cos \psi = \flatfrac{g}{a \omega^2}\), provided \(\omega^2 \geq \flatfrac{g}{a}\).
+
+    We consider the stability of these solutions by sketching the effective potential \(V_{\text{eff}}\) against \(\psi\). Observe that \(\psi = \pi\) is always unstable, while \(\psi = 0\) is stable when \(\omega^2 < \flatfrac{g}{a}\) and unstable when \(\omega^2 > \flatfrac{g}{a}\). The solution \(\cos \psi = \flatfrac{g}{a \omega^2}\) is stable whenever it exists.
+\end{example}
+
+\subsection{Noether's Theorem}
+
+There is a close relation between \term{symmetries} of the Lagrangian and \term{conserved quantities}. We say some quantity \(F\pqty{q^a, \dot{q}^a, t}\) is \term{conserved} if
+\begin{equation}
+    \dv{F}{t} = \pdv{F}{q^a} \dot{q}^a + \pdv{F}{\dot{q}^a} \ddot{q}^a + \pdv{F}{t} = 0
+\end{equation}
+along the true trajectory, i.e. the solution to the Euler--Lagrange equations.
+
+Consider continuously deforming a path \(q^a\pqty{t}\) to a path
+\begin{equation}
+    Q^a\pqty{t} = q^a\pqty{t} + \epsilon \eta^a\pqty{t} + \bigO\pqty{\epsilon^2}
+\end{equation}
+where \(\eta^a\pqty{t} = \eta^a\pqty{q\pqty{t}, \dot{q}\pqty{t}, t}\) in general. We say this generates a \term{symmetry} of \(L\), if
+\begin{equation}
+    \rightbar{\pdv{\epsilon} L\pqty{Q^a, \dot{Q}^a, t}}_{\epsilon = 0} = \dv{t} f\pqty{q, \dot{q}, t}
+\end{equation}
+for some function \(f\pqty{q, \dot{q}, t}\).
+
+\begin{remarks}
+    \begin{enumerate}
+        \item Very often, the function \(f\) is zero, and the Lagrangian is invariant. When \(f \neq 0\), our condition says the action \(S = \int_{t_0}^{t_1} L \dd{t}\) is changing only at the endpoints of the integral.
+        \item To be a symmetry, this equation must hold for \term{all} paths \(q^a\pqty{t}\), whether or not this is a solution to the equations of motion.
+    \end{enumerate}
+\end{remarks}
+
+\term{Noether's Theorem} states that if se have a continuous symmetry \(q^a \mapsto q^a + \epsilon \eta^a + \cdots\) of \(L\). Then the quantity given by
+\begin{equation}
+    F\pqty{q, \dot{q}, t} = \eta^a \pdv{L}{\dot{q}^a} - f
+\end{equation}
+is conserved, whenever the Euler--Lagrange equations hold.
+
+\begin{proof}
+    We have
+    \begin{subequations}
+        \begin{align}
+            \rightbar{\pdv{t} L\pqty{q + \epsilon \eta, \dot{q} + \epsilon \dot{\eta}, t}}_{\epsilon = 0} &= \pdv{L}{q^a} \eta^a + \pdv{L}{\dot{q}^a} \dot{\eta}^a \\
+            &= \dv{t} \pqty{\pdv{L}{\dot{q}^a}} \eta^a + \pdv{L}{\dot{q}^a} \dot{\eta}^a \\
+            &= \dv{t} \pqty{\pdv{L}{\dot{q}^a} \eta^a}.
+        \end{align}
+    \end{subequations}
+
+    Hence, if this deformation generates a symmetry, then
+    \begin{equation}
+        \dv{t} \pqty{\pdv{L}{\dot{q}^a} \eta^a - f} = 0,
+    \end{equation}
+\end{proof}
+
+\begin{example}[Conservation of Momentum and Angular Momentum]
+    Consider an \(n\)-particle system, with
+    \begin{equation}
+        L = \sum_{i = 1}^{n} \frac{1}{2} m_i \dot{\vb{x}}_i^2 - V\pqty{\abs{\vb{x}_i - \vb{x}_j}}.
+    \end{equation}
+
+    Under the deformation \(\vb{x}_i \pqty{t} \mapsto \vb{x}_i \pqty{t} + \epsilon \vb{a}\) for a constant \(\vb{a}\), we have simply \(\rightbar{\pdv*{L}{\epsilon}}_{\epsilon = 0} = 0\), so \(f = 0\). Then, by Noether's Theorem, we have a conserved quantity
+    \begin{equation}
+        \sum_{i = 1}^{n} \vb{a} \vdot \pdv{L}{\dot{\vb{x}}_i} = \vb{a} \vdot \sum_{i = 1}^{n} m_i \dot{\vb{x}}_i,
+    \end{equation}
+    i.e., the total momentum in the \(\vb{a}\) direction. But since \(\vb{a}\) is arbitrary, the total momentum \(\vb{P} = \sum_{i = 1}^{n} m_i \dot{\vb{x}}_i\) is conserved.
+
+    In addition, consider rotating every particle infinitesimally about some axis \(\vb{n}\), so we have \(\vb{x}_i \mapsto \vb{x}_i + \epsilon \vb{n} \cross \vb{x}_i\). But since \(L\) is rotationally invariant, we have \(\rightbar{\pdv*{L}{\epsilon}}_{\epsilon = 0} = 0\), so \(f = 0\). Then, by Noether's Theorem, we have a conserved quantity
+    \begin{equation}
+        F = \sum_{i = 1}^{n} \pqty{\vb{n} \cross \vb{x}_i} \vdot \pdv{L}{\dot{\vb{x}}_i} = \sum_{i = 1}^{n} \pqty{\vb{n} \cross \vb{x}_i} \vdot m_i \dot{\vb{x}}_i = \vb{n} \vdot \pqty{\sum_{i = 1}^{n} m_i \vb{x}_i \cross \dot{\vb{x}}_i},
+    \end{equation}
+    so the rotational invariance of \(L\) gives the total angular momentum \(\vb{L} = \sum_{i = 1}^{n} m_i \vb{x}_i \cross \dot{\vb{x}}_i\) is conserved.
+\end{example}
+
+In general, if the Lagrangian is independent for some (generalised) coordinates \(q^b\) with \(\pdv*{L}{q^b} = 0\), this coordinate is called \term{ignorable}, or \term{cyclic}, and the corresponding generalised momentum \(\pdv*{L}{\dot{q}^b}\) is conserved.
+
+\begin{example}[Conservation of Energy]
+    Suppose our Lagrangian has no explicit time dependence, i.e., \(\pdv*{L}{t} = 0\). Then we can translate \(t \mapsto t + \epsilon\), and
+    \begin{equation}
+        L\pqty{q^a \pqty{t + \epsilon}, \dot{q}^a \pqty{t + \epsilon}} = L\pqty{q^a\pqty{t} + \epsilon \dot{q}^a \pqty{t}, \dot{q}^a\pqty{t} + \epsilon \ddot{a}^a \pqty{t}} + \bigO\pqty{\epsilon^2},
+    \end{equation}
+    and hence
+    \begin{equation}
+        \rightbar{\pdv{L}{\epsilon}}_{\epsilon = 0} = \pdv{L}{q^a} \dot{q}^a + \pdv{L}{\dot{q}^a} \ddot{q}^a = \dv{L}{t}.
+    \end{equation}
+
+    This is a example of a symmetry, where \(\eta^a \pqty{t} = \dot{q}^a \pqty{t}\) and \(f = L\). Then, by Noether's Theorem, we have a conserved quantity
+    \begin{equation}
+        E = \dot{q}^a \pdv{L}{\dot{q}^a} - L
+    \end{equation}
+    is conserved, whenever the equations of motions hold. In the case where \(L = T - V\), then  \(E = T + V\) is the usual total energy.
+\end{example}
+
+The relation between symmetries of Lagrangian and conserved quantities was one of the most powerful ideas in the 20th century physics, but usually what happens is that experimentalists conducted particle experiments and observed that decay products have certain rules, and assigned new properties (e.g. strangeness/lepton number) to particles, and claim that they are conserved, which would explain that certain decay products are forbidden. Then, the underlying Lagrangian that describes the physics laws must have a symmetry that gives rise to this conserved quantity (we have not proved this, but this is indeed a one-to-one correspondence). The form of the Lagrangian are therefore restricted by such symmetries, which, generalised in many ways, is most of what 20th century physics is about.
+
+\subsection{Constrained Motions and Conservation Laws}
+
+\begin{example}[Pendulum on a Moving Support]
+    Suppose a mass \(M\) is attached to a support, free to move along a horizontal line, and a pendulum of length \(l\) is attached between it and a second mass \(m\), with coordinates \(\pqty{x, y}\) and angle \(\theta\) from vertical. Suppose \(M\) is \(X\) from some horizontal origin. Then the physical constraints give
+    \begin{subequations}
+        \begin{align}
+            x &= X + l \sin \theta \\
+            y &= - l \cos \theta
+        \end{align}
+    \end{subequations}
+
+    The total kinetic energy of the system is therefore given by the sum of the two kinetic energies,
+    \begin{equation}
+        T = \frac{1}{2} M \dot{X}^2 + \frac{1}{2} m \pqty{\dot{x}^2 + \dot{y}^2}
+    \end{equation}
+    while the potential energy is \(V = mgy\). Similarly, it is easy to solve the constraint (\(\theta\)), and implicitly we have solved that \(Y\) is constant for \(M\). So the Lagrangian for the constrained motion is given by
+    \begin{subequations}
+        \begin{align}
+            L &= \rightbar{T - V}_{\text{constraints}} \\
+            &= \frac{1}{2} M \dot{X}^2 + \frac{1}{2} m \pqty{\pqty{\dot{X} + l \dot{\theta} \cos \theta}^2 + l^2 \dot{\theta}^2 \sin^2 \theta} + m g l \cos \theta \\
+            &= \frac{1}{2} \pqty{M + m} \dot{X}^2 + m l \cos \theta \dot{X} \dot{\theta} + \frac{1}{2} m l^2 \dot{\theta}^2 + m g l \cos \theta.
+        \end{align}
+    \end{subequations}
+    
+
+    Clearly, \(L\) does not have explicit time dependence, so energy is conserved. In addition, \(L\) does not have explicit \(X\) dependence, so the momentum
+    \begin{equation}
+        p_X = \pdv{L}{\dot{X}} = \pqty{M + m} \dot{X} + m l \cos \theta \dot{\theta}
+    \end{equation}
+    is also conserved.
+
+    For the \(\theta\) coordinate, by the Euler--Lagrange equations,
+    \begin{subequations}
+        \begin{align}
+            0 &= \dv{t} \pdv{L}{\dot{\theta}} - \pdv{L}{\theta} \\
+            &= \dv{t} \pqty{m l \cos \theta \dot{X} + m l^2 \dot{\theta}} + m l \sin \theta \dot{X} \dot{\theta} + m g l \sin \theta \\
+            &= m l \cos \theta \ddot{X} + m l^2 \ddot{\theta} + m g l \sin \theta,
+        \end{align}
+    \end{subequations}
+    and hence
+    \begin{equation}
+        0 = m l \cos \theta \ddot{x} + m l \dot{\theta}^2 + m g l \sin \theta.
+    \end{equation}
+
+    Since \(p_X\) is constant, by differentiating with respect to time, we have
+    \begin{equation}
+        \ddot{X} = \frac{ml}{M + m} \pqty{\sin \theta \dot{\theta}^2 - \cos \theta \ddot{\theta}},
+    \end{equation}
+    so the equation for \(\theta\pqty{t}\) reduces to
+    \begin{equation}
+        \label{eq:pendulum-on-moving-support-theta-eom}%
+        \pqty{M + m \sin^2 \theta} \ddot{\theta} + m \sin \theta \cos \theta \dot{\theta}^2 + \frac{g}{l} \pqty{M + m} \sin \theta = 0.
+    \end{equation}
+
+    This looks slightly unpleasant, but we have the conservation of energy, so
+    \begin{equation}
+        E = \frac{1}{2} \pqty{M + m} \dot{X}^2 + ml \cos \theta \dot{\theta} \dot{X} + \frac{1}{2} m l^2 \dot{\theta}^2 - mgl \cos \theta
+    \end{equation}
+    is constant, and using the conserved momentum \(p_X\), this becomes
+    \begin{equation}
+        E = \frac{p_M^2}{2 \pqty{M + m}} + \frac{m l^2}{2 \pqty{M + m}} \pqty{M + m \sin^2 \theta} \dot{\theta}^2 - m g l \cos \theta
+    \end{equation}
+    which is the first integral of the \(\theta\) equation. (Differentiating this with respect to time recovers the \(\theta\) equation, in \autoref{eq:pendulum-on-moving-support-theta-eom}.) If we write this in the form \(\dv*{\theta}{t} = g\pqty{\theta}\) for some function \(g\pqty{\theta}\), then
+    \begin{equation}
+        t - t_0 = \int_{\theta\pqty{t_0}}^{\theta\pqty{t}} \frac{\dd{\theta}}{g\pqty{\theta}}
+    \end{equation}
+    is the (rather implicit) solution to the equations of motion. We say the solution is \term{reduced to quadrature}.
+\end{example}
+
+\begin{remark}
+    It is important to first obtain \emph{all} equations of motions, and then simplify using conserved quantities, e.g. it would \emph{not} be correct to first find \(\dot{X} = \dot{X}\pqty{p_X, \theta, \dot{\theta}}\) and substitute this back into \(L\) before finding \(\theta\) equation of motion. This is \emph{incorrect}, since the conservation laws are only valid along the true trajectory, and not for all paths. Then if we substitute this back into \(L\), we are effectively restricting the set of paths to only those that satisfy the conservation law, which is not the set of all paths, and hence the Euler--Lagrange equations will not be valid.
+\end{remark}
+
+\begin{example}[Spherical Pendulum]
+    The location of the mass (with respect to the centre of sphere) is given by
+    \begin{subequations}
+        \begin{align}
+            x &= l \sin \theta \cos \phi \\
+            y &= l \sin \theta \sin \phi \\
+            z &= - l \cos \theta
+        \end{align}
+    \end{subequations}
+    so the constraint Lagrangian will be given by
+    \begin{equation}
+        L = \frac{1}{2} m l^2 \pqty{\dot{\theta}^2 + \sin^2 \theta \dot{\phi}^2} + m g l \cos \theta.
+    \end{equation}
+
+    Here, \(\phi\) is ignorable with \(\pdv{L}{\phi} = 0\), so the generalised momentum
+    \begin{equation}
+        p_\phi = \pdv{L}{\dot{\phi}} = m l^2 \sin^2 \theta \dot{\phi}
+    \end{equation}
+    is conserved. This is the angular momentum in the \(\phi\) direction (about the vertical axis). Energy is conserved since there is no explicit time dependence:
+    \begin{equation}
+        E = \frac{1}{2} m l^2 \pqty{\dot{\theta}^2 + \sin^2 \theta \dot{\phi}^2} - m g l \cos \theta.
+    \end{equation}
+
+    Putting this together, we have
+    \begin{equation}
+        E = \frac{1}{2} m l^2 \dot{\theta}^2 + \frac{p_\phi^2}{2 m l^2 \sin^2\theta} - m g l \cos \theta,
+    \end{equation}
+    which is the first integral of the \(\theta\) equation of motion.
+
+    We may write this in terms of an effective potential \(V_{\text{eff}}\pqty{\theta}\) as
+    \begin{equation}
+        V_{\text{eff}} \pqty{\theta} = \frac{p_\phi^2}{2 m l^2 \sin^2 \theta} - m g l \cos \theta
+    \end{equation}
+    with \(E = \frac{1}{2} m l^2 \dot{\theta}^2 + V_{\text{eff}}\pqty{\theta}\). Hence, we have
+    \begin{equation}
+        \dv{\theta}{t} = \sqrt{\frac{2 \pqty{E - V_{\text{eff}}\pqty{\theta}}}{m l^2}}
+    \end{equation}
+    which reduces to a quadrature.
+
+    Although this is very tough to solve, we can try to understand the motion by plotting \(V_{\text{eff}} \pqty{\theta}\), assuming \(p_\phi \neq 0\). For a fixed \(p_{\phi}\), \(V_{\text{eff}}\) looks quadratic, and the motion will be confined within some range of \(\oointv{\theta_0}{\theta_1}\) where \(V_{\text{eff}}\pqty{\theta_0} = V_{\text{eff}}\pqty{\theta_1} = E\). The ball will therefore ``bob up and down'' between the two angles
+\end{example}
+
+\subsection{Charged Particle in an Electromagnetic Field}
+
+Consider a particle of mass \(m\) and charge \(e\) moving in an electromagnetic field
+\begin{equation}
+    \vb{E} = - \grad{\phi} - \pdv{\vb{A}}{t} \qand \vb{B} = \curl{\vb{A}}
+\end{equation}
+where \(\phi = \phi\pqty{\vb{x}, t}\) is the scalar potential and \(\vb{A} = \vb{A} \pqty{\vb{x}, t}\) is the vector potential. If our particle is moving with velocity \(\vb{v}\) much less than the speed of light with \(\abs{\vb{v}} \ll c\), then the Lagrangian for the particle is given by
+\begin{equation}
+    L = \frac{1}{2} m \dot{\vb{x}}^2 - e \phi + e \dot{\vb{x}} \vdot \vb{A}.
+\end{equation}
+and the Euler--Lagrange equations give
+\begin{equation}
+    0 = \dv{t} \pqty{\pdv{L}{\dot{\vb{x}}}} - \pdv{L}{\vb{x}} = \dv{t} \pqty{m \dot{\vb{x}} + e \vb{A}} + e \pqty{\grad \phi - \grad \pqty{\dot{\vb{x}} \vdot \vb{A}}}.
+\end{equation}
+
+Hence,
+\begin{equation}
+    m \ddot{x}^a = -e \pqty{\pdv{\phi}{x^a} + \pdv{A_a}{t}} + e \pqty{\pdv{A_b}{x^a} - \pdv{A_a}{x^b}} \dot{x}^b
+\end{equation}
+which indeed yields
+\begin{equation}
+    m \ddot{\vb{x}} = e \pqty{\vb{E} + \dot{\vb{x}} \cross \vb{B}}
+\end{equation}
+which is the \term{Lorentz force law}.
+
+\begin{remarks}
+    \begin{enumerate}
+        \item Note the generalised momentum is different from the classical momentum, with
+        \begin{equation}
+            \vb{p} = \pdv{L}{\dot{\vb{x}}} = m \dot{\vb{x}} + e \vb{A}
+        \end{equation}
+        also having a contribution from the vector potential, and in particular is not just \(m \vb{v}\).
+        \item The Lagrangian depends on the potentials \(\pqty{\phi, \vb{A}}\) rather than the fields \(\vb{E}, \vb{B}\) themselves. These potentials have \term{gauge redundancy}, in that the Lagrangian is invariant under the \term{gauge transformation}
+        \begin{subequations}
+            \begin{align}
+                \vb{A} &\mapsto \vb{A} + \grad f \\
+                \phi &\mapsto \phi - \pdv{f}{t}
+            \end{align}
+        \end{subequations}
+        for some \(f = \pqty{\vb{x}, t}\), which leaves the fields \(\vb{E}, \vb{B}\) invariant. Under this gauge transformation, we have
+        \begin{equation}
+            L \mapsto L + e \pqty{\pdv{f}{t} + \dot{\vb{x}} \vdot \grad f} = L + e \dv{f}{t},
+        \end{equation}
+        so the variational problem with fixed endpoints is unchanged.
+        \item In special relativity, with the Minkowski metric taking convention
+        \begin{equation}
+            \tensor{\eta}{_{\mu\nu}} = \text{diag}\pqty{-1, 1, 1, 1},
+        \end{equation}
+        we have
+        \begin{equation}
+            L = m \sqrt{- \tensor{\eta}{_{\mu \nu}} \tensor{\dot{x}}{^\mu} \tensor{\dot{x}}{^\nu}} - e \tensor{A}{_\mu} \tensor{\dot{x}}{^\mu}
+        \end{equation}
+        where we have the 4-vector 
+        \begin{equation}
+            \tensor{x}{^\mu} = \pqty{t\pqty{\tau}, \vb{x}\pqty{\tau}}
+        \end{equation}
+        is parametrised by proper time \(\tau\), and the 4-vector potential
+        \begin{equation}
+            \tensor{A}{_\mu} = \pqty{\phi, -\vb{A}}.
+        \end{equation}
+    \end{enumerate}
+\end{remarks}
+
+\subsection{Small Oscillations}
+
+Having set up the Lagrangian \(L\) for some physical motion, we often want to identify the \term{points of equilibrium}, then identify whether or not such points of equilibrium is \term{stable}.
+
+Consider a general Lagrangian in the form
+\begin{equation}
+    L = \frac{1}{2} T_{ab} \dot{q}^a \dot{q}^b - V\pqty{q}
+\end{equation}
+that is quadratic in velocities, where \(T\) is real, symmetric and positive-definite. Then the Euler--Lagrange equations read
+\begin{equation}
+    \dv{t} \pqty{T_{ab} \dot{q}^b} = \frac{1}{2} \pdv{T_{bc}}{q^a} \dot{q}^b \dot{q}^c - \pdv{V}{q^a}.
+\end{equation}
+
+A \term{point of equilibrium} is a solution of the Euler--Lagrange equations of the form \(\dot{q}^a \pqty{t} = 0\) for all \(a\) and \(t\). This can only occur at the critical points of the potential, where \(\pdv*{V}{q^a} = 0\) for all \(a\).
+
+Without loss of generality, choose the generalised coordinates such that \(q^a\pqty{t} = 0\) is a point of equilibrium. To determine stability, we expand about the point of equilibrium, getting
+\begin{subequations}
+    \begin{align}
+        T &= \frac{1}{2} T_{ab} \pqty{0} \dot{q}^a \dot{q}^b + \bigO\pqty{q^3, \dot{q}^3} \\
+        V &= V\pqty{0} + \frac{1}{2} \pdv{V}{q^a}{q^b} \pqty{0} q^a q^b + \bigO\pqty{q^3}
+    \end{align}
+\end{subequations}
+where we treat both the velocities \(\dot{q}^a\) and departures from equilibrium as small. We can drop \(V\pqty{0}\) since it is a constant, so the dynamics near an equilibrium point are determined by quadratic Lagrangian
+\begin{equation}
+    L^{\pqty{2}} = \frac{1}{2} \mathcal{T}_{ab} \dot{q}^a \dot{q}^b - \frac{1}{2} \mathcal{V}_{ab} q^a q^b
+\end{equation}
+where we denote \(\mathcal{T}_{ab} = T_{ab}\pqty{0}\) and \(\mathcal{V}_{ab} = \pdv*{V}{q^a}{q^b}\pqty{0}\). The Euler--Lagrange equations for this quadratic Lagrangian then reads
+\begin{equation}
+    \mathcal{T} \ddot{\vb{q}} + \mathcal{V} \vb{q} = \vb{0}
+\end{equation}
+for real. symmetric matrices \(T\) and \(V\). In physical situations, \(\mathcal{T}\) is positive-definite and hence invertible, and the equations of motion are therefore
+\begin{equation}
+    \ddot{\vb{q}} = - \mathcal{T}\inverse \mathcal{V} \vb{q}.
+\end{equation}
+
+We seek solutions of the form \(\vb{q}\pqty{t} = f\pqty{t} \vb*{\alpha}\) for some constant vector \(\vb*{\alpha}\). With this ansatz, we have
+\begin{equation}
+    \ddot{f}\pqty{t} \mathcal{T} \vb*{\alpha} = - f\pqty{t} \mathcal{V} \vb*{\alpha}.
+\end{equation}
+
+Since \(\mathcal{T}\) is invertible, for \(\vb*{\alpha}\) non-zero, we always have \(\mathcal{T} \vb*{\alpha} \neq \vb{0}\), and hence
+\begin{equation}
+    \ddot{f} = - \lambda f \qwhere \pqty{\lambda \mathcal{T} - \mathcal{V}} \vb*{\alpha} = \vb{0}
+\end{equation}
+for some constant \(\lambda\). Hence, \(\det \pqty{\lambda \mathcal{T} - \mathcal{V}} = 0\).
+
+If this characteristic polynomial has degree \(n\), there will be \(n\) roots \(\lambda_1, \ldots, \lambda_n\) and the solution will be \(\vb{q}\pqty{t} = f_r\pqty{t} \vb*{\alpha}_r\), where \(\vb*{\alpha}_r\) is the corresponding eigenvector satisfying \(\pqty{\lambda_r \mathcal{T} - \mathcal{V}} \vb*{\alpha}_r = \vb{0}\), and \(\ddot{f}_r = - \lambda_r f_r\).
+
+In fact, all the roots \(\lambda_r\) are real in this case. This is because both \(\mathcal{T}\) and \(\mathcal{V}\) are real and symmetric. For each \(r\), we have
+\begin{equation}
+    \lambda_r \vb*{\alpha}_r \hermitian \mathcal{T} \vb*{\alpha}_r = \vb*{\alpha}_r \hermitian \mathcal{V} \vb*{\alpha}_r
+\end{equation}
+and subtracting its complex conjugate, we know
+\begin{equation}
+    \pqty{\lambda_r - \lambda_r\conjstar} \vb*{\alpha}_r \hermitian \mathcal{T} \vb*{\alpha}_r = 0,
+\end{equation}
+so \(\lambda_r\) is real since \(\vb*{\alpha}_r \hermitian \mathcal{T} \vb*{\alpha}_r > 0\).
+
+If \(\lambda_r > 0\), then \(f_r\pqty{t} = A_R \cos\pqty{\omega_r t + \phi_r}\), where \(\omega_r = \sqrt{\lambda_r}\) is the \term{(angular) frequency} of the oscillation, and \(A_r\) is the \term{amplitude}.
+
+If however, some \(\lambda_r < 0\) is negative, then the corresponding \(f_r\pqty{t}\) grows exponentially, and our quadratic approximation for \(L^{\pqty{2}}\) is no longer valid, so the equilibrium point is \term{unstable}.
+
+If some \(\lambda_r = 0\), then the corresponding \(f_r\pqty{t} = a_r + b_r t\), and we need to examine higher order terms to determine the stability.
+
+If \(\lambda_r > 0\) for \emph{every} \(r\), then the equilibrium point is \term{stable}, and the collection of associated eigenvectors \(\Bqty{\vb*{\alpha}_r}\) are called the \term{normal modes} of the system. A general solution near this equilibrium point \(q^a = 0\) will be a superposition of normal modes.
