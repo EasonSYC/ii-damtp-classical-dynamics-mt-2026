@@ -743,3 +743,127 @@ If however, some \(\lambda_r < 0\) is negative, then the corresponding \(f_r\pqt
 If some \(\lambda_r = 0\), then the corresponding \(f_r\pqty{t} = a_r + b_r t\), and we need to examine higher order terms to determine the stability.
 
 If \(\lambda_r > 0\) for \emph{every} \(r\), then the equilibrium point is \term{stable}, and the collection of associated eigenvectors \(\Bqty{\vb*{\alpha}_r}\) are called the \term{normal modes} of the system. A general solution near this equilibrium point \(q^a = 0\) will be a superposition of normal modes.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.25\textwidth]{fig/double-pendulum.png}
+    \caption{Double Pendulum}
+    \label{fig:double-pendulum}%
+\end{figure}
+
+\begin{example}[Double Pendulum]
+    Refer to \autoref{fig:double-pendulum}. In general, the (constrained) Lagrangian of the system is given by
+    \begin{equation}
+        L = m l^2 \dot{\theta}_1^2 + \frac{1}{2} m l^2 \dot{\theta}_2^2 + m l^2 \cos\pqty{\theta_2 - \theta_1} \dot{\theta}_1 \dot{\theta}_2 + m g l \pqty{2 \cos \theta_1 + \cos \theta_2}.
+    \end{equation}
+
+    Clearly, there is an equilibrium when \(\theta_1 = \theta_2 = 0\), and we can expand about this point to get the quadratic Lagrangian
+    \begin{equation}
+        L^{\pqty{2}} = m l^2 \pqty{\dot{\theta}_1^2 + \frac{1}{2} \dot{\theta}_2^2 + \dot{\theta}_1 \dot{\theta}_2} - m g l \pqty{\theta_1^2 + \frac{1}{2} \theta_2^2},
+    \end{equation}
+    and the matrices are given by
+    \begin{equation}
+        \mathcal{T} = m l^2 \pmqty{2 & 1 \\ 1 & 1} \qand \mathcal{V} = m g l \pmqty{2 & 0 \\ 0 & 1}.
+    \end{equation}
+
+    Then the characteristic polynomial is given by
+    \begin{subequations}
+        \begin{align}
+            \det\pqty{\lambda \mathcal{T} - \mathcal{V}} &= \vmqty{2 ml^2 \lambda - 2 m g l & ml^2 \lambda \\ ml^2 \lambda & ml^2 \lambda - m g l} \\
+            &= m^2 l^4 \bqty{2 \pqty{\lambda - \frac{g}{l}}^2 - \lambda^2},
+        \end{align}
+    \end{subequations}
+    so the eigenvalues are
+    \begin{equation}
+        \lambda_1 = \pqty{2 - \sqrt{2}} \frac{g}{l} \qand \lambda_2 = \pqty{2 + \sqrt{2}} \frac{g}{l}
+    \end{equation}
+    with corresponding eigenvectors
+    \begin{equation}
+        \vb*{\alpha}_1 = \pmqty{1 \\ \sqrt{2}} \qand \vb*{\alpha}_2 = \pmqty{1 \\ -\sqrt{2}}.
+    \end{equation}
+
+    Notice that both eigenvalues are positive, so the equilibrium is stable. The normal modes are illustrated as below.
+
+    Note that the normal mode with the lower frequency (\(\lambda_1 < \lambda_2\)) has oscillations in phase, as in \autoref{fig:double-pendulum-normal-mode-in-phase}, whereas the normal mode with the higher frequency (\(\lambda_2 > \lambda_1\)) has oscillations out of phase, as in \autoref{fig:double-pendulum-normal-mode-out-of-phase}.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[c]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/double-pendulum-normal-mode-in-phase.png}
+        \caption{In Phase}
+        \label{fig:double-pendulum-normal-mode-in-phase}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[c]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/double-pendulum-normal-mode-out-of-phase.png}
+        \caption{Out of Phase}
+        \label{fig:double-pendulum-normal-mode-out-of-phase}%
+    \end{subfigure}
+    \caption{Normal Modes of the Double Pendulum}
+    \label{fig:double-pendulum-normal-modes}%
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/linear-triatomic-molecule.png}
+    \caption{Linear Triatomic Molecule}
+    \label{fig:linear-triatomic-molecule}%
+\end{figure}
+
+\begin{example}[Linear Triatomic Molecule]
+    For a molecule such as carbon dioxide, we may model it as three collinear masses joined by identical springs, as in \autoref{fig:linear-triatomic-molecule}.
+
+    Then the Lagrangian is already quadratic, with
+    \begin{equation}
+        L = L^{\pqty{2}} = \frac{1}{2} m \pqty{\dot{x}_1^2 + \dot{x}_3^2} + \frac{1}{2} M \dot{x}_2^2 - \frac{1}{2} k \pqty{\pqty{x_1 - x_2}^2 + \pqty{x_2 - x_3}^2}.
+    \end{equation}
+
+    So the matrices are given by
+    \begin{equation}
+        \mathcal{T} = \pmqty{m & 0 & 0 \\ 0 & M & 0 \\ 0 & 0 & m} \qand \mathcal{V} = k \pmqty{1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1}.
+    \end{equation}
+
+    Computing the determinant, we get
+    \begin{subequations}
+        \begin{align}
+            \det\pqty{\lambda \mathcal{T} - \mathcal{V}} &= \vmqty{\lambda m - k & 0 & k \\ 0 & \lambda M - 2 k & k \\ k & k & \lambda m - k} \\
+            &= \lambda \pqty{\lambda m - k} \pqty{\lambda m M - k \pqty{2m + M}}.
+        \end{align}
+    \end{subequations}
+
+    The three eigenvalues and eigenvectors are as follows.
+
+    \begin{itemize}
+        \item \(\lambda_1 = 0\) with \(\vb*{\alpha}_1 = \pmqty{1 \\ 1 \\ 1}\), which represents uniform transformation, and there is no relative motion between the masses, as in \autoref{fig:linear-triatomic-molecule-normal-mode-translational}.
+        \item \(\lambda_2 = \flatfrac{k}{m}\) with \(\vb*{\alpha}_2 = \pmqty{1 \\ 0 \\ -1}\), which represents the two outer masses oscillating in opposite directions (out of phase), while the middle mass is stationary, as in \autoref{fig:linear-triatomic-molecule-normal-mode-stationary-middle}.
+        \item \(\lambda_3 = \flatfrac{k}{m} \pqty{1 + \pqty{\flatfrac{2 m}{M}}}\) with \(\vb*{\alpha}_3 = \pmqty{1 \\ -\frac{2 m}{M} \\ 1}\), which represents the two outer masses oscillating in phase, while the middle mass oscillates in opposite direction, as in \autoref{fig:linear-triatomic-molecule-normal-mode-oscillating-middle}.
+    \end{itemize}
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[m]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/linear-triatomic-molecule-normal-mode-translational.png}
+        \caption{Translational}
+        \label{fig:linear-triatomic-molecule-normal-mode-translational}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[m]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/linear-triatomic-molecule-normal-mode-stationary-middle.png}
+        \caption{Stationary Middle}
+        \label{fig:linear-triatomic-molecule-normal-mode-stationary-middle}%
+    \end{subfigure}
+    \begin{subfigure}[m]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/linear-triatomic-molecule-normal-mode-oscillating-middle.png}
+        \caption{Oscillating Middle}
+        \label{fig:linear-triatomic-molecule-normal-mode-oscillating-middle}%
+    \end{subfigure}
+    \caption{Normal Modes of Linear Triatomic Molecule}
+    \label{fig:linear-triatomic-molecule-normal-modes}%
+\end{figure}
