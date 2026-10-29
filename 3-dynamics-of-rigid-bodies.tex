@@ -8,9 +8,16 @@ To describe such a rigid body, we must specify
     \item its \term{orientation} around the centre of mass.
 \end{itemize}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{fig/space-and-body-frame.png}
+    \caption{Space and Body Frames}
+    \label{fig:space-and-body-frames}%
+\end{figure}
+
 \subsection{Rotations of a Rigid Body}
 
-Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\Bqty{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\Bqty{\vb{e}_a}\).
+Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\Bqty{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\Bqty{\vb{e}_a}\), as shown in \autoref{fig:space-and-body-frames}.
 
 The \term{space frame} is simply the standard basis of \(\RR^3\). A \term{body frame} is one whose axes are fixed in the body. The space frame will not change with time, while the body frame will rotate with the body (and remains fixed relative to the body). Regardless, both sets of axes are always orthonormal
 \begin{equation}
@@ -59,7 +66,14 @@ This means that
 \begin{equation}
     \delta \vb{r} = \delta \phi \pqty{\vb{n} \cross \vb{r}},
 \end{equation}
-if the body rotates by \(\delta \phi\) around \(\vb{n}\) in time \(\delta t\). So the vector \(\vb*{\omega} \pqty{t}\) is the \term{angular velocity} of the body that we are familiar with.
+if the body rotates by \(\delta \phi\) around \(\vb{n}\) in time \(\delta t\). So the vector \(\vb*{\omega} \pqty{t}\) is the \term{angular velocity} of the body that we are familiar with, as shown in \autoref{fig:angular-velocity-vector}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/angular-velocity-vector.png}
+    \caption{Angular Velocity Vector}
+    \label{fig:angular-velocity-vector}%
+\end{figure}
 
 The kinetic energy of our rotating body is
 \begin{subequations}
@@ -168,7 +182,14 @@ A uniform sphere, by symmetry, will have \(I_1 = I_2 = I_3\). Then Euler's equat
 
 \subsubsection{Symmetric Top}
 
-The symmetric top is an object with \(I_1 = I_2 \neq I_3\), and we will discuss the example of an ellipsoid. Then Euler's equations reduce to
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/ellipsoid.png}
+    \caption{Ellipsoid}
+    \label{fig:ellipsoid}%
+\end{figure}
+
+The symmetric top is an object with \(I_1 = I_2 \neq I_3\), and we will discuss the example of an ellipsoid, as in \autoref{fig:ellipsoid}. Then Euler's equations reduce to
 \begin{subequations}
     \begin{align}
         I_1 \dot{\omega}_1 &= \omega_2 \omega_3 \pqty{I_1 - I_3}, \\
@@ -187,4 +208,11 @@ This solves to
     \pqty{\omega_1, \omega_2} = \omega_0 \pqty{\sin \Omega t, \cos \Omega t}.
 \end{equation}
 
-This means that in the body frame, \(\vb*{\omega}\) \term{precesses} around the \(\vb{e}_3\) axis. The direction of precession depends on whether \(I_1 > I_3\) or \(I_1 < I_3\).
+This means that in the body frame, \(\vb*{\omega}\) \term{precesses} around the \(\vb{e}_3\) axis, as shown in \autoref{fig:ellipsoid-precession}. The direction of precession depends on whether \(I_1 > I_3\) or \(I_1 < I_3\).
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/ellipsoid-precession.png}
+    \caption{Precession of an Ellipsoid}
+    \label{fig:ellipsoid-precession}%
+\end{figure}
