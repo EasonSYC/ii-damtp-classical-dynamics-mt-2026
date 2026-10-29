@@ -1,0 +1,62 @@
+\section{Dynamics of Rigid Bodies}
+
+A \term{rigid body} is one which has no internal degrees of freedom. In particular, if the body consists of \(n\) particles at locations \(\vb{r}_i\) for \(i = 1, 2, \ldots, n\), then the relative separations \(\abs{\vb{r}_i - \vb{r}_j}\) are fixed for all \(i, j\).
+
+To describe such a rigid body, we must specify
+\begin{itemize}
+    \item the \term{location} \(\vb{R}\pqty{t}\) of its centre of mass;
+    \item its \term{orientation} around the centre of mass.
+\end{itemize}
+
+\subsection{Rotations of a Rigid Body}
+
+Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\Bqty{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\Bqty{\vb{e}_a}\).
+
+The \term{space frame} is simply the standard basis of \(\RR^3\). A \term{body frame} is one whose axes are fixed in the body. The space frame will not change with time, while the body frame will rotate with the body (and remains fixed relative to the body). Regardless, both sets of axes are always orthonormal
+\begin{equation}
+    \tilde{\vb{e}}_a \cdot \tilde{\vb{e}}_b = \delta_{ab}, \quad
+    \vb{e}_a\pqty{t} \cdot \vb{e}_b\pqty{t} = \delta_{ab}.
+\end{equation}
+
+Any point \(\vb{r} \pqty{t}\) in the body can be expanded in either basis. In the space frame, since the space frame is fixed, the components must change, while in the body frame, the components must be constant, i.e.
+\begin{equation}
+    \vb{r}\pqty{t} = \tilde{r}_a \pqty{t} \tilde{\vb{e}}_a = r_a \vb{e}_a\pqty{t}.
+\end{equation}
+
+The velocity is therefore given by
+\begin{equation}
+    \dv{\vb{r}}{t} = \dv{\tilde{r}_a}{t} \tilde{\vb{e}}_a = r_a \dv{\vb{e}_a}{t} = r_a \dv{R_{ab}\pqty{t}}{t} \tilde{\vb{e}}_b
+\end{equation}
+where \(R\pqty{t}\) is the rotation matrix that rotates the body frame into the space frame, i.e. \(\vb{e}_a\pqty{t} = R_{ab}\pqty{t} \tilde{\vb{e}}_b\). We can write this entirely in the body frame as
+\begin{equation}
+    \dv{\vb{e}_a}{t} = \dv{R_{ab}\pqty{t}}{t} \pqty{R\inverse}_{bc} \vb{e}_c = \omega_{ac} \vb{e}_c
+\end{equation}
+where we denote
+\begin{equation}
+    \omega = \dot{R} R\inverse.
+\end{equation}
+
+But note that \(R \in \SO\pqty{3}\), so \(R R \transpose = I\), and hence \(\dot{R} R\transpose + R \dot{R}\transpose = O\). Hence,
+\begin{equation}
+    \omega\transpose = \pqty{\dot{R} R\transpose}\transpose = R \dot{R}\transpose = - \dot{R} R\transpose = - \omega,
+\end{equation}
+so \(\omega\) is an \emph{anti-symmetric} \(3 \times 3\) matrix. This allows us to define a vector \(\vb*{\omega}\), such that
+\begin{equation}
+    \omega_a = \frac{1}{2} \levicivita_{abc} \omega_{bc} \iff \omega_{ab} = - \levicivita_{abc} \omega_c.
+\end{equation}
+
+Putting this together, we have
+\begin{equation}
+    \dv{\vb{e}_a}{t} = 0 \levicivita_{abc} \omega_c \vb{e}_b = \vb*{\omega} \cross \vb{e}_a,
+\end{equation}
+and hence,
+\begin{equation}
+    \dot{\vb{r}} = \vb*{\omega} \cross \vb{r}
+\end{equation}
+where our \(\vb*{\omega}\) is measured in the body frame.
+
+This means that
+\begin{equation}
+    \delta \vb{r} = \delta \phi \vb{n} \cross \vb{r},
+\end{equation}
+if the body rotates by \(\delta \phi\) around \(\vb{n}\) in time \(\delta t\). So the vector \(\vb*{\omega} \pqty{t}\) is the \term{angular velocity} of the body that we are familiar with.
