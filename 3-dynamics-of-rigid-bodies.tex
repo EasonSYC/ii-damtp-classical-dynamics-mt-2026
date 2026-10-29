@@ -14,8 +14,8 @@ Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). The
 
 The \term{space frame} is simply the standard basis of \(\RR^3\). A \term{body frame} is one whose axes are fixed in the body. The space frame will not change with time, while the body frame will rotate with the body (and remains fixed relative to the body). Regardless, both sets of axes are always orthonormal
 \begin{equation}
-    \tilde{\vb{e}}_a \cdot \tilde{\vb{e}}_b = \delta_{ab}, \quad
-    \vb{e}_a\pqty{t} \cdot \vb{e}_b\pqty{t} = \delta_{ab}.
+    \tilde{\vb{e}}_a \cdot \tilde{\vb{e}}_b = \kronecker_{ab}, \quad
+    \vb{e}_a\pqty{t} \cdot \vb{e}_b\pqty{t} = \kronecker_{ab}.
 \end{equation}
 
 Any point \(\vb{r} \pqty{t}\) in the body can be expanded in either basis. In the space frame, since the space frame is fixed, the components must change, while in the body frame, the components must be constant, i.e.
@@ -42,12 +42,12 @@ But note that \(R \in \SO\pqty{3}\), so \(R R \transpose = I\), and hence \(\dot
 \end{equation}
 so \(\omega\) is an \emph{anti-symmetric} \(3 \times 3\) matrix. This allows us to define a vector \(\vb*{\omega}\), such that
 \begin{equation}
-    \omega_a = \frac{1}{2} \levicivita_{abc} \omega_{bc} \iff \omega_{ab} = - \levicivita_{abc} \omega_c.
+    \omega_a = \frac{1}{2} \levicivita_{abc} \omega_{bc} \iff \omega_{ab} = \levicivita_{abc} \omega_c.
 \end{equation}
 
 Putting this together, we have
 \begin{equation}
-    \dv{\vb{e}_a}{t} = 0 \levicivita_{abc} \omega_c \vb{e}_b = \vb*{\omega} \cross \vb{e}_a,
+    \dv{\vb{e}_a}{t} = \omega_{ab} \vb{e}_b = \levicivita_{abc} \omega_c \vb{e}_b = \vb*{\omega} \cross \vb{e}_a,
 \end{equation}
 and hence,
 \begin{equation}
@@ -57,6 +57,134 @@ where our \(\vb*{\omega}\) is measured in the body frame.
 
 This means that
 \begin{equation}
-    \delta \vb{r} = \delta \phi \vb{n} \cross \vb{r},
+    \delta \vb{r} = \delta \phi \pqty{\vb{n} \cross \vb{r}},
 \end{equation}
 if the body rotates by \(\delta \phi\) around \(\vb{n}\) in time \(\delta t\). So the vector \(\vb*{\omega} \pqty{t}\) is the \term{angular velocity} of the body that we are familiar with.
+
+The kinetic energy of our rotating body is
+\begin{subequations}
+    \begin{align}
+        T &= \frac{1}{2} \sum_{i} m_i \dot{\vb{r}}_i^2 \\
+        &= \frac{1}{2} \sum_{i} m_i \pqty{\vb{r}_i \cross \vb*{\omega}}^2 \\
+        &= \frac{1}{2} \sum_{i} m_i \pqty{\abs{\vb*{\omega}}^2 \abs{\vb{r}_i}^2 - \pqty{\vb*{\omega} \vdot \vb{r}_i}^2} \\
+        &= \frac{1}{2} \omega_a I_{ab} \omega_b,
+    \end{align}
+\end{subequations}
+where the \term{inertia tensor} \(\tens{I}\) is defined as
+\begin{equation}
+    \label{eq:inertia-tensor}%
+    I_{ab} = \sum_i m_i \pqty{\kronecker_{ab} \abs{\vb{r}_i}^2 - r_{ia} r_{ib}}.
+\end{equation}
+
+Note that since the locations \(\vb{r}_i\) of each particle are fixed with respect to the body frame, \(\tens{I}\) is constant. Furthermore, \(I_{ab} = I_{ba}\) is symmetric, and it is positive-definite: for any vector \(\vb{c}\), we have
+\begin{equation}
+    c_A I_{Ab} c_B = \sum_{i} m_i \pqty{\abs{\vb{r}_i}^2 \abs{\vb{c}}^2 - \pqty{\vb{r}_i \vdot \vb{c}}^2} = \sum_{i} m_i \abs{\vb{r}_i}^2 \abs{\vb{c}}^2 \pqty{1 - \cos^2 \theta_i} \geq 0,
+\end{equation}
+with equality if and only if all the masses lies along the \(\vb{c}\) direction.
+
+Hence, \(\tens{I}\) can be diagonalised, and its eigenvalues \(I_1, I_2, I_3 > 0\). The basis of eigenvectors will be orthogonal and could be chosen to be right-handed orthonormal. This defines a \textit{preferred} body frame, called the \term{principal body axes}, and the eigenvalues are called the \term{principal moments of intertia} of the body.
+
+For continuous bodies, we have
+\begin{equation}
+    I_{ab} = \int \dd[3]{\vb{x}} \rho\pqty{\vb{x}} \pqty{\kronecker_{ab} \abs{\vb{x}}^2 - x_a x_b},
+\end{equation}
+or in matrix notation,
+\begin{equation}
+    I = \int \dd[3]{\vb{x}} \rho\pqty{\vb{x}} \pmqty{y^2 + z^2 & -xy & -xz \\ -xy & x^2 + z^2 & -yz \\ -xz & -yz & x^2 + y^2}.
+\end{equation}
+
+\begin{example}[Uniform Disc]
+    Consider a uniform thin disc lying in the plane \(z = 0\) of radius \(a\). Then its density is given by
+    \begin{equation}
+        \rho\pqty{\vb{x}} = \frac{M \diracdelta\pqty{z}}{\pi a^2},
+    \end{equation}
+    where \(\diracdelta\) is the Dirac delta function. By symmetry, the principle axes will lie along the \(z\) direction, and (any choice of) two orthogonal directions in the \(z = 0\) plane. (Alternatively, we can see by symmetry that the moment of inertia tensor is diagonal in the standard basis.)
+
+    We have
+    \begin{equation}
+        I_1 = \int_{r < a} \dd[3]{\vb{x}} \frac{M}{\pi a^2} \diracdelta\pqty{z} y^2
+    \end{equation}
+    and this is also equal to
+    \begin{equation}
+        I_2 = \int_{r < a} \dd[3]{\vb{x}} \frac{M}{\pi a^2} \diracdelta\pqty{z} x^2
+    \end{equation}
+    by symmetry, whereas \(I_3\) is given by
+    \begin{equation}
+        I_3 = \int_{r < a} \dd[3]{\vb{x}} \frac{M}{\pi a^2} \diracdelta\pqty{z} \pqty{x^2 + y^2} = I_1 + I_2.
+    \end{equation}
+
+    This evaluates to
+    \begin{subequations}
+        \begin{align}
+            I_3 &= \frac{M}{\pi a^2} \int_{r < a} \dd{\pqty{x, y}} \pqty{x^2 + y^2} \\
+            &= \frac{2M}{a^2} \int_{0}^{a} \dd{r} r^3 \\
+            &= \frac{M a^2}{2},
+        \end{align}
+    \end{subequations}
+    and hence \(I_1 = I_2 = \flatfrac{M a^2}{4}\).
+\end{example}
+
+The \term{angular momentum} about the centre of mass of the body is given by
+\begin{subequations}
+    \begin{align}
+        \vb{L} &= \sum_{i} m_i \vb{r}_i \cross \dot{\vb{r}}_i \\
+        &= \sum_{i} m_i \vb{r}_i \cross \pqty{\vb*{\omega} \cross \vb{r}} \\
+        &= \sum_{i} m_i \pqty{\abs{\vb{r}_i}^2 \vb*{\omega} - \pqty{\vb*{\omega} \vdot \vb{r}_i} \vb{r}_i},
+    \end{align}
+\end{subequations}
+but by \autoref{eq:inertia-tensor}, this is simply
+\begin{equation}
+    \vb{L} = I \vb*{\omega}.
+\end{equation}
+
+Note that typically (i.e. if all the eigenvalues \(I_a\) are not all equal), \(\vb{L}\) and \(\vb*{\omega}\) do \emph{not} necessarily point in the same direction. This will be important to remember, since what is conserved is the \emph{angular momentum}, not the most obvious observed quantity \emph{angular velocity}.
+
+\subsection{Euler's Equations}
+
+For a body rotating freely with no applied torque about its centre of mass, we have \(\dv*{\vb{L}}{t} = \vb{0}\). We observe that in the body frame, we have
+\begin{equation}
+    \vb{L} = L_a \pqty{t} \vb{e}_a \pqty{t}
+\end{equation}
+and the \emph{components} of the angular momentum in the body frame \emph{cannot} be fixed, unless the body frame is constant. So by the product rule,
+\begin{equation}
+    \dot{\vb{L}} = \dot{L}_a \vb{e}_a + L_a \dot{\vb{e}}_a = \dot{L}_a \vb{e}_a + L_a \pqty{\vb*{\omega} \cross \vb{e}_a}.
+\end{equation}
+
+Writing \(L_a = L_{ab} \omega_b\) and \(\dot{I}_{ab} = 0\), working in the principal body frame, we have \(L_a = I_a \omega_a\) (for \(a = 1, 2, 3\)) and hence
+\begin{subequations}
+    \label{eq:euler-equations}%
+    \begin{align}
+        I_1 \dot{\omega}_1 + \omega_2 \omega_3 \pqty{I_3 - I_2} &= 0, \\
+        I_2 \dot{\omega}_2 + \omega_3 \omega_1 \pqty{I_1 - I_3} &= 0, \\
+        I_3 \dot{\omega}_3 + \omega_1 \omega_2 \pqty{I_2 - I_1} &= 0.
+    \end{align}
+\end{subequations}
+
+\autoref{eq:euler-equations} are called \term{Euler's equations}.
+
+\subsection{Free Tops}
+
+A uniform sphere, by symmetry, will have \(I_1 = I_2 = I_3\). Then Euler's equations simply say that \(\dot{\vb*{\omega}} = \vb{0}\). This is the most trivial case.
+
+\subsubsection{Symmetric Top}
+
+The symmetric top is an object with \(I_1 = I_2 \neq I_3\), and we will discuss the example of an ellipsoid. Then Euler's equations reduce to
+\begin{subequations}
+    \begin{align}
+        I_1 \dot{\omega}_1 &= \omega_2 \omega_3 \pqty{I_1 - I_3}, \\
+        I_1 \dot{\omega}_2 &= \omega_3 \omega_1 \pqty{I_3 - I_1}, \\
+        I_3 \dot{\omega}_3 &= 0.
+    \end{align}
+\end{subequations}
+
+Then \(\omega_3\) is constant, and the body spins at a fixed rate around its axis of symmetry. Then \(\dot{\omega}_1 = \Omega \omega_2\), and \(\dot{\omega}_2 = - \Omega \omega_1\), where
+\begin{equation}
+    \Omega = \omega_3 = \frac{I_! - I_3}{I_1}.
+\end{equation}
+
+This solves to
+\begin{equation}
+    \pqty{\omega_1, \omega_2} = \omega_0 \pqty{\sin \Omega t, \cos \Omega t}.
+\end{equation}
+
+This means that in the body frame, \(\vb*{\omega}\) \term{precesses} around the \(\vb{e}_3\) axis. The direction of precession depends on whether \(I_1 > I_3\) or \(I_1 < I_3\).
