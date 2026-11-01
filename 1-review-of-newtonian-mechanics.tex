@@ -143,7 +143,7 @@ Consider the system
 
 \subsubsection{Time Translations}
 
-If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t + s}\) for all \(s \in \RR\) (same for all particles). This implies that the forces cannot have (explicit) time dependence
+If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t + s}\) for all \(s \in \RR\) (same for all particles). This implies that the forces cannot have (explicit) time dependence
 \begin{equation}
     \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}}.
 \end{equation}
@@ -152,14 +152,14 @@ Note that it is important to talk about a closed system here, since if the syste
 
 \subsubsection{Spacial Translations}
 
-If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + \vb{c}\) for all constant vectors \(\vb{c} \in \RR^3\). This implies that the forces can depend on the locations of the particles \emph{only through} the \term{relative separations} between particles, i.e.,
+If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + \vb{c}\) for all constant vectors \(\vb{c} \in \RR^3\). This implies that the forces can depend on the locations of the particles \emph{only through} the \term{relative separations} between particles, i.e.,
 \begin{equation}
     \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j}_{j = 1}^{n}}.
 \end{equation}
 
 \subsubsection{Uniform Boosts}
 
-If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + t \vb{u}\) for all constant vectors \(\vb{u} \in \RR^3\). This similarly implies that the forces can depend on the velocities of the particles \emph{only through} the \term{relative velocities} between particles, i.e.,
+If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + t \vb{u}\) for all constant vectors \(\vb{u} \in \RR^3\). This similarly implies that the forces can depend on the velocities of the particles \emph{only through} the \term{relative velocities} between particles, i.e.,
 \begin{equation}
     \label{eq:force-form-relative-displacement-velocity}%
     \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j - \dot{\vb{x}}_k}_{j, k = 1}^{n}}.
@@ -184,7 +184,7 @@ so
     \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}.
 \end{equation}
 
-If \(\vb{x}_i \pqty{t}\) is a solution to \autoref{eq:n2-closed-system}, then so is \(R \vb{x}_i \pqty{t}\) for all \(R \in \Or\pqty{3}\). This \emph{does not imply} that the forces only depend on relative separations, but instead implies that the force should not have any preferred direction in space apart from the relative positions and velocities of the particles, i.e.,
+If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(R \vb{x}_i \pqty{t}\) for all \(R \in \Or\pqty{3}\). This \emph{does not imply} that the forces only depend on relative separations, but instead implies that the force should not have any preferred direction in space apart from the relative positions and velocities of the particles, i.e.,
 \begin{equation}
     R \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\Bqty{R\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}},
 \end{equation}

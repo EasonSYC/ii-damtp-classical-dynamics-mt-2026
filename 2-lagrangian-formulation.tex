@@ -146,12 +146,12 @@ We have
     \dv{t} \pqty{\pdv{x^b}{q^a}} = \pdv{x^b}{q^d}{q^a} \dot{q}^d + \pdv{x^b}{t}{q^a}.
 \end{equation}
 
-Notice also from \autoref{eq:xdot-chain-rule-in-qdot} that
+Notice also from \eqref{eq:xdot-chain-rule-in-qdot} that
 \begin{equation}
     \label{eq:xdot-q-partial}%
     \pdv{\dot{x}^b}{q^a} = \pdv{q^a} \pqty{\pdv{x^b}{q^c} \dot{q}^c + \pdv{x^b}{t}} = \pdv{x^b}{q^a}{q^c} \dot{q}^c + \pdv{x^b}{q^a}{t},
 \end{equation}
-and since mixed partials commute, from \autoref{eq:x-q-partial-time} and \autoref{eq:xdot-q-partial}, we have
+and since mixed partials commute, from \eqref{eq:x-q-partial-time} and \eqref{eq:xdot-q-partial}, we have
 \begin{equation}
     \label{eq:xdot-q-partial-x-q-partial-time-equality}%
     \dv{t} \pqty{\pdv{x^b}{q^a}} - \pdv{\dot{x}^b}{q^a} = 0.
@@ -163,8 +163,8 @@ Now, consider using \(\tilde{L}\) and writing the Euler--Lagrange equations from
         0 &= \dv{t} \pqty{\pdv{\tilde{L}}{\dot{q}^a}} - \pdv{\tilde{L}}{q^a} \\
         &= \dv{T} \pdv{L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t}}{\dot{q}^a} - \pdv{L\pqty{x\pqty{q, t}, \dot{x}\pqty{q, \dot{q}, t}, t}}{q^a} \\
         &= \dv{t} \pqty{\pdv{L}{\dot{x}^b} \pdv{\dot{x}^b}{\dot{q}^a}} - \pqty{\pdv{L}{x^b} \pdv{x^b}{q^a} + \pdv{L}{\dot{x}^b} \pdv{\dot{x}^b}{q^a}} \\
-        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a} + \pdv{L}{\dot{x}^b} \pqty{\dv{t} \pqty{\pdv{x^b}{q^a}} - \pdv{\dot{x}^b}{q^a}} && \text{by \autoref{eq:xdot-qdot-partial}} \\
-        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a}. && \text{by \autoref{eq:xdot-q-partial-x-q-partial-time-equality}}
+        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a} + \pdv{L}{\dot{x}^b} \pqty{\dv{t} \pqty{\pdv{x^b}{q^a}} - \pdv{\dot{x}^b}{q^a}} && \text{by \eqref{eq:xdot-qdot-partial}} \\
+        &= \bqty{\dv{t} \pqty{\pdv{L}{\dot{x}^b}} - \pdv{L}{x^b}} \pdv{x^b}{q^a}. && \text{by \eqref{eq:xdot-q-partial-x-q-partial-time-equality}}
     \end{align}
 \end{subequations}
 
@@ -243,7 +243,7 @@ for the original coordinates \(x^a\), and varying with respect to Lagrange multi
     f_A \pqty{x^a, t} = 0.
 \end{equation}
 
-The left-hand side of \autoref{eq:euler-lagrange-with-constraints} is the same as the unconstrained Euler--Lagrange equations, and the right-hand side given by
+The left-hand side of \eqref{eq:euler-lagrange-with-constraints} is the same as the unconstrained Euler--Lagrange equations, and the right-hand side given by
 \begin{equation}
     R_a = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{f_A}{x^a}
 \end{equation}
@@ -541,7 +541,7 @@ The relation between symmetries of Lagrangian and conserved quantities was one o
     \begin{equation}
         E = \frac{p_M^2}{2 \pqty{M + m}} + \frac{m l^2}{2 \pqty{M + m}} \pqty{M + m \sin^2 \theta} \dot{\theta}^2 - m g l \cos \theta
     \end{equation}
-    which is the first integral of the \(\theta\) equation. (Differentiating this with respect to time recovers the \(\theta\) equation, in \autoref{eq:pendulum-on-moving-support-theta-eom}.) If we write this in the form \(\dv*{\theta}{t} = g\pqty{\theta}\) for some function \(g\pqty{\theta}\), then
+    which is the first integral of the \(\theta\) equation. (Differentiating this with respect to time recovers the \(\theta\) equation, in \eqref{eq:pendulum-on-moving-support-theta-eom}.) If we write this in the form \(\dv*{\theta}{t} = g\pqty{\theta}\) for some function \(g\pqty{\theta}\), then
     \begin{equation}
         t - t_0 = \int_{\theta\pqty{t_0}}^{\theta\pqty{t}} \frac{\dd{\theta}}{g\pqty{\theta}}
     \end{equation}
