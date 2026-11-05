@@ -309,3 +309,146 @@ we see that \(\vb*{\omega}\) lies in a plane, called the \term{invariable plane}
 \subsection{Euler Angles}
 
 So far, we have considered \(\vb*{\omega}\) in the body frame, but we have not parametrised the actual rotation matrix \(\vb{e}_a\pqty{t} = R_{ab}\pqty{t} \tilde{\vb{e}}_b\). \term{Euler angles} are a convenient parametrisation. It works in three stages.
+
+\begin{enumerate}[label=(\roman*)]
+    \item First, rotate by angle \(\phi\) around the space frame axis \(\tilde{\vb{e}}_3\). This rotation is parametrised by
+    \begin{equation}
+        R_{\tilde{\vb{e}}_3}\pqty{\phi} = \pmqty{\cos \phi & \sin \phi & 0 \\ -\sin \phi & \cos \phi & 0 \\ 0 & 0 & 1},
+    \end{equation}
+    with \(\vb{e}_a' = R_{\tilde{\vb{e}}_3}\pqty{\phi}_{ab} \tilde{\vb{e}}_a\).
+
+    \item Next, rotate by angle \(\theta\) about the new \(\vb{e}_1'\) axis. This rotation is parametrised by
+    \begin{equation}
+        R_{\vb{e}_1'}\pqty{\theta} = \pmqty{1 & 0 & 0 \\ 0 & \cos \theta & \sin \theta \\ 0 & -\sin \theta & \cos \theta},
+    \end{equation}
+    with \(\vb{e}_a'' = R_{\vb{e}_1'}\pqty{\theta}_{ab} \vb{e}_b'\).
+
+    \item Finally, to lift \(\vb{e}_1''\) out of the \(\tilde{\vb{e}}_1, \tilde{\vb{e}}_2\) plane, rotate by angle \(\psi\) about the new \(\vb{e}_3''\) axis. This rotation is parametrised by
+    \begin{equation}
+        R_{\vb{e}_3''}\pqty{\psi} = \pmqty{\cos \psi & \sin \psi & 0 \\ -\sin \psi & \cos \psi & 0 \\ 0 & 0 & 1},
+    \end{equation}
+    with \(\vb{e}_a = R_{\vb{e}_3''}\pqty{\psi}_{ab} \vb{e}_b''\).
+\end{enumerate}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/euler-angle-1.png}
+        \caption{Rotation by \(\phi\) about \(\tilde{\vb{e}}_3\)}
+        \label{fig:euler-angle-1}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/euler-angle-2.png}
+        \caption{Rotation by \(\theta\) about \(\vb{e}_1'\)}
+        \label{fig:euler-angle-2}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/euler-angle-3.png}
+        \caption{Rotation by \(\psi\) about \(\vb{e}_3''\)}
+        \label{fig:euler-angle-3}%
+    \end{subfigure}
+    \caption{Euler Angles}
+    \label{fig:euler-angles}%
+\end{figure}
+
+Concatenating these rotations gives
+\begin{align*}
+    R\pqty{\psi, \theta, \phi} &= R_{\vb{e}_3''}\pqty{\psi} R_{\vb{e}_1'}\pqty{\theta} R_{\tilde{\vb{e}}_3}\pqty{\phi} \\
+    &= \pmqty{\cos \phi \cos \psi - \cos \theta \sin \psi \sin \phi & \sin \phi \cos \psi + \cos \theta \sin \psi \cos \phi & \sin \theta \sin \psi \\
+    -\cos \phi \sin \psi - \cos \theta \cos \psi \sin \phi & -\sin \phi \sin \psi + \cos \theta \cos \psi \cos \phi & \sin \theta \cos \psi \\
+    \sin \theta \sin \phi & -\sin \theta \cos \phi & \cos \theta},
+\end{align*}
+with \(\vb{e}_a \pqty{t} = R_{ab}\pqty{\psi, \theta, \phi} \tilde{\vb{e}}_b\).
+
+\subsubsection{Angular Velocity in Terms of Euler Angles}
+
+We recall that \(\omega_a = \kronecker_{abc} \pqty{\dot{R} R\inverse}_{bc}\). In principle, we can now express \(\vb*{\omega} \pqty{t}\) in terms of Euler angles by evaluating \(\dot{R} R\inverse\) using this explicit matrix.
+
+Alternatively, note that if we change our Euler angles by a small amount
+\begin{equation}
+    \pqty{\psi, \theta, \phi} \mapsto \pqty{\psi + \delta \psi, \theta + \delta \theta, \phi + \delta \phi},
+\end{equation}
+then we must have
+\begin{equation}
+    \vb*{\omega} = \dot{\psi} \vb{e}_3'' + \dot{\theta} \vb{e}_1' + \dot{\phi} \tilde{\vb{e}}_3.
+\end{equation}
+
+we would like to convert \(\vb{e}_1'\) and \(\tilde{\vb{e}}_3\) into the body frame \(\vb{e}_a\). (Note that \(\vb{e}_3'' = \vb{e}_3\).) We have
+\begin{subequations}
+    \begin{align}
+         \vb{e}_1' = \vb{e}_1'' &= \cos \psi \vb{e}_1 - \sin \psi \vb{e}_2, \\
+         \tilde{\vb{e}}_3 = \vb{e}_3' &= \sin \theta \pqty{\sin \psi \vb{e}_1 + \cos \psi \vb{e}_2} + \cos \theta \vb{e}_3.
+    \end{align}
+\end{subequations}
+
+Expressed in the (principal) body frame, we have
+\begin{equation}
+    \vb*{\omega} = \pqty{\dot{\theta} \cos \psi + \dot{\phi} \sin \theta \sin \psi} \vb{e}_1 + \pqty{\dot{\phi} \sin \theta \cos \psi - \dot{\theta} \sin \psi} \vb{e}_2 + \pqty{\dot{\psi} + \dot{\phi} \cos \theta} \vb{e}_3
+\end{equation}
+is expressed in terms of Euler angles.
+
+\subsubsection{The Heavy Symmetric Top}
+
+Consider an axisymmetric top \(I_1 = I_2 \neq I_3\) with mass \(M\), spinning in the presence of a gravitational field (hence ``heavy''). We consider such a body pivoted t distance \(l\) from its centre of mass, as shown in \autoref{fig:heavy-symmetric-top}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/heavy-symmetric-top.png}
+    \caption{Heavy Symmetric Top}
+    \label{fig:heavy-symmetric-top}%
+\end{figure}
+
+In the principle body axes, the system is described by the Lagrangian
+\begin{subequations}
+    \begin{align}
+        L &= \frac{1}{2} \omega_a I_{ab} \omega_b - M g l \cos \theta \\
+        &= \frac{1}{2} I_1 \pqty{\omega_1^2 + \omega_2^2} = \frac{I_3}{2} \omega_3^2 - M g l \cos \theta \\
+        &= \frac{1}{2} I_1 \pqty{\dot{\theta}^2 + \dot{\phi}^2 \sin^2 \theta} + \frac{1}{2} I_3 \pqty{\dot{\psi} + \dot{\phi} \cos \theta}^2 - M g l \cos \theta.
+    \end{align}
+\end{subequations}
+
+Note that \(\psi\) and \(\phi\) are cyclic coordinates, so
+\begin{subequations}
+    \begin{align}
+        p_{\psi} &= I_3 \pqty{\dot{\psi} + \dot{\phi} \cos \theta}, \\
+        p_{\phi} &= I_1 \dot{\phi} \sin^2 \theta + p_\psi \cos \theta
+    \end{align}
+\end{subequations}
+are both constant of the motion, and since \(L\) has no explicit time dependence, the total energy given by
+\begin{subequations}
+    \begin{align}
+        E &= \frac{1}{2} I_1 \pqty{\dot{\theta}^2 + \dot{\phi}^2 \sin^2 \theta} + \frac{1}{2} I_3 \pqty{\dot{\psi} + \dot{\phi} \cos \theta}^2 + M g l \cos \theta \\
+        &= \frac{I_1}{2} \dot{\theta}^2 + V_{\text{eff}} \pqty{\theta} + \frac{1}{2} \frac{p_\psi^2}{I_3}
+    \end{align}
+\end{subequations}
+is conserved, where we substitute the conserved quantities
+\begin{subequations}
+    \begin{align}
+        \dot{\phi} &= \frac{p_\phi - p_\psi \cos \theta}{I_1 \sin^2 \theta}, \\
+        \dot{\psi} &= \frac{p_\psi}{I_3} - \cos \theta \frac{p_\phi - p_\psi \cos \theta}{I_1 \sin^2 \theta}
+    \end{align}
+\end{subequations}
+to obtain
+\begin{equation}
+    V_{\text{eff}} \pqty{\theta} = \frac{1}{2 I_1} \frac{\pqty{p_\phi - p_\psi \cos \theta}^2}{\sin^2 \theta} + M g l \cos \theta.
+\end{equation}
+
+Hence, if we could find \(\theta = \theta\pqty{t}\), we can use it to reconstruct \(\phi\pqty{t}\) and \(\psi\pqty{t}\) once \(E\), \(p_{\phi}\), \(p_\psi\) are specified. To understand the behaviour, let's simplify by setting \(u = \cos \theta\), giving \(\dot{u}^2 = \dot{\theta}^2 \pqty{1 - \cos^2 \theta}\), so
+\begin{equation}
+    \dot{\theta}^2 = \frac{\dot{u}^2}{1 - u^2}.
+\end{equation}
+
+If we let \(E' = E - \flatfrac{p_\psi^2}{2 I_3}\), then we have
+\begin{equation}
+    E' = \frac{I_1}{2} \frac{\dot{u}^2}{1 - u^2} + \frac{1}{2 I_1} \frac{\pqty{p_\phi - p_\psi u}^2}{1 - u^2} + M g l u,
+\end{equation}
+or equivalently,
+\begin{equation}
+    \dot{u}^2 = \pqty{1 - u^2} \pqty{\frac{2 \pqty{E' - M g l u}}{I_1}} - \frac{1}{I_1^2} \pqty{p_\phi - p_\psi u}^2,
+\end{equation}
+and we let \(f\pqty{u}\) be the cubic polynomial on the right-hand side.
