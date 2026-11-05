@@ -164,7 +164,7 @@ and the \emph{components} of the angular momentum in the body frame \emph{cannot
     \dot{\vb{L}} = \dot{L}_a \vb{e}_a + L_a \dot{\vb{e}}_a = \dot{L}_a \vb{e}_a + L_a \pqty{\vb*{\omega} \cross \vb{e}_a}.
 \end{equation}
 
-Writing \(L_a = L_{ab} \omega_b\) and \(\dot{I}_{ab} = 0\), working in the principal body frame, we have \(L_a = I_a \omega_a\) (for \(a = 1, 2, 3\)) and hence
+Writing \(L_a = L_{ab} \omega_b\) and \(\dot{I}_{ab} = 0\), working in the \emph{principal body frame}, we have \(L_a = I_a \omega_a\) (for \(a = 1, 2, 3\)) and hence
 \begin{subequations}
     \label{eq:euler-equations}%
     \begin{align}
@@ -216,3 +216,96 @@ This means that in the body frame, \(\vb*{\omega}\) \term{precesses} around the 
     \caption{Precession of an Ellipsoid}
     \label{fig:ellipsoid-precession}%
 \end{figure}
+
+\subsubsection{Asymmetric Top}
+
+If \(I_1, I_2, I_3\) are all distinct, then Euler's equations are very difficult to solve in general. Let's consider the special case where the angular velocity \(\vb*{\omega}\) is perfectly aligned with a principal body axis, say \(\vb*{\omega} = \Omega = \vb{e}_1\). Then
+\begin{align*}
+    \vb*{\omega} \pqty{t} = \Omega \vb{e}_1
+\end{align*}
+for constant \(\Omega\) solves Euler's equation. Now, consider a small perturbation, so
+\begin{equation}
+    \vb*{\omega} \pqty{t} = \Omega \vb{e}_1 + \vb*{\eta}\pqty{t},
+\end{equation}
+where \(\abs{\vb*{\eta}} \ll \Omega\). Then expanding to linear order in \(\vb*{\eta}\), Euler's equations become
+\begin{subequations}
+    \begin{align}
+        I_1 \dot{\eta}_1 &= 0, \\
+        I_2 \dot{\eta}_2 &= \Omega \eta_3 \pqty{I_3 - I_1}, \\
+        I_3 \dot{\eta}_3 &= \Omega \eta_2 \pqty{I_1 - I_2}.
+    \end{align}
+\end{subequations}
+
+So differentiating a second time, we have for \(\eta_2\) that
+\begin{equation}
+    I_2 \ddot{\eta}_2 = \frac{\Omega^2}{I_3} \pqty{I_3 - I_1} \pqty{I_1 - I_2} \eta_2 = A \eta_2,
+\end{equation}
+for \(A = \frac{\Omega^2}{I_3} \pqty{I_3 - I_1} \pqty{I_1 - I_2}\).
+
+Therefore, whether our perturbation remains small depends on the sign of \(A\). The motion is unstable if: \(I_3 > I_1 > I_2\) or \(I_2 > I_1 > I_3\), but otherwise stable.
+
+In other words, rotation about the principal body axes with the \term{greatest} or \term{least} moment of inertia is stable, whereas rotation around the \term{intermediate} axis is unstable.
+
+\begin{example}
+    This is sometimes called the \term{tennis racket effect}, or the \term{Dzhanibekov effect}. Consider a table tennis bat. We expect the principle body axis to be one normal to the plane, one along the handle, and one along the width of the bat.
+
+    The one with the greatest moment of inertia is the one normal to the plane, since the mass is distributed farthest from this axis. The one with the least moment of inertia is the one along the handle, since the mass is concentrated near this axis. The intermediate axis is along the width of the bat.
+
+    As illustrated in \autoref{fig:tennis-racket}, we have \(I_3 > I_1 > I_2\). If we try to spin the bat around the intermediate axis, it will be unstable, and the bat will flip over.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/tennis-racket.png}
+    \caption{The Tennis Racket}
+    \label{fig:tennis-racket}%
+\end{figure}
+
+\subsubsection{The Poinsot Construction}
+
+But we do not know what happens as the perturbation that starts to grow, since the approximation simply breaks down. But what we know is, that as the asymmetric top rotates, both its energy \(E\) and the total angular momentum \(\vb{L}^2\) are conserved, so \(\vb*{\omega}\) must lie on the intersection on two ellipsoids:
+\begin{subequations}
+    \begin{align}
+        E &= \frac{1}{2} \vb*{\omega} I \vb*{\omega} = \frac{1}{2} \pqty{I_1 \omega_1^2 + I_2 \omega_2^2 + I_3 \omega_3^2}, \\
+        \vb{L}^2 &= \pqty{I \vb*{\omega}}^2 = I_1^2 \omega_1^2 + I_2^2 \omega_2^2 + I_3^2 \omega_3^2.
+    \end{align}
+\end{subequations}
+
+Without loss of generality, we can take \(I_1 > I_2 > I_3\). Then we have
+\begin{equation}
+    \pqty{\frac{I_1}{I_2}}^2 > \frac{I_1}{I_2} > 1 > \frac{I_3}{I_2} > \pqty{\frac{I_3}{I_2}}^2.
+\end{equation}
+
+We sketch the surface of constant energy, known as the \term{inertial ellipsoid}. In the same space, we sketch the surface of constant angular momentum, known as the \term{angular momentum ellipsoid}. The angular momentum ellipsoid is more ``stretched`` in the \(\vb{e}_3\) direction.
+
+We should imagine the angular momentum ellipsoid ``getting bigger'' and hence the first intersection of the two ellipsoids will initially be two points. After this, it will intersect at a pair of closed curves like circles.
+
+On the opposite side, if we shrink the angular momentum ellipsoid, then the first intersection will be two points on the \(\vb{e}_1\) axis, and then it will intersect at a pair of closed curves like circles.
+
+Interpolate between the solutions, we get \autoref{fig:inertial-ellipsoids}. Somewhere between the two behaviours, we get a separation curve, which is known as the \term{separatrix}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/inertial-ellipsoids.png}
+    \caption{Inertial and Angular Momentum Ellipsoids}
+    \label{fig:inertial-ellipsoids}%
+\end{figure}
+
+In the principle body frame, \(\vb*{\omega}\pqty{t}\) traces out the curve forming the intersection of these ellipoids for given \(\pqty{E, \vb{L}^2}\). This curves is called the \term{polhode}. (This also leads to the stability analysis conducted above.) This curve, and the two ellipsoids, are fixed in the \emph{body frame}. In the space frame, consider the following.
+
+Since
+\begin{equation}
+    2E = \vb{\omega} \vdot \pqty{I \vb{\omega}} = \omega\pqty{t} \vdot \vb{L},
+\end{equation}
+we see that \(\vb*{\omega}\) lies in a plane, called the \term{invariable plane}, normal to \(\vb{L}\). Also, since \(\vb{L} = \grad_{\vb*{\omega}} E\), we see that the surface of constant energy is perpendicular to \(\vb{L}\), and hence tangent to the invariable plane. But the trace of the contact point of the invariable plane on the ellipsoid is the polhode, which is where the angular velocity vector \(\vb*{\omega}\) is located. The trace of the contact point on the invariable plane is called the \term{herpolhode}. This is shown in \autoref{fig:poinsot-construction}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig/poinsot-construction.png}
+    \caption{Poinsot Construction}
+    \label{fig:poinsot-construction}%
+\end{figure}
+
+\subsection{Euler Angles}
+
+So far, we have considered \(\vb*{\omega}\) in the body frame, but we have not parametrised the actual rotation matrix \(\vb{e}_a\pqty{t} = R_{ab}\pqty{t} \tilde{\vb{e}}_b\). \term{Euler angles} are a convenient parametrisation. It works in three stages.
