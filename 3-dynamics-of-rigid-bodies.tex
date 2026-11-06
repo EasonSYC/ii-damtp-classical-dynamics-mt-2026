@@ -452,3 +452,49 @@ or equivalently,
     \dot{u}^2 = \pqty{1 - u^2} \pqty{\frac{2 \pqty{E' - M g l u}}{I_1}} - \frac{1}{I_1^2} \pqty{p_\phi - p_\psi u}^2,
 \end{equation}
 and we let \(f\pqty{u}\) be the cubic polynomial on the right-hand side.
+
+We notice that \(f\pqty{u} \to \pminfty\) as \(u \to \pminfty\) respectively. Also, at \(u = \pm 1\), we have
+\begin{equation}
+    f\pqty{\pm 1} = - \frac{1}{I_1^2} \pqty{p_\phi \mp p_\psi}^2 \leq 0.
+\end{equation}
+
+We are interested in the region \(-1 \leq u \leq 1\) since \(u = \cos \theta\).
+
+If the curve \(f\pqty{u} < 0\) for all \(u \in \ccintv{-1}{1}\), then there are simply no solutions to \(\dot{u}^2 = f\pqty{u}\), and hence no motion is possible. We focus on the cases where there is some region \(\ccintv{u_1}{u_2} \subset \ccintv{-1}{1}\) for which \(f\pqty{u} \geq 0\). As in the spherical pendulum, this means that motion is in fact confined to a ``band'' with some maximum and minimum values of \(\theta\), between \(\theta_1 = \arccos u_2\) and \(\theta_2 = \arccos u_1\), with \(\theta_1 < \theta_2\).
+
+There are several possibilities here:
+\begin{enumerate}[label=(\roman*)]
+    \item \(\dot{\phi} > 0\) at both \(u = u_1\) and \(u = u_2\)
+    \item \(\dot{\phi} > 0\) at \(u = u_1\) but \(\dot{\phi} < 0\) at \(u = u_2\),so there will be ``loops'' in the motion
+    \item \(\dot{\phi} > 0\) at \(u = u_1\) but \(\dot{\phi} = 0\) at \(u = u_2\), so the motion is ``cuspy'' at the maximum value of \(\theta\)
+\end{enumerate}
+
+The rotation around tis own \(\vb{e}_3\) axis is the \term{spin}. Motion in \(\theta\) is the \term{nutation} (``bobbling up and down''), and motion in \(\phi\) is the \term{precession} (``wobbling around'').
+
+\paragraph{Letting the Top Go}
+
+For motion in the third case \(\dot{\phi} = 0\) at \(u = u_2\), it seems like this is the toughest one to achieve. But this is in fact the easiest to achieve physically: we should spin the top (\(\dot{\psi}\pqty{t =0} > 0\)) and release it from the some angle \(\theta\) with initial condition \(\dot{\theta} \pqty{t = 0} = 0\) and hence \(f\pqty{u\pqty{t = 0}} = 0\), i.e., \(u = u_2\).
+
+Similarly, if we do not ``push it around'', then \(\dot{\phi} \pqty{t = 0} = 0\), and hence \(p_\phi - p_\psi u_2 = 0\). So these initial conditions correspond to setting \(u\pqty{t = 0} = u_2 = \flatfrac{p_\phi}{p_\psi}\).
+
+As we release the top, it begins to fall under gravity, but to conserve energy it must start to precess, and eventually bobs back up to the \(u_2\), at which point all its kinetic energy in the \(\theta\) and \(\phi\) directions convert back to potential energy.
+
+\paragraph{Uniform Precession}
+
+Is there motion without nutation, i.e. \(\dot{\theta} = 0\) for all time and \(\dot{\phi}\) is constant? This requires initial conditions such that \(f\pqty{u}\) has a unique root (i.e. a double root) in the range \(u \in \ccintv{-1}{1}\). We need at \(u\pqty{t = 0} = u_0\) such that
+\begin{align}
+    f\pqty{u_0} &= \pqty{1 - u_0^2} \pqty{\frac{2 \pqty{E' - M g l u_0}}{I_1}} - \frac{1}{I_1^2} \pqty{p_\phi - p_\psi u_0}^2 = 0 \\
+    f'\pqty{u_0} &= - \frac{4 u_0}{I_1} \pqty{E' - M g l u_0} - \pqty{1 - u_0^2} \pqty{\frac{2 M g l}{I_1}} + \frac{2 p_\psi}{I_1^2} \pqty{p_\phi - p_\psi u_0} = 0.
+\end{align}
+
+Then we have
+\begin{equation}
+    Mgl = \dot{\phi} \pqty{p_\psi - I_1 \dot{\phi} \cos \theta_0}.
+\end{equation}
+
+This is a quadratic in \(\dot{\phi}\), and has two real solutions provided the discriminant \(p_\psi^2 - 4 I_1 M g l \cos \theta_0 > 0\) is positive. But recall \(p_\psi = I_3 \omega_3\), hence this motion is possible, only when
+\begin{equation}
+    \omega_3 > \frac{2}{I_3} \sqrt{I_1 M g l \cos \theta_0}.
+\end{equation}
+
+If this inequality is violated, the top falls over.

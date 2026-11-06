@@ -1,1 +1,10 @@
 \section{Hamiltonian Mechanics}
+
+This is yet another formulation of classical mechanics, which is equivalent to the Lagrangian formulation. But why do we do this?
+
+\begin{enumerate}[label=(\roman*)]
+    \item It brings us closest to standard treatments of quantum mechanics (see \textit{IB Quantum Mechanics} and \textit{II Principles of Quantum Mechanics}) (but not the path integral formulation of quantum mechanics, which is closer to the Lagrangian formulation).
+    \item We saw the Euler--Lagrange equations took the same form in any generalised coordinates \(q^a = q^a \pqty{\vb{x}, t}\). However, they behave very differently if we allow more general coordinate transformations, in the form \(\tilde{q}^a = \tilde{q}^a \pqty{\vb{x}, \dot{\vb{x}}, t}\), so positions and velocities are on a very different footing. This is what the Hamiltonian formulation will achieve.
+\end{enumerate}
+
+We define the \term{phase space} of a mechanical system in \(\RR^3\) with \(n\) particles to be the \(6n\)-dimensional space of configurations together with momentum, i.e., we can describe it using \(\pqty{\vb{x}_i, \vb{p}_i}_{i = 1, 2, \ldots, n}\), where the momentum are \(\vb{p}_i = \pdv{L}{\dot{\vb{x}}_i}\).
