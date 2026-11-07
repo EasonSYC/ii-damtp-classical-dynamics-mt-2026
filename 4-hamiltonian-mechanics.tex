@@ -7,4 +7,207 @@ This is yet another formulation of classical mechanics, which is equivalent to t
     \item We saw the Euler--Lagrange equations took the same form in any generalised coordinates \(q^a = q^a \pqty{\vb{x}, t}\). However, they behave very differently if we allow more general coordinate transformations, in the form \(\tilde{q}^a = \tilde{q}^a \pqty{\vb{x}, \dot{\vb{x}}, t}\), so positions and velocities are on a very different footing. This is what the Hamiltonian formulation will achieve.
 \end{enumerate}
 
+\subsection{Phase Space}
+
 We define the \term{phase space} of a mechanical system in \(\RR^3\) with \(n\) particles to be the \(6n\)-dimensional space of configurations together with momentum, i.e., we can describe it using \(\pqty{\vb{x}_i, \vb{p}_i}_{i = 1, 2, \ldots, n}\), where the momentum are \(\vb{p}_i = \pdv{L}{\dot{\vb{x}}_i}\).
+
+More generally, a way of putting the space \(\pqty{q^a, \dot{q}^a}\) into a more equal footing is
+\begin{subequations}
+    \begin{align}
+        p_a &= \pdv{L}{\dot{q}^a}, \\
+        \dot{p}_a &= \pdv{L}{q^a},
+    \end{align}
+\end{subequations}
+where the second equation arises from the Euler--Lagrange equations. Phase space is then the space of \(\pqty{q^a, p_a}\).
+
+Note that since the motion of our system is determined by some initial data \(\pqty{q^a\pqty{t_0}, p_b\pqty{t_0}}\), different trajectories in phase space can never intersect. This is distinct from the setting in the configuration space, where different trajectories can intersect at the same point in configuration space, but with different velocities. This is shown in \autoref{fig:motion-in-configuration-phase-space}.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/motion-in-configuration-space.png}
+        \caption{Configuration Space}
+        \label{fig:motion-in-configuration-space}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/motion-in-phase-space.png}
+        \caption{Phase Space}
+        \label{fig:motion-in-phase-space}%
+    \end{subfigure}
+    \caption{Motion in Configuration Space and Phase Space}
+    \label{fig:motion-in-configuration-phase-space}%
+\end{figure}
+
+\subsection{Legendre Transformation}
+
+The \term{Legendre transform} of a function \(f\pqty{v}\) is defined to be
+\begin{equation}
+    \legendre{f}\pqty{p} = \sup_{v \in D} \Bqty{pv - f\pqty{v}}.
+\end{equation}
+
+We are interested in the case where \(f\pqty{v}\) is strictly convex, i.e., \(f''\pqty{v} > 0\) for all \(v \in D\). If the right-hand side contains a critical point, then \(p = f'\pqty{v}\) at the critical point, and global convexity ensures that this critical point is the global maximum, while strict convexity ensures it is unique. In this case,
+\begin{equation}
+    \legendre{f}\pqty{p} = pv \pqty{p} - f\pqty{v\pqty{p}},
+\end{equation}
+where \(v\pqty{p}\) is defined by inverting \(p = f'\pqty{v}\).
+
+This is useful because it allows us to describe a function in terms of the value of its derivative: consider differentiating
+\begin{equation}
+    \dd{\legendre{f}} = \pqty{p \dd{v} + v \dd{p} - f'\pqty{v} \dd{v}}_{v = v\pqty{p}} = v \dd{p},
+\end{equation}
+where \(v\pqty{p}\) is the critical point.
+
+If \(f\pqty{v}\) is strictly convex, so too is \(\legendre{f}\pqty{p}\), and if we take a further Legendre transform, we have
+\begin{subequations}
+    \begin{align}
+        \llegendre{f}\pqty{\omega} &= \legendre{\pqty{\legendre{f}}} \pqty{w} \\
+        &= \sup_{p \in \tilde{D}} \Bqty{w p - \legendre{f}\pqty{p}} \\
+        &= \sup_{p \in \tilde{D}} \Bqty{w p - v p + f\pqty{v}}.
+    \end{align}
+\end{subequations}
+
+At a critical point, we have
+\begin{equation}
+    \pqty{w - v} - p \pdv{v}{p} + \dv{f}{v} \pdv{v}{p} = 0,
+\end{equation}
+but recall we have \(p = f'\pqty{v}\). Therefore, \(w = v\) at the critical point, an we have
+\begin{equation}
+    \llegendre{f}\pqty{v} = f\pqty{v}
+\end{equation}
+giving the original function.
+
+In other words, no information is lost when taking Legendre transforms of strictly convex functions. The multivariable case is similar: define
+\begin{equation}
+    \legendre{f} \pqty{p_a} = \sup_{v^a \in D} \Bqty{p_a v^a - f\pqty{v^a}},
+\end{equation}
+again if \(f\pqty{v^a}\) is strictly convex (meaning the Hessian matrix \(\pdv*[2]{f}{v^a}{v^b}\) is a positive definite symmetric matrix), then the supremum occurs at a critical point (provided it exists), and
+\begin{equation}
+    \legendre{f} \pqty{p} = p_a v^a \pqty{p} - f\pqty{v\pqty{p}},
+\end{equation}
+where \(v^a\pqty{p}\) is defined by \(p_a = \pdv{f}{v^a}\).
+
+\subsection{The Hamiltonian}
+
+For a Lagrangian of the form
+\begin{equation}
+    L\pqty{q^a, \dot{q}^a, t} = \frac{1}{2} T_{ab} \pqty{q, t} \dot{q}^a \dot{q}^b + C_a \pqty{q, t} \dot{q}^a - V\pqty{q, t}
+\end{equation}
+which is quadratic in the velocities \(\dot{q}^a\). This is a strictly convex function of the \(\dot{q}^a\) at each \(\pqty{q^a, t}\), provided
+\begin{equation}
+    \pdv{L}{\dot{q}^a}{\dot{q}^b} = T_{ab}\pqty{q, t}
+\end{equation}
+is positive-definite for all \(\pqty{q, t}\). On physical grounds, we expect this to be the case, since the kinetic energy increases as the speed of the particles increases.
+
+We define the \term{Hamiltonian} \(H\pqty{p_a, q^a, t}\) to be the Legendre transform of the Lagrangian \(L\pqty{\dot{q}^a, q^a, t}\) with respect to the velocities \(\dot{q}^a\) at each \(\pqty{q^a, t}\), i.e.,
+\begin{equation}
+    H\pqty{p_a, q^a, t} = \sup_{\dot{q}^a \in \RR^n} \Bqty{p_a \dot{q}^a - L\pqty{\dot{q}, q, t}},
+\end{equation}
+and therefore the supremum is taken at the critical point \(p_a = \pdv{L}{\dot{q}^a}\), with
+\begin{equation}
+    H\pqty{p_a, q^a, t} = p_a \dot{q}^a\pqty{p, q, t} - L\pqty{\dot{q}\pqty{p, q, t}, q, t}.
+\end{equation}
+
+Also note that since the domain \(\dot{q}^a \in \RR^n\), we have 
+\begin{equation}
+    p_a = T_{ab} \dot{q}^b - C_a \in \RR^n,
+\end{equation}
+so the domain of \(\dot{q}^a\) and \(p_a\) are equivalent.
+
+\subsection{Hamilton's Equations}
+
+For the Lagrangian, we have
+\begin{equation}
+    \dd{L} = \pdv{L}{q^a} \dd{q^a} + \pdv{L}{\dot{q}^a} \dd{\dot{q}^a} + \pdv{L}{t} \dd{t}.
+\end{equation}
+
+Using the Euler--Lagrange equations, we have
+\begin{subequations}
+    \begin{align}
+        \dd{L} &= \pdv{L}{q^a} \dd{q^a} + \pdv{L}{\dot{q}^a} \dd{\dot{q}^a} + \pdv{L}{t} \dd{t} \\
+        &= \dv{t} \pqty{\pdv{L}{\dot{q}^a}} \dd{q^a} + \pdv{L}{\dot{q}^a} \dd{\dot{q}^a} + \pdv{L}{t} \dd{t} \\
+        &= \dot{p}_a \dd{q^a} + p_a \dd{\dot{q}^a} + \pdv{L}{t} \dd{t},
+    \end{align}
+\end{subequations}
+but we we also have \(H = p_Q \dot{q}^a - L\), so since \(H = H\pqty{p, q, t}\), we have
+\begin{equation}
+    \dd{H} = \pdv{H}{p_a} \dd{p_a} + \pdv{H}{q^a} \dd{q^a} + \pdv{H}{t} \dd{t},
+\end{equation}
+and also
+\begin{subequations}
+    \begin{align}
+        \dd{H} &= p_a \dd{\dot{q}^a} + \dot{q}^a \dd{p_a} - \dd{L} \\
+        &= \pqty{p_a \dd{\dot{q}^a} + \dot{q}^a \dd{p_a}} - \pqty{\dot{p}_a \dd{q^a} + p_a \dd{\dot{q}^a} + \pdv{L}{t} \dd{t}} \\
+        &= \dot{q}^a \dd{p_a} - \dot{p}_a \dd{q^a} - \pdv{L}{t} \dd{t}.
+    \end{align}
+\end{subequations}
+
+Comparing coefficients gives \term{Hamilton's equations}
+\begin{subequations}
+    \begin{align}
+        \dot{q}^a &= \pdv{H}{p_a}, \\
+        \dot{p}_a &= -\pdv{H}{q^a}, \\
+        \pdv{H}{t} &= -\pdv{L}{t}.
+    \end{align}
+\end{subequations}
+
+\begin{example}[Newton's Equations]
+    Consider the Lagrangian in Cartesian coordinates
+    \begin{equation}
+        L = \frac{1}{2} m \dot{\vb{x}}^2 - V\pqty{\vb{x}}.
+    \end{equation}
+
+    We have the momentum
+    \begin{equation}
+        \vb{p} = \pdv{L}{\dot{\vb{x}}} = m \dot{\vb{x}},
+    \end{equation}
+    and inverting this (essential, although trivial in this case) gives
+    \begin{equation}
+        \dot{\vb{x}} = \frac{\vb{p}}{m}.
+    \end{equation}
+
+    Therefore, the Hamiltonian is given by
+    \begin{equation}
+        H\pqty{\vb{p}, \vb{x}} = \vb{p} \vdot \dot{\vb{x}} - L = \frac{\vb{p}^2}{m} - \frac{1}{2} m \pqty{\frac{\vb{p}}{m}}^2 + V\pqty{\vb{x}} = \frac{\vb{p}^2}{2 m} + V\pqty{\vb{x}}.
+    \end{equation}
+
+    For this Hamiltonian, Hamilton's equations become
+    \begin{subequations}
+        \begin{equation}
+            \dot{\vb{x}} = \pdv{H}{\vb{p}} = \frac{\vb{p}}{m},
+        \end{equation}
+        recovering the relation between \(\dot{\vb{x}}\) and \(\vb{p}\), and
+        \begin{equation}
+            \dot{\vb{p}} = -\pdv{H}{\vb{x}} = -\grad{V},
+        \end{equation}
+    \end{subequations}
+    i.e., Newton's second law.
+\end{example}
+
+\begin{example}[Charged Particle in an Electromagnetic Field]
+    For a particle of charge \(e\) moving in an electromagnetic field, the Lagrangian is given by
+    \begin{equation}
+        L = \frac{1}{2} m \dot{\vb{x}}^2 - e \pqty{\phi - \dot{\vb{x}} \vdot \vb{A}},
+    \end{equation}
+    where \(\vb{A} = \vb{A}\pqty{\vb{x}, t}\) is the vector potential and \(\phi = \phi\pqty{\vb{x}, t}\) is the scalar potential.
+
+    In this case, the conjugate momentum is given by
+    \begin{equation}
+        \vb{p} = \pdv{L}{\dot{\vb{x}}} = m \dot{\vb{x}} + e \vb{A},
+    \end{equation}
+    where the \(e \vb{A}\) term arises from the interaction with the magnetic field. Inverting this gives
+    \begin{equation}
+        \dot{\vb{x}} = \frac{\vb{p} - e \vb{A}}{m}.
+    \end{equation}
+
+    The Hamiltonian is therefore given by
+    \begin{subequations}
+        \begin{align}
+            H &= \vb{p} \vdot \dot{\vb{x}} - L \\
+            &= \vb{p} \vdot \frac{\vb{p} - e \vb{A}}{m} - \frac{1}{2m} \pqty{\vb{p} - e \vb{A}}^2 + e \phi  - \frac{e}{m} \vb{A} \vdot \pqty{\vb{p} - e \vb{A}} \\
+            &= \frac{1}{2m} \pqty{\vb{p} - e \vb{A}}^2 + e \phi.
+        \end{align}
+    \end{subequations}
+\end{example}
