@@ -460,14 +460,49 @@ We notice that \(f\pqty{u} \to \pminfty\) as \(u \to \pminfty\) respectively. Al
 
 We are interested in the region \(-1 \leq u \leq 1\) since \(u = \cos \theta\).
 
-If the curve \(f\pqty{u} < 0\) for all \(u \in \ccintv{-1}{1}\), then there are simply no solutions to \(\dot{u}^2 = f\pqty{u}\), and hence no motion is possible. We focus on the cases where there is some region \(\ccintv{u_1}{u_2} \subset \ccintv{-1}{1}\) for which \(f\pqty{u} \geq 0\). As in the spherical pendulum, this means that motion is in fact confined to a ``band'' with some maximum and minimum values of \(\theta\), between \(\theta_1 = \arccos u_2\) and \(\theta_2 = \arccos u_1\), with \(\theta_1 < \theta_2\).
+If the curve \(f\pqty{u} < 0\) for all \(u \in \ccintv{-1}{1}\), then there are simply no solutions to \(\dot{u}^2 = f\pqty{u}\), and hence no motion is possible. We focus on the cases where there is some region \(\ccintv{u_1}{u_2} \subset \ccintv{-1}{1}\) for which \(f\pqty{u} \geq 0\). As in the spherical pendulum, this means that motion is in fact confined to a ``band'' with some maximum and minimum values of \(\theta\), between \(\theta_1 = \arccos u_2\) and \(\theta_2 = \arccos u_1\), with \(\theta_1 < \theta_2\). The graph of the cubic is given in \autoref{fig:cubic-polynomial-heavy-symmetric-top}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/heavy-symmetric-top-cubic-general.png}
+    \caption{Cubic Polynomial for Heavy Symmetric Top}
+    \label{fig:cubic-polynomial-heavy-symmetric-top}%
+\end{figure}
 
 There are several possibilities here:
-\begin{enumerate}[label=(\roman*)]
+\begin{enumerate}[label=(\alph*)]
     \item \(\dot{\phi} > 0\) at both \(u = u_1\) and \(u = u_2\)
     \item \(\dot{\phi} > 0\) at \(u = u_1\) but \(\dot{\phi} < 0\) at \(u = u_2\),so there will be ``loops'' in the motion
     \item \(\dot{\phi} > 0\) at \(u = u_1\) but \(\dot{\phi} = 0\) at \(u = u_2\), so the motion is ``cuspy'' at the maximum value of \(\theta\)
 \end{enumerate}
+
+The three cases are shown in \autoref{fig:motion-heavy-symmetric-top}, respectively.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/heavy-symmetric-top-motion-smooth.png}
+        \caption{\(\dot{\phi}\pqty{u_1} > 0\), \(\dot{\phi}\pqty{u_2} > 0\)}
+        \label{fig:heavy-symmetric-top-motion-smooth}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/heavy-symmetric-top-motion-loop.png}
+        \caption{\(\dot{\phi}\pqty{u_1} > 0\), \(\dot{\phi}\pqty{u_2} < 0\)}
+        \label{fig:heavy-symmetric-top-motion-loop}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/heavy-symmetric-top-motion-cusp.png}
+        \caption{\(\dot{\phi}\pqty{u_1} > 0\), \(\dot{\phi}\pqty{u_2} = 0\)}
+        \label{fig:heavy-symmetric-top-motion-cusp}%
+    \end{subfigure}
+    \caption{Three Cases of Motion for Heavy Symmetric Top}
+    \label{fig:motion-heavy-symmetric-top}%
+\end{figure}
 
 The rotation around tis own \(\vb{e}_3\) axis is the \term{spin}. Motion in \(\theta\) is the \term{nutation} (``bobbling up and down''), and motion in \(\phi\) is the \term{precession} (``wobbling around'').
 
@@ -481,7 +516,17 @@ As we release the top, it begins to fall under gravity, but to conserve energy i
 
 \paragraph{Uniform Precession}
 
-Is there motion without nutation, i.e. \(\dot{\theta} = 0\) for all time and \(\dot{\phi}\) is constant? This requires initial conditions such that \(f\pqty{u}\) has a unique root (i.e. a double root) in the range \(u \in \ccintv{-1}{1}\). We need at \(u\pqty{t = 0} = u_0\) such that
+Is there motion without nutation, i.e. \(\dot{\theta} = 0\) for all time and \(\dot{\phi}\) is constant? This requires initial conditions such that \(f\pqty{u}\) has a unique root (i.e. a double root) in the range \(u \in \ccintv{-1}{1}\). This is shown in \autoref{fig:cubic-polynomial-repeated-heavy-symmetric-top}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/heavy-symmetric-top-cubic-repeated.png}
+    \caption{Repeated Root of the Cubic Polynomial for Heavy Symmetric Top}
+    \label{fig:cubic-polynomial-repeated-heavy-symmetric-top}%
+\end{figure}
+
+
+We need at \(u\pqty{t = 0} = u_0\) such that
 \begin{align}
     f\pqty{u_0} &= \pqty{1 - u_0^2} \pqty{\frac{2 \pqty{E' - M g l u_0}}{I_1}} - \frac{1}{I_1^2} \pqty{p_\phi - p_\psi u_0}^2 = 0 \\
     f'\pqty{u_0} &= - \frac{4 u_0}{I_1} \pqty{E' - M g l u_0} - \pqty{1 - u_0^2} \pqty{\frac{2 M g l}{I_1}} + \frac{2 p_\psi}{I_1^2} \pqty{p_\phi - p_\psi u_0} = 0.
