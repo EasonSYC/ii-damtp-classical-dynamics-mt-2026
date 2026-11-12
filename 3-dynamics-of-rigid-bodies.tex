@@ -4,7 +4,7 @@ A \term{rigid body} is one which has no internal degrees of freedom. In particul
 
 To describe such a rigid body, we must specify
 \begin{itemize}
-    \item the \term{location} \(\vb{R}\pqty{t}\) of its centre of mass;
+    \item the \term{location} \(\tens{R}\pqty{t}\) of its centre of mass;
     \item its \term{orientation} around the centre of mass.
 \end{itemize}
 
@@ -17,7 +17,7 @@ To describe such a rigid body, we must specify
 
 \subsection{Rotations of a Rigid Body}
 
-Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\Bqty{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\Bqty{\vb{e}_a}\), as shown in \autoref{fig:space-and-body-frames}.
+Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\set{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\set{\vb{e}_a}\), as shown in \autoref{fig:space-and-body-frames}.
 
 The \term{space frame} is simply the standard basis of \(\RR^3\). A \term{body frame} is one whose axes are fixed in the body. The space frame will not change with time, while the body frame will rotate with the body (and remains fixed relative to the body). Regardless, both sets of axes are always orthonormal
 \begin{equation}
@@ -295,7 +295,7 @@ In the principle body frame, \(\vb*{\omega}\pqty{t}\) traces out the curve formi
 
 Since
 \begin{equation}
-    2E = \vb{\omega} \vdot \pqty{I \vb{\omega}} = \omega\pqty{t} \vdot \vb{L},
+    2E = \vb*{\omega} \vdot \pqty{I \vb*{\omega}} = \omega\pqty{t} \vdot \vb{L},
 \end{equation}
 we see that \(\vb*{\omega}\) lies in a plane, called the \term{invariable plane}, normal to \(\vb{L}\). Also, since \(\vb{L} = \grad_{\vb*{\omega}} E\), we see that the surface of constant energy is perpendicular to \(\vb{L}\), and hence tangent to the invariable plane. But the trace of the contact point of the invariable plane on the ellipsoid is the polhode, which is where the angular velocity vector \(\vb*{\omega}\) is located. The trace of the contact point on the invariable plane is called the \term{herpolhode}. This is shown in \autoref{fig:poinsot-construction}.
 

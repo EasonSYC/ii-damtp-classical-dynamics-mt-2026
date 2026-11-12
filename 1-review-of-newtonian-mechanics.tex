@@ -100,24 +100,24 @@ It is clear that these transformations preserve the structure of space-time, but
 
 \term{Newton's Second Law of Motion} states that in an \(N\)-particle system, the motion of the \(i\)-th particle obeys
 \[
-    m_i \ddot{\vb{x}}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t, \ldots}.
+    m_i \ddot{\vb{x}}_i = \vb{F}_i \pqty{\set{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t, \ldots}.
 \]
 
 \begin{remarks}
     \begin{enumerate}[label=(\roman*)]
         \item This is \emph{not} the definition of the forces \(\vb{F}\), and we need to supply those forces separately in order to analyse these dynamics.
-        \item We have assumed that \(\vb{F}\) to depend on locations \(\vb{x}_j \pqty{t}\) and velocities \(\dot{\vb{x}}_j \pqty{t}\) of all the particles in the system, but no higher derivatives. The consequence is, if we are given the set \(\Bqty{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}\) at \(t = 0\), then at \(t = \delta t\), the location will be given by
+        \item We have assumed that \(\vb{F}\) to depend on locations \(\vb{x}_j \pqty{t}\) and velocities \(\dot{\vb{x}}_j \pqty{t}\) of all the particles in the system, but no higher derivatives. The consequence is, if we are given the set \(\set{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}\) at \(t = 0\), then at \(t = \delta t\), the location will be given by
         \begin{subequations}
             \begin{equation}
                 \vb{x}_i \pqty{\delta t} = \vb{x}_i \pqty{0} + \delta t \dot{\vb{x}}_i \pqty{0} + \cdots
             \end{equation}
             and
             \begin{equation}
-                \dot{\vb{x}_i} \pqty{\delta t} = \dot{\vb{x}}_i \pqty{0} + \delta t \frac{\vb{F}_i}{m_i} \pqty{\Bqty{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}} + \cdots
+                \dot{\vb{x}_i} \pqty{\delta t} = \dot{\vb{x}}_i \pqty{0} + \delta t \frac{\vb{F}_i}{m_i} \pqty{\set{\vb{x}_j \pqty{0}, \dot{\vb{x}}_j \pqty{0}}_{j = 1}^{n}} + \cdots
             \end{equation}
         \end{subequations}
 
-        Iterating this in principle determines the motions, but in practice this might be very hard, since this is a non-linear (\term{quasi-linear}) system of ODEs in general. For example, the \term{three-body problem} which studies three similar masses each moving under gravitational influence of other two. Such \term{chaotic systems} are very sensitive to initial data \(\Bqty{\vb{x}_i\pqty{0}, \dot{\vb{x}}_i \pqty{0}}_{i = 1}^{n}\).
+        Iterating this in principle determines the motions, but in practice this might be very hard, since this is a non-linear (\term{quasi-linear}) system of ODEs in general. For example, the \term{three-body problem} which studies three similar masses each moving under gravitational influence of other two. Such \term{chaotic systems} are very sensitive to initial data \(\set{\vb{x}_i\pqty{0}, \dot{\vb{x}}_i \pqty{0}}_{i = 1}^{n}\).
     \end{enumerate}
 \end{remarks}
 
@@ -130,7 +130,7 @@ It is clear that these transformations preserve the structure of space-time, but
 
 A \term{closed system} is one in which the force on each particle in the system depends only on \(t\) and the other particles in the system, i.e., 
 \begin{equation}
-    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
+    \vb{F}_i = \vb{F}_i \pqty{\set{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
 \end{equation}
 
 For a closed system, the \term{principle of Galilean relativity} states that the physical dynamics must be invariant under \(g \in \Gal\pqty{3, 1}\) acting on the whole system. This imposes strong constraints on the possible forces, and is our first example on how symmetry principles restrict the form of forces!
@@ -138,14 +138,14 @@ For a closed system, the \term{principle of Galilean relativity} states that the
 Consider the system
 \begin{equation}
     \label{eq:n2-closed-system}%
-    m_i \ddot{\vb{x}}_i \pqty{t} = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
+    m_i \ddot{\vb{x}}_i \pqty{t} = \vb{F}_i \pqty{\set{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}, t}.
 \end{equation}
 
 \subsubsection{Time Translations}
 
 If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t + s}\) for all \(s \in \RR\) (same for all particles). This implies that the forces cannot have (explicit) time dependence
 \begin{equation}
-    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}}.
+    \vb{F}_i = \vb{F}_i \pqty{\set{\vb{x}_j, \dot{\vb{x}}_j}_{j = 1}^{n}}.
 \end{equation}
 
 Note that it is important to talk about a closed system here, since if the system is not closed, then the forces can depend on time through the motion of other particles outside the system.
@@ -154,7 +154,7 @@ Note that it is important to talk about a closed system here, since if the syste
 
 If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + \vb{c}\) for all constant vectors \(\vb{c} \in \RR^3\). This implies that the forces can depend on the locations of the particles \emph{only through} the \term{relative separations} between particles, i.e.,
 \begin{equation}
-    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j}_{j = 1}^{n}}.
+    \vb{F}_i = \vb{F}_i \pqty{\set{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \set{\dot{\vb{x}}_j}_{j = 1}^{n}}.
 \end{equation}
 
 \subsubsection{Uniform Boosts}
@@ -162,7 +162,7 @@ If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so i
 If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(\vb{x}_i \pqty{t} + t \vb{u}\) for all constant vectors \(\vb{u} \in \RR^3\). This similarly implies that the forces can depend on the velocities of the particles \emph{only through} the \term{relative velocities} between particles, i.e.,
 \begin{equation}
     \label{eq:force-form-relative-displacement-velocity}%
-    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_j - \dot{\vb{x}}_k}_{j, k = 1}^{n}}.
+    \vb{F}_i = \vb{F}_i \pqty{\set{\vb{x}_j - \vb{x}_k}_{j, k = 1}^{n}, \set{\dot{\vb{x}}_j - \dot{\vb{x}}_k}_{j, k = 1}^{n}}.
 \end{equation}
 
 \begin{figure}[ht!]
@@ -181,12 +181,12 @@ We denote
 so
 \begin{equation}
     \label{eq:force-form-relative-displacement-velocity-new}%
-    \vb{F}_i = \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}.
+    \vb{F}_i = \vb{F}_i \pqty{\set{\vb{x}_{jk}}_{j, k = 1}^{n}, \set{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}}.
 \end{equation}
 
 If \(\vb{x}_i \pqty{t}\) is a solution to \eqref{eq:n2-closed-system}, then so is \(R \vb{x}_i \pqty{t}\) for all \(R \in \Or\pqty{3}\). This \emph{does not imply} that the forces only depend on relative separations, but instead implies that the force should not have any preferred direction in space apart from the relative positions and velocities of the particles, i.e.,
 \begin{equation}
-    R \vb{F}_i \pqty{\Bqty{\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\Bqty{R\vb{x}_{jk}}_{j, k = 1}^{n}, \Bqty{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}},
+    R \vb{F}_i \pqty{\set{\vb{x}_{jk}}_{j, k = 1}^{n}, \set{\dot{\vb{x}}_{jk}}_{j, k = 1}^{n}} = \vb{F}_i \pqty{\set{R\vb{x}_{jk}}_{j, k = 1}^{n}, \set{R \dot{\vb{x}}_{jk}}_{j, k = 1}^{n}},
 \end{equation}
 and with no dependence on external vectors.
 
@@ -205,7 +205,7 @@ and with no dependence on external vectors.
             \vb{F}_i = f_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \vb{x}_{12} + g_i \pqty{\abs{\vb{x}_{12}}, \abs{\dot{\vb{x}}_{12}}, \vb{x}_{12} \vdot \dot{\vb{x}}_{12}} \dot{\vb{x}}_{12}.
         \end{align*}
 
-        To see this, suppose \(\vb{x}_{12}\) and \(\dot{\vb{x}}_{12}\) are not collinear, i.e., \(\vb{x}_{12} \cross \dot{\vb{x}}_{12} \neq \vb{0}\). Consider \(\vb{R} \in \Or\pqty{3}\) as a reflection in the plane \(\Pi\) spanned by the relative positions and velocities, as illustrated in \autoref{fig:rotations-reflections-galilean-invariance}, then
+        To see this, suppose \(\vb{x}_{12}\) and \(\dot{\vb{x}}_{12}\) are not collinear, i.e., \(\vb{x}_{12} \cross \dot{\vb{x}}_{12} \neq \vb{0}\). Consider \(\tens{R} \in \Or\pqty{3}\) as a reflection in the plane \(\Pi\) spanned by the relative positions and velocities, as illustrated in \autoref{fig:rotations-reflections-galilean-invariance}, then
         \begin{equation}
             R \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}} = \vb{F}_i \pqty{R\vb{x}_{12}, R\dot{\vb{x}}_{12}} = \vb{F}_i \pqty{\vb{x}_{12}, \dot{\vb{x}}_{12}},
         \end{equation}
@@ -298,11 +298,11 @@ and we define the \term{work done} on the \(i\)-th particle by \(\vb{F}_i\) from
 
 The force is said to be \term{conservative} if the work done is independent of the path taken, we have a \term{potential} \(V\) such that
 \begin{equation}
-    \sum_{i = 1}^{n} \int_{\vb{x}_i\pqty{t_\text{i}}}^{\vb{x}_i\pqty{t_\text{f}}} \vb{F}_i \vdot \dd{\vb{x}}_i = - V \pqty{\Bqty{\vb{x}_j \pqty{t_{\text{f}}}}_{j = 1}^{n}} + V \pqty{\Bqty{\vb{x}_j \pqty{t_{\text{i}}}}_{j = 1}^{n}},
+    \sum_{i = 1}^{n} \int_{\vb{x}_i\pqty{t_\text{i}}}^{\vb{x}_i\pqty{t_\text{f}}} \vb{F}_i \vdot \dd{\vb{x}}_i = - V \pqty{\set{\vb{x}_j \pqty{t_{\text{f}}}}_{j = 1}^{n}} + V \pqty{\set{\vb{x}_j \pqty{t_{\text{i}}}}_{j = 1}^{n}},
 \end{equation}
 and the forces are recovered by
 \begin{equation}
-    \vb{F}_i = - \grad_{\vb{x}_i} V \pqty{\Bqty{\vb{x}_j}_{j = 1}^{n}}.
+    \vb{F}_i = - \grad_{\vb{x}_i} V \pqty{\set{\vb{x}_j}_{j = 1}^{n}}.
 \end{equation}
 
 In this case, the \term{total energy} \(E = T + V\) obeys \(E \pqty{t_{\text{f}}} = E \pqty{t_{\text{i}}}\), and it is conserved.

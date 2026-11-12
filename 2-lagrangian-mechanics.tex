@@ -7,7 +7,7 @@ We define the \term{action} of a system to be
 \end{equation}
 where \(L\) is the \term{Lagrangian} of the system. Typically, the Lagrangian is given by
 \begin{equation}
-    L = T - V = \sum_{i = 1}^{n} \frac{1}{2} m_i \dot{\vb{x}}_i^2 - V\pqty{\Bqty{\vb{x}_j}_{j = 1}^{n}, t}.
+    L = T - V = \sum_{i = 1}^{n} \frac{1}{2} m_i \dot{\vb{x}}_i^2 - V\pqty{\set{\vb{x}_j}_{j = 1}^{n}, t}.
 \end{equation}
 
 The \term{principle of least action} says if we consider all possible (smooth) paths (as in \autoref{fig:possible-paths}) with fixed endpoints \(\vb{x}_i \pqty{t_0}\) and \(\vb{x}_i \pqty{t_1}\), the true motion corresponds to the path that extremises the action \(S \bqty{\vb{x}_i}\),.
@@ -233,7 +233,7 @@ We may enforce these constraints using \term{Lagrange multipliers}. We set
 \end{equation}
 where \(L\) is the original Lagrangian for \emph{unconstrained} motion, and \(\lambda^A \pqty{t}\) are the Lagrange multipliers. Such Lagrange multipliers should be time-dependent, since we want the constraints to hold at \emph{all} times, rather than simply holding \emph{on average}.
 
-We treat the set of Lagrange multipliers \(\Bqty{\lambda^A \pqty{t}}\) as the new coordinates for the system. The Euler--Lagrange equations for \(L'\) give
+We treat the set of Lagrange multipliers \(\set{\lambda^A \pqty{t}}\) as the new coordinates for the system. The Euler--Lagrange equations for \(L'\) give
 \begin{equation}
     \label{eq:euler-lagrange-with-constraints}%
     \dv{t} \pqty{\pdv{L}{\dot{x}^a}} - \pdv{L}{x^a} = \sum_{A = 1}^{k} \lambda^A \pqty{t} \pdv{f_A}{x^a},
@@ -742,7 +742,7 @@ If however, some \(\lambda_r < 0\) is negative, then the corresponding \(f_r\pqt
 
 If some \(\lambda_r = 0\), then the corresponding \(f_r\pqty{t} = a_r + b_r t\), and we need to examine higher order terms to determine the stability.
 
-If \(\lambda_r > 0\) for \emph{every} \(r\), then the equilibrium point is \term{stable}, and the collection of associated eigenvectors \(\Bqty{\vb*{\alpha}_r}\) are called the \term{normal modes} of the system. A general solution near this equilibrium point \(q^a = 0\) will be a superposition of normal modes.
+If \(\lambda_r > 0\) for \emph{every} \(r\), then the equilibrium point is \term{stable}, and the collection of associated eigenvectors \(\set{\vb*{\alpha}_r}\) are called the \term{normal modes} of the system. A general solution near this equilibrium point \(q^a = 0\) will be a superposition of normal modes.
 
 \begin{figure}[ht!]
     \centering
