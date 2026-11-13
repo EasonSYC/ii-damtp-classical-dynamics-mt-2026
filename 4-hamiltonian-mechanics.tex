@@ -210,4 +210,247 @@ Comparing coefficients gives \term{Hamilton's equations}
             &= \frac{1}{2m} \pqty{\vb{p} - e \vb{A}}^2 + e \phi.
         \end{align}
     \end{subequations}
+
+    Suppose we have a constant, uniform magnetic field \(\vb{B} = B \vb{z}\). We can describe this using \(\vb{A} = \pqty{- By, 0, 0}\) so that \(\curl \vb{A} = \vb{B}\), and set \(\phi = 0\) so we have no electrical forces.
+
+    Then we have the Hamiltonian
+    \begin{equation}
+        H = \frac{\pqty{p_x + e y B}^2}{2m} + \frac{p_y^2 + p_z^2}{2m}.
+    \end{equation}
+
+    Therefore, Hamilton's equations become
+    \begin{subequations}
+        \begin{align}
+            \dot{p}_x &= - \pdv{H}{x} = 0, \\
+            \dot{p}_y &= - \pdv{H}{y} = - \frac{e B}{m} \pqty{p_x + e y B}, \\
+            \dot{p}_z &= - \pdv{H}{z} = 0, \\
+            \dot{x} &= \pdv{H}{p_x} = \frac{p_x + e y B}{m}, \\
+            \dot{y} &= \pdv{H}{p_y} = \frac{p_y}{m}, \\
+            \dot{z} &= \pdv{H}{p_z} = \frac{p_z}{m}.
+        \end{align}
+    \end{subequations}
+
+    Therefore, \(p_x\) and \(p_z\) are constants, and
+    \begin{equation}
+        \dv{t} \pqty{p_y + e x B} = \dot{p}_y + e \dot{x} B = - \frac{e B}{m} \pqty{p_x + e y B} + \frac{e B}{m} \pqty{p_x + e y B} = 0,
+    \end{equation}
+    and hence \(p_y + e x B = a\) for some constant \(a\).
+
+    We can solve the system to find the motion
+    \begin{subequations}
+        \begin{align}
+            x\pqty{t} &= \frac{a}{eB} + R \sin \pqty{\omega \pqty{t - t_0}}, \\
+            y\pqty{t} &= - \frac{p_x}{eB} + R \cos \pqty{\omega \pqty{t - t_0}}, \\
+            z\pqty{t} &= \frac{p_z}{m} \pqty{t - t_0},
+        \end{align}
+    \end{subequations}
+    where \(\omega = \flatfrac{eR}{m}\) is called the \term{cyclotron frequence}, and \(R, t_0\) are constants of integration. So our charged particle follows a helical path, drifting in the \(z\) direction, whilst rotating in the \(x\)-\(y\) plane. 
 \end{example}
+
+\subsection{Phase Space Trajectories}
+
+Recall that \term{phase space} is the \(2dn\)-dimensional space with coordinates \(\pqty{q^a, p_a}\) for a system of \(n\) particles moving in \(d\) dimensions. We have seen that \(p_a \in \RR^{dn}\), while in general the coordinates \(q^a \in \configurationSpace\) live in the configuration space, which might not be the whole \(\RR^{dn}\). For example, a mass on a light, inextensible rod swinging in the plane has configuration space \(\configurationSpace = S^1\). So for this system, phase space \(\phaseSpace\) is given by \(S^1 \times \RR\).
+
+The trajectories of all possible motions \(\pqty{q^a\pqty{t}, p_a\pqty{t}} \in \phaseSpace\) for a given choice of \(H\) form flow lines called \term{Hamiltonian flow}.
+
+\begin{example}[Hamiltonian Flow for a Free Particle]
+    For a free particle moving in one-dimension, we have \(H = \frac{p^2}{2m}\), so
+    \begin{equation}
+        \pqty{\dot{x}, \dot{p}} = \pqty{\pdv{H}{p}, -\pdv{H}{q}} = \pqty{\frac{p}{m}, 0},
+    \end{equation}
+    and \(\phaseSpace = \RR^2\). The Hamiltonian flows are simply the lines of constant \(p\) in the \(x\)-\(p\) plane, where the flows go to the right above the \(x\)-axis and to the left below the \(x\)-axis, as shown in \autoref{fig:hamiltonian-flow-free-particle}.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{fig/hamiltonian-flow-free-particle.png}
+    \caption{Hamiltonian Flow for a Free Particle}
+    \label{fig:hamiltonian-flow-free-particle}
+\end{figure}
+
+\begin{example}[Hamiltonian Flow for Simple Harmonic Oscillator]
+    Let
+    \begin{equation}
+        H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2,
+    \end{equation}
+    then we have
+    \begin{equation}
+        \pqty{\dot{x}, \dot{p}} = \pqty{\frac{p}{m}, - m \omega^2 x},
+    \end{equation}
+    with \(\phaseSpace = \RR^2\). Choose units where \(m = \omega = 1\). Then the Hamiltonian flow are circles centred at the origin, and we go around the circle clockwise, as shown in \autoref{fig:hamiltonian-flow-simple-harmonic-oscillator}.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{fig/hamiltonian-flow-simple-harmonic-oscillator.png}
+    \caption{Hamiltonian Flow for Simple Harmonic Oscillator}
+    \label{fig:hamiltonian-flow-simple-harmonic-oscillator}
+\end{figure}
+
+\begin{example}[Hamiltonian Flow for Simple Pendulum]
+    For a simple pendulum of length \(l\) and mass \(m\), we have
+    \begin{equation}
+        H = \frac{p_{\theta}^2}{2m} - m g l \cos \theta.
+    \end{equation}
+
+    Then Hamilton's equations give
+    \begin{equation}
+        \pqty{\dot{\theta}, \dot{p}_{\theta}} = \pqty{\frac{p_{\theta}}{m}, - m g l \sin \theta},
+    \end{equation}
+    and in this case \(\phaseSpace = S^1 \times \RR\), which is really a cylinder.
+
+    When \(\theta\) is small, the trajectories are approximately circular. For very large \(p_{\theta}\), trajectories will look nearly horizontal (slightly curved at \(\theta = 0\) due to gaining energy). In between, there is an ``extremal'' case known as the \term{separatrix} where the pendulum barely reaches the top of its swing. This is shown in \autoref{fig:hamiltonian-flow-simple-pendulum}.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{fig/hamiltonian-flow-simple-pendulum.png}
+    \caption{Hamiltonian Flow for Simple Pendulum}
+    \label{fig:hamiltonian-flow-simple-pendulum}
+\end{figure}
+
+The Hamiltonian flow, also known as \term{phase space portraits}, tell us how our system evolves if it starts at any point \(\pqty{q_0, p_0} \in \phaseSpace\), but it does not tell us how rapidly the system evolves along the flow.
+
+\subsection{Poisson Brackets}
+
+Suppose we have a smooth function \(\functiondomain{f}{\phaseSpace \times \RR_t}{\RR}\) possibly with explicit time dependence. Along a trajectory of the trajectory of the system, using Hamilton's equations, we have
+\begin{subequations}
+    \begin{align}
+        \dv{f}{t} &= \pdv{f}{t} + \pdv{f}{q^a} \dot{q}^a + \pdv{f}{p_a} \dot{p}_a \\
+        &= \pdv{f}{t} + \pdv{f}{q^a} \pdv{H}{p_a} - \pdv{f}{p_a} \pdv{H}{q^a}.
+    \end{align}
+\end{subequations}
+
+This motivates us to define the \term{Poisson bracket}. Let \(f, g\) each be smooth functions on \(\phaseSpace \times \RR_t\), and define
+\begin{equation}
+    \pb{f}{g} = \pdv{f}{q^a} \pdv{g}{p_a} - \pdv{f}{p_a} \pdv{g}{q^a}.
+\end{equation}
+
+Using this, we can write
+\begin{equation}
+    \dv{f}{t} = \pb{f}{H} + \pdv{f}{t}.
+\end{equation}
+
+The Poisson bracket obeys several identities.
+\begin{itemize}
+    \item \textbf{Antisymmetry.} \(\pb{f}{g} = - \pb{g}{f}\).
+    \item \textbf{Linearity.} \(\pb{f}{\alpha g + \beta h} = \alpha \pb{f}{g} + \beta \pb{f}{h}\) for all constants \(\alpha, \beta\).
+    \item \textbf{Product Rule (Leibniz).} \(\pb{f}{g h} = \pb{f}{g} h + g \pb{f}{h}\).
+    \item \textbf{Jacobi Identity.} \(\pb{f}{\pb{g}{h}} + \pb{g}{\pb{h}{f}} + \pb{h}{\pb{f}{g}} = 0\).
+\end{itemize}
+
+Some Poisson brackets are rather familiar. For example, we note
+\begin{equation}
+    \pb{q^b}{p_c} = \tensor{\kronecker}{^b_c}, \quad \pb{q^b}{q^c} = 0, \quad \pb{p_b}{p_c} = 0.
+\end{equation}
+
+The angular momentum (working in Cartesian coordinates on \(\RR^3\)) is given by \(\vb{L} = \vb{x} \cross \vb{p}\) has components \(L_i = \levicivita_{ijk} x^j p^k\). Then we have
+\begin{subequations}
+    \begin{align}
+         \pb{L_i}{x_m} &= \pb{\levicivita_{ijk} x_j p_k}{x_m} \\
+         &= \levicivita_{ijk} \pb{x_j p_k}{x_m} \\
+         &= \levicivita_{ijk} \pqty{x_j \pb{p_k}{x_m} + \pb{x_j}{x_m} p_k} \\
+         &= - \levicivita_{ijk} x_j \kronecker_{km} \\
+         &= \levicivita_{imj} x_j.
+    \end{align}
+\end{subequations}
+
+Similarly, we have
+\begin{subequations}
+    \begin{align}
+        \pb{L_i}{p_m} &= \levicivita_{ijk} \pb{x_j p_k}{p_m} \\
+        &= \levicivita_{ijk} \pb{x_j}{p_m} p_k \\
+        &= \levicivita_{imk} p_k,
+    \end{align}
+\end{subequations}
+and finally
+\begin{equation}
+    \pb{L_i}{L_j} = \levicivita_{ijk} L_k.
+\end{equation}
+
+\small
+
+What is quantisation? (Non-Examinable)
+
+Given a classical system (i.e. a phase space \(\phaseSpace\), the Poisson bracket, some functions \(\functiondomain{f}{\phaseSpace}{\RR}\)), what does it mean to ``quantise'' this system?
+
+Dirac hoped that this was a map 
+\begin{equation}
+    \functiondomain{Q}{\set{\begin{matrix}\text{space of functions} \\ \text{on phase space}\end{matrix}}}{\set{\begin{matrix}\text{space of self-adjoint} \\
+  \text{operators on } \hilbertSpace\end{matrix}}}
+\end{equation}
+such that
+\begin{equation}
+    \functionmap{Q}{f}{Q\pqty{f} = \hat{f}},
+\end{equation}
+which obeys that:
+\begin{itemize}
+    \item \textbf{Identity.} \(Q\pqty{1} = \hat{I}\), the identity operator;
+    \item \textbf{Linearity.} \(Q\pqty{\alpha f + \beta g} = \alpha \hat{f} + \beta \hat{g}\), for all constants \(\alpha, \beta\);
+    \item \textbf{Poisson Bracket and Commutator.} Poisson brackets transforms to commutators
+    \begin{equation}
+        Q\pqty{\pb{f}{g}} = \frac{1}{i \hbar} \comm{\hat{f}}{\hat{g}}.
+    \end{equation}
+    \item If \(\comm{\hat{f}}{\hat{q}^a} = 0\), and \(\comm{\hat{A}}{\hat{p}_a} = 0\), then \(\hat{A}\) is constant.
+\end{itemize}
+
+But there is a nasty surprise: Grunewald, van Hove, and later Gotay, proved that in general no such map \(Q\) exists. It works for all \emph{quadratic} polynomials in \(\pqty{p_a, q^b}\), but breaks down for cubics. In fact, we still don't know how to quantise a general classical system.
+
+\normalsize
+
+We can write the equations of motion in terms of Poisson brackets as follows:
+\begin{subequations}
+    \begin{align}
+        \dot{q}^a = \pdv{H}{p_a} &= \pb{q^a}{H}, \\
+        \dot{p}_a = - \pdv{H}{q^a} &= \pb{p_a}{H},
+    \end{align}
+\end{subequations}
+and more generally, fo any function \(f\pqty{q^a, p_a, t}\), its time dependence along the solution to equations of motion is given by
+\begin{equation}
+    \dv{f}{t} = \pb{f}{H} + \pdv{f}{t}.
+\end{equation}
+
+In particular, if \(f\) has no explicit time dependence, then \(\dv{f}{t} = \pb{f}{H}\), and \(f\) is conserved if and only if \(\pb{f}{H} = 0\). For example, certainly \(\pb{H}{H} = 0\), so the value of Hamiltonian is conserved, whenever it has no explicit time dependence. But recall \(\pdv*{H}{t} = - \pdv*{L}{t}\), this is exactly what we have seen before in the Lagrangian picture.
+
+\subsection{Poisson's Theorem}
+
+Suppose \(f, g\) are each conserved quantities, i.e.,
+\begin{equation}
+    \dv{f}{t} = \dv{g}{t} = 0
+\end{equation}
+along the solution to the equations of motion. Then \(\pb{f}{g}\) is also a conserved quantity. This is known as \term{Poisson's theorem}.
+
+To prove this, observe
+\begin{subequations}
+    \begin{align}
+        \dv{t} \pb{f}{g} &= \pb{\pb{f}{g}}{H} + \pdv{t} \pb{f}{g} \\
+        &= \pb{f}{\pb{g}{H}} + \pb{\pb{f}{H}}{g} + \pb{\pdv{f}{t}}{g} + \pb{f}{\pdv{g}{t}} \\
+        &= \pb{f}{\pb{g}{H} + \pdv{g}{t}} + \pb{\pb{f}{H} + \pdv{f}{t}}{g} \\
+        &= \pb{f}{\dv{g}{t}} + \pb{\dv{f}{t}}{g} \\
+        &= 0.
+    \end{align}
+\end{subequations}
+
+\begin{example}
+    If we find/compute that \(\pb{L_x}{H} = 0\) and \(\pb{L_y}{H} = 0\), then \(L_x\) and \(L_y\) are conserved, since \(L_x\) and \(L_y\) has no explicit time dependence. Then since \(L_z = \pb{L_x}{L_y}\), we have that \(L_z\) is also conserved.
+\end{example}
+
+It seems like we can keep generating conserved quantities by taking Poisson brackets of conserved quantities. But the snag is that it often happens that for conserved quantities \(f\), \(g\), that \(\pb{f}{g} = \alpha f + \beta g\) is simply a linear combination of \(f, g\) for some \(\alpha, \beta \in \RR\), which trivially conserves, and often we simply find \(\pb{f}{g} = 0\) (in which case we say \(f\) and \(g\) are \term{in involution}).
+
+\subsection{Hamiltonian Vector Fields}
+
+To any (smooth) function \(\functiondomain{f}{\phaseSpace}{\RR}\), we may associate a first order differential operator
+\begin{equation}
+    D_f = - \pb{f}{\cdot} = - \pdv{f}{q^a} \pdv{p_a} + \pdv{f}{p_a} \pdv{q^a},
+\end{equation}
+
+This defines a vector field on \(\phaseSpace\) as a directional derivative: we think of this as
+\begin{equation}
+    D_f = \vb{V} \vdot \grad,
+\end{equation}
+but the \(\grad\) operator is the gradient operator on \(\phaseSpace\)
+\begin{equation}
+    D_f = \vb{V} \vdot \grad = \pmqty{\pdv*{f}{p_a} \\ - \pdv*{f}{q^a}} \vdot \pmqty{\pdv*{q^a} \\ \pdv*{p_a}}.
+\end{equation}
+
+We call \(D_f\) (abusing notation slightly) the \term{Hamiltonian vector field} associated to \(f\).
