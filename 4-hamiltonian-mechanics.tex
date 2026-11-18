@@ -566,9 +566,146 @@ If we define the \(\dim\pqty{\phaseSpace} \times \dim\pqty{\phaseSpace}\) matrix
 \begin{equation}
     \tensor{J}{^A_B} = \pdv{Y^A}{y^B},
 \end{equation}
+i.e.,
+\begin{equation}
+    J = \pmqty{\pdv*{Q^a}{q^b} & \pdv*{Q^a}{p_b} \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
+\end{equation}
 the condition for a canonical transformation may be written as
 \begin{equation}
-    J \Omega J\transpose = \Omega.
+    J \Omega J\transpose = \pmqty{\pb{Q^a}{Q^b} & \pb{Q^a}{P_b} \\ \pb{P_a}{Q^b} & \pb{P_a}{P_b}} = \Omega,
 \end{equation}
+where the Poisson brackets are computed in the original coordinates.
 
 Mathematically, such transformations form a group known as the \term{symplectic group}, often written as \(\Sp\pqty{n, \RR}\).
+
+\begin{example}
+    Consider a point transformation \(q^a \mapsto Q^a\pqty{q}\). What transformation \(p_b \mapsto P_b\pqty{q, p}\) is needed to make this a canonical transformation?
+
+    We have
+    \begin{equation}
+        J = \pmqty{\pdv*{Q^a}{q^b} & O \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
+    \end{equation}
+    and we have
+    \begin{equation}
+        J \Omega J\transpose = \pmqty{O & \displaystyle \pdv{Q^a}{q^c} \pdv{P_b}{p_c} \\ \displaystyle - \pdv{P_a}{p_c} \pdv{Q^b}{q^c} & \pb{P_a}{P_b}}.
+    \end{equation}
+
+    The off-diagonal entries require that
+    \begin{equation}
+        \pdv{Q^a}{q^c} \pdv{P_b}{p_c} = \tensor{\kronecker}{^a_b},
+    \end{equation}
+    i.e.,
+    \begin{equation}
+        \pdv{P_b}{p_c} = \tensor{{\pqty{\pdv{Q}{q}}\inverse}}{^c_b} = \pdv{q^c}{Q^b},
+    \end{equation}
+    and hence
+    \begin{equation}
+        P_b = \pdv{q^c}{Q^b} p_c.
+    \end{equation}
+
+    To check this also obeys the vanishing Poisson bracket, let \(q = q\pqty{Q}\) invert the original coordinate transformation, then we have
+    \begin{subequations}
+        \begin{align}
+            \pdv{P_a}{q^c} \pdv{P_b}{p_c} &= \pdv{P_a}{q^c} \pdv{q^c}{Q^b} \\
+            &= \pdv{Q^d}{q^c} \pdv{Q^d} \pqty{\pdv{q^e}{Q^a}} p_e \pdv{q^c}{Q^b} \\
+            &= p_e \pdv{q^e}{Q^d}{Q^a} \pdv{Q^d}{q^c} \pdv{q^c}{Q^b} \\
+            &= p_e \pdv{q^e}{Q^b}{Q^a}.
+        \end{align}
+    \end{subequations}
+
+    This is symmetric in \(a\) and \(b\), so \(\pb{P_a}{P_b} = 0\) as required. This transformation agrees with what we found in the Lagrangian formulation.
+\end{example}
+
+The reason our general canonical transformations can be useful is that they simplify Hamilton's equations. We can write Hamilton's equations as
+\begin{equation}
+    \dot{y}^A = \Omega^{AB} \pdv{H}{y^B}.
+\end{equation}
+
+Then if \(Y^A = Y^A\pqty{t}\), we have
+\begin{subequations}
+    \begin{align}
+        \dot{Y}^A &= \pdv{Y^A}{y^B} \dot{y}^B \\
+        &= \pdv{Y^A}{y^B} \Omega^{BC} \pdv{H}{y^C} \\
+        &= \pdv{Y^A}{y^B} \Omega^{BC} \pdv{Y^D}{y^C} \pdv{y^E}{Y^D} \pdv{H}{y^E} \\
+        &= \Omega^{AD} \pdv{\tilde{H}}{Y^D},
+    \end{align}
+\end{subequations}
+where \(\tilde{H}\pqty{Y} = H\pqty{y\pqty{Y}}\) is the Hamiltonian expressed in the new coordinates.
+
+So for canonical transformations, Hamilton's equations take the same form in the new variables as the old, but with a new Hamiltonian \(\tilde{H}\). This is useful if the Hamiltonian is simpler when expressed in the new variables.
+
+\begin{example}
+    Consider a system of \(n\) particles all moving along a line, with coordinates \(q_1 < q_2 < \cdots < q_n\). We take the Hamiltonian to be of the form
+    \begin{equation}
+        H\pqty{p, q} = \frac{1}{2} \sum_{i = 1}^n p_i^2 + \frac{\kappa^2}{2} \sum_{i < j} \frac{1}{\pqty{q_i - q_j}^2},
+    \end{equation}
+    for some \(\kappa > 0\) and \(m_i = 1\). Hamilton's equations give that
+    \begin{equation}
+        \dot{q}_i = p_i \qand \dot{p}_i = \kappa^2 \sum_{j \neq i} \frac{1}{\pqty{q_i - q_j}^3}.
+    \end{equation}
+
+    So we have
+    \begin{equation}
+        \ddot{q}_i = \kappa^2 \sum_{j \neq i} \frac{1}{\pqty{q_i - q_j}^3},
+    \end{equation}
+    which is very difficult to solve.
+
+    To solve, first let \(X = \diag\pqty{q_1, q_2, \ldots, q_n}\) be the diagonal matrix of positions, and let \(L\) be the Hermitian matrix with entries
+    \begin{equation}
+        L_{ij} = \begin{cases}
+            p_i, & i = j, \\
+            \dfrac{\sqrt{-1} \kappa}{q_i - q_j}, & i \neq j.
+        \end{cases}
+    \end{equation}
+
+    We have
+    \begin{subequations}
+        \begin{align}
+            \tr\pqty{L^2} &= \sum_{i, j = 1}^{n} L_{ij} L_{ji} \\
+            &= \sum_{i = 1}^{n} \pqty{L_{ii}^2 + \sum_{j \neq i} L_{ij} L_{ji}} \\
+            &= \sum_{i = 1}^{n} \pqty{p_i^2 + \sum_{j \neq i} -\pqty{L_{ij}^2}} \\
+            &= \sum_{i = 1}^{n} \pqty{p_i^2 + \kappa^2 \sum_{j \neq i} \frac{1}{\pqty{q_i - q_j}^2}}.
+        \end{align}
+    \end{subequations}
+
+    So we have \(H = \flatfrac{\tr\pqty{L^2}}{2}\). This suggests we seek a canonical transformation which diagonalises \(L\).
+
+    Since \(L\) is Hermitian, it can be diagonalised by a unitary matrix \(U\), and let
+    \begin{equation}
+        \Lambda = U\hermitian L U = \diag\pqty{P_1, P_2, \ldots, P_n},
+    \end{equation}
+
+    Also define \(Q_i = \pqty{U\hermitian X U}_{ii}\) (no sum) to be the diagonal entries of \(U\hermitian X U\). We claim that the transformation \(\pqty{q_i, p_i} \mapsto \pqty{Q_i, P_i}\) is canonical. We may compute this directly via Poisson brackets, but we will see better ways to prove this soon.
+
+    We have
+    \begin{subequations}
+        \begin{align}
+            \frac{1}{2} \tr \pqty{L^2} &= \frac{1}{2} \tr \pqty{\Lambda^2} \\
+            &= \frac{1}{2} \sum_{i = 1}^{n} P_i^2 \\
+            &= \tilde{H}\pqty{P},
+        \end{align}
+    \end{subequations}
+    and in particular the new Hamiltonian \(\tilde{H}\) is independent of \(Q\). So Hamilton's equations give
+    \begin{subequations}
+        \begin{align}
+            \dot{Q}_i &= \pdv{\tilde{H}}{P_i} = P_i, \\
+            \dot{P}_i &= - \pdv{\tilde{H}}{Q_i} = 0,
+        \end{align}
+    \end{subequations}
+    so the equations olves to
+    \begin{subequations}
+        \begin{align}
+            P_i\pqty{t} &= P_i\pqty{0}, \\
+            Q_i\pqty{t} &= Q_i\pqty{0} + P_i\pqty{0} t.
+        \end{align}
+    \end{subequations}
+
+    In fact, if we define \(Y = U\hermitian X U\), then it has entries
+    \begin{equation}
+        Y_{ij} = \begin{cases}
+            Q_i, & i = j, \\
+            \dfrac{\sqrt{-1} \kappa}{P_i - P_j}, & i \neq j,
+        \end{cases}
+    \end{equation}
+    then \(X = U Y U\hermitian\). In terms of the original coordinates, the motion is just the eigenvalues of \(Y\). 
+\end{example}
