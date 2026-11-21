@@ -713,7 +713,7 @@ So for canonical transformations, Hamilton's equations take the same form in the
 
 \subsection{Constructing Canonical Transformations}
 
-There are several ways to construct coordinate transformations\(y^A \mapsto Y^A \pqty{y}\) which obey \(\pb{f}{g}_{y} = \pb{f}{g}_Y\) for all \(\functiondomain{f}{g}{\phaseSpace}{\RR}\).
+There are several ways to construct coordinate transformations\(y^A \mapsto Y^A \pqty{y}\) which obey \(\pb{f}{g}_{y} = \pb{f}{g}_Y\) for all \(\functiondomain{f, g}{\phaseSpace}{\RR}\).
 
 \subsubsection{Using Hamiltonian Vector Fields}
 
@@ -866,3 +866,107 @@ Consequently, for any smooth \(f\), the functions \(Y^A \pqty{y, s} = \exp \pqty
 
     On average over a period of oscillation, we have \(\ev{r\pqty{t} - a} = \flatfrac{J^2}{k \mu a^3}\), which is just the required extension to balance the centrifugal force.
 \end{example}
+
+\subsubsection{Hamilton's Action Principle}
+
+Hamilton's equations follow from a principle of least action, and the action \(S_{\text{H}}\bqty{q, p}\) now depends on paths in the phase space. Take
+\begin{equation}
+    S_{\text{H}}\bqty{q, p} = \int_{t_{\text{i}}}^{t_{\text{f}}} p_a \dot{q}^a - H\pqty{q, p, t} \dd{t}.
+\end{equation}
+
+This is the same as the Lagrangian before (undoing the Legendre transform), and is known as \term{Hamilton's action}.
+\begin{subequations}
+    \begin{align}
+        \var{S_{\text{H}}} &= \int_{t_{\text{i}}}^{t_{\text{f}}} \pqty{\var{p_a} \dot{q}^a - \dot{p}_a \var{q^a} - \pdv{H}{q^a} \var{q^a} - \pdv{H}{p_a} \pdv{p_a} \dd{t}} + \rightbar{p_a \var{q^a}}_{t_{\text{i}}}^{t_{\text{f}}} \\
+        &= \int_{t_{\text{i}}}^{t_{\text{f}}} \bqty{\pqty{\dot{q}^a - \pdv{H}{p_a}} \var{p_a} - \pqty{\dot{p}_a + \pdv{H}{q^a}} \var{q^a}} \dd{t} + \rightbar{p_a \var{q^a}}_{t_{\text{i}}}^{t_{\text{f}}}.
+    \end{align}
+\end{subequations}
+
+So the phase space trajectory \(\pqty{q^a\pqty{t}, p_b\pqty{t}}\) is a critical point of Hamilton's action, if we have the usual Hamilton's equation
+\begin{align}
+    \dot{q}^a = \pdv{H}{p_a} \qand \dot{p}_a = - \pdv{H}{q^a},
+\end{align}
+where we insist on the boundary, \(\var{q^a}\pqty{t_{\text{i}}} = \var{q^a}\pqty{t_{\text{f}}} = 0\). Notice that we do \emph{not} require any condition on \(\var{p_a}\) at the boundary, so the momenta are free to vary at the endpoints, and we only require the positions to be fixed, otherwise this would over-constrain the motion mathematically.
+
+This suggests another way to construct such coordinate transformations, using \term{generating functions}. Suppose we have a new action
+\begin{equation}
+    \tilde{S}_{\text{H}} \bqty{Q, P} = \int_{t_{\text{i}}}^{t_{\text{f}}} P_a \dot{Q}^a - \tilde{H}\pqty{Q, P, t} \dd{t},
+\end{equation}
+does this give a new equivalent set of equations of motion? We obtain
+\begin{equation}
+    \var{\tilde{S}_{\text{H}}} = \int_{t_{\text{i}}}^{t_{\text{f}}} \bqty{\pqty{\dot{Q}^a - \pdv{\tilde{H}}{P_a}} \var{P_a} - \pqty{\dot{P}_a + \pdv{\tilde{H}}{Q^a}} \var{Q^a}} \dd{t} + \rightbar{P_a \var{Q^a}}_{t_{\text{i}}}^{t_{\text{f}}}.
+\end{equation}
+
+The bulk terms give equivalent equations of motion, but the boundary term is different: since in general \(Q^a = Q^a \pqty{q, p}\), there is no guarantee that \(\var{Q^a}\) vanishes at the endpoints, given that \(\var{q^a}\) vanishes at the endpoints.
+
+Hence in general, the new action \(\tilde{S}_{\text{H}}\) is not extremised when Hamilton's equations hold. But we can remedy as follows. First, note that Hamilton's equations are unchanged, if we alter
+\begin{equation}
+    S_{\text{H}}\bqty{q, p} \mapsto S_{\text{H}}\bqty{q, p} + \int_{t_{\text{i}}}^{t_{\text{f}}} \dv{f}{t} \pqty{q, t} \dd{t},
+\end{equation}
+with \(\rightbar{\partial_p f}_q = 0\). Now, consider modifying
+\begin{equation}
+    \tilde{S}_{\text{H}} \bqty{Q, P} \mapsto \tilde{S}_{\text{H}} \bqty{Q, P} + \int_{t_{\text{i}}}^{t_{\text{f}}} \dv{F}{t} \pqty{q, Q, t} \dd{t}.
+\end{equation}
+
+Extremising the modified action gives
+\begin{equation}
+    0 = \pqty{\text{bulked Hamilton's equations}} + \pqty{P_a \var{Q^a} + \pdv{F}{q^a} \var{q^a} + \pdv{F}{Q^a} \var{Q^a}}_{t_{\text{i}}}^{t_{\text{f}}}.
+\end{equation}
+
+Comparing integrands, we have
+\begin{equation}
+    p_a \dd{q^a} - H \dd{t} = P_a \dd{Q^a} - \tilde{H} \dd{t} + \dd{F}.
+\end{equation}
+
+Also, we have
+\begin{equation}
+    \dd{F} = \pdv{F}{q^a} \dd{q^a} + \pdv{F}{Q^a} \dd{Q^a} + \pdv{F}{t} \dd{t},
+\end{equation}
+since \(F = F\pqty{q, Q, t}\). Gathering terms, we have
+\begin{equation}
+    p_A = \pdv{F}{q_a}, \quad p_A = - \pdv{F}{Q^a}, \quad \tilde{H} = H + \pdv{F}{t}.
+\end{equation}
+
+These relations ensure that the modified action \(\tilde{S}_{\text{H}}\) is extremised when \(\var{q^a}\pqty{t_i} = \var{q^a}\pqty{t_f} = 0\). \(F\pqty{q, Q, t}\) is called a \term{generating function of the first kind}. It determines our coordinate transformations by
+\begin{equation}
+    p_a = \pdv{F}{q^a} \pqty{q, Q, t} \qfor Q^a = Q^a\pqty{q, p, t},
+\end{equation}
+and we may differentiate to get
+\begin{equation}
+    P_a = - \pdv{F}{Q^a} \pqty{q, Q, t}
+\end{equation}
+
+We amy check this transformation is canonical. Computing the Poisson bracket
+\begin{equation}
+    \pb{Q^a}{P_b} = \pdv{Q^a}{q^c} \pdv{P_b}{p_c} - \pdv{Q^a}{p_c} \pdv{P_b}{q^c},
+\end{equation}
+and we have
+\begin{subequations}
+    \begin{align}
+        \rightbar{\pdv{P_b}{p_c}}_q &= \rightbar{\pdv{Q^d}{p_c}}_q \rightbar{\pdv{P_b}{Q^d}}_q \\
+        \rightbar{\pdv{P_b}{q^c}}_p &= \rightbar{\pdv{P_b}{q_c}}_Q + \rightbar{\pdv{Q^d}{q^c}}_p \rightbar{\pdv{P_b}{Q^d}}_q,
+    \end{align}
+\end{subequations}
+
+Putting this together, we have
+\begin{subequations}
+    \begin{align}
+        \pb{Q^a}{P_b} &= - \pdv{Q^a}{q^c} \pdv{Q^d}{p_c} \pdv{F}{Q^d}{Q^b} + \pdv{Q^a}{p_c} \pqty{\pdv{F}{q^c}{Q^b} + \pdv{Q^d}{q^c} \pdv{F}{Q^d}{Q^b}} \\
+        &= \pdv{Q^a}{p_c} \pdv{F}{Q^b}{q^c} \\
+        &= \pdv{Q^a}{p_c} \pdv{p_c}{Q^b} \\
+        &= \tensor{\kronecker}{^a_b},
+    \end{align}
+\end{subequations}
+as required.
+
+More conceptually, these coordinate transformations were engineered to ensure Hamilton's equations held in both coordinate systems. It follows that \(\pb{f}{g}_{q, p} = \pb{f'}{g'}_{Q, P}\) for all functions \(f\) and \(g\) on the phase space, because we just think of \(g\) as a choice of Hamiltonian, while \(f\) being the choice of an observable, then
+\begin{equation}
+    \dv{f}{t} = \pb{f}{g}
+\end{equation}
+holds for the solutions along ``Hamiltonian \(g\)'' along solutions to Hamilton's equations.
+
+For example, if we pick \(F = q Q\), our relations then say
+\begin{equation}
+    p = \pdv{F}{q} = Q \qand P = - \pdv{F}{Q} = - q,
+\end{equation}
+so we have \(\pqty{q, p} \mapsto \pqty{-P, Q}\), and the role of the coordinate and momentum has switched! This is a canonical transformation.
