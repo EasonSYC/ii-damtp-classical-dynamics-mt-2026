@@ -867,7 +867,7 @@ Consequently, for any smooth \(f\), the functions \(Y^A \pqty{y, s} = \exp \pqty
     On average over a period of oscillation, we have \(\ev{r\pqty{t} - a} = \flatfrac{J^2}{k \mu a^3}\), which is just the required extension to balance the centrifugal force.
 \end{example}
 
-\subsubsection{Hamilton's Action Principle}
+\subsubsection{Hamilton's Action Principle and Generating Functions}
 
 Hamilton's equations follow from a principle of least action, and the action \(S_{\text{H}}\bqty{q, p}\) now depends on paths in the phase space. Take
 \begin{equation}
@@ -970,3 +970,148 @@ For example, if we pick \(F = q Q\), our relations then say
     p = \pdv{F}{q} = Q \qand P = - \pdv{F}{Q} = - q,
 \end{equation}
 so we have \(\pqty{q, p} \mapsto \pqty{-P, Q}\), and the role of the coordinate and momentum has switched! This is a canonical transformation.
+
+\paragraph{Summary of Geneating Functions of the First Kind} A generating function of the first kind is \(F_1 \pqty{q, Q, t}\), and it defines a canonical transformation by
+\begin{subequations}
+    \begin{align}
+        \dd{F_1} \pqty{q, Q, t} &= \pdv{F_1}{q^a} \dd{q^a} + \pdv{F_1}{Q^a} \dd{Q^a} + \pdv{F_1}{t} \dd{t} \\
+        &= p_a \dd{q^a} - P_a \dd{Q^a} + \pqty{\tilde{H} - H} \dd{t},
+    \end{align}
+    which gives
+    \begin{equation}
+        p_a = \pdv{F_1}{q^a} \pqty{q, Q, t}, \quad P_a = - \pdv{F_1}{Q^a} \pqty{q, Q, t}, \quad \tilde{H} = H + \pdv{F_1}{t} \pqty{q, Q, t}.
+    \end{equation}
+\end{subequations}
+
+\paragraph{Generating Functions of Other Kinds} We can also define \term{generating functions of the second, third, and fourth kinds}, which are \(F_2 \pqty{q, P, t}\), \(F_3 \pqty{p, Q, t}\), and \(F_4 \pqty{p, P, t}\) respectively. These may be obtained as follows. For example, for a generating function \(F_2 \pqty{q, P, t}\), add \(\dd{\pqty{P_a Q^a}}\) to both sides of the generating function of the first kind to obtain
+\begin{equation}
+    \dd{\pqty{F_1 + P_a Q^a}} = p_a \dv{q^a} + Q^a \dv{P_a} + \pqty{H - \tilde{H}} \dd{t},
+\end{equation}
+but since we know \(P_a = - \pdv{F_1}{Q^a}\), we have \(F_2 \pqty{q, P, t} = F_1 \pqty{q, Q, t} + P_a Q^a\) is essentially the Legendre transform of \(F_1\) with respect to \(Q \to P\), and we obtain
+\begin{equation}
+    p_a = \pdv{F_2}{q^a} \pqty{q, P, t}, \quad Q^a = \pdv{F_2}{P_a} \pqty{q, P, t}, \quad \tilde{H} = H + \pdv{F_2}{t} \pqty{q, P, t}.
+\end{equation}
+
+The functions \(F_3\) and \(F_4\) may be obtained similarly.
+
+\begin{example}
+    Consider motion in one dimension with Hamiltonian
+    \begin{equation}
+        H\pqty{q, p} = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2 + \frac{\lambda}{2 m q^2}.
+    \end{equation}
+
+    The \(\flatfrac{\lambda}{2 m q^2}\) term is a centrifugal barrier, ensuring the particle is confined to the region \(q \in \oointv{0}{\infty}\). Our equations of motion read
+    \begin{subequations}
+        \begin{align}
+            \dot{q} = \pdv{H}{p} &= \frac{p}{m}, \\
+            \dot{p} = - \pdv{H}{q} &= - m \omega^2 q + \frac{\lambda}{m q^3},
+        \end{align}
+    \end{subequations}
+    which is tricky to solve. Instead, we try resolving this using a generating function \(F_2 \pqty{q, P}\). We seek coordinates \(\pqty{Q, P}\) such that \(\tilde{H}\pqty{Q, P} = \omega P\). If this is so, then since \(p = \pdv*{F_2}{q}\), we would have
+    \begin{equation}
+        H\pqty{q, p} = \frac{1}{2} \pqty{\pdv{F_1}{q}}^2 + \frac{1}{2} m \omega^2 q^2 + \frac{\lambda}{2 m q^2} = \omega P,
+    \end{equation}
+    and hence
+    \begin{equation}
+        \pdv{F_2}{q} = \frac{1}{q} \sqrt{2 m \omega P q^2 - m^2 \omega^2 q^4 - \lambda}.
+    \end{equation}
+
+    We have
+    \begin{subequations}
+        \begin{align}
+            Q &= \pdv{F_2}{P} \\
+            &= \pdv{P} \pqty{\int \pdv{F_2}{q} \dd{q}} \\
+            &= \int \frac{m \omega q \dd{q}}{\sqrt{2 m \omega P q^2 - m^2 \omega^4 q^4 - \lambda}}.
+        \end{align}
+    \end{subequations}
+
+    To perform the integral, substitute \(u = q^2\), then \(\dd{u} = 2 q \dd{q}\), and note
+    \begin{equation}
+        2 m \omega P u - m^2 \omega^2 u^2 - \lambda = \pqty{P^2 - \lambda} - \pqty{m \omega u - P}^2.
+    \end{equation}
+    
+    Hence,
+    \begin{equation}
+        Q = \frac{1}{2} \int \frac{m \omega \dd{u}}{\sqrt{\pqty{P^2 - \lambda} - 
+        \pqty{m \omega u - P}^2}} = \frac{1}{2} \arcsin\pqty{\frac{m \omega q^2 - P}{\sqrt{P^2 - \lambda}}}.
+    \end{equation}
+
+    In terms of \(\pqty{Q, P}\), Hamilton's equations therefore become
+    \begin{equation}
+        \dot{Q} = \pdv{\tilde{H}}{P} = \omega \qand \dot{P} = - \pdv{\tilde{H}}{Q} = 0,
+    \end{equation}
+    which therefore solves to \(Q\pqty{t} = \omega \pqty{t - t_0}\) and \(P\pqty{t} = \flatfrac{E}{\omega}\). for integration constants \(t_0\) and \(E\). Inverting the transformation gives
+    \begin{equation}
+        \sin\pqty{2 \omega \pqty{t - t_0}} = \frac{m \omega q^2 \pqty{t} - \flatfrac{E}{\omega}}{\sqrt{\pqty{\flatfrac{E}{\omega}}^2 - \lambda}},
+    \end{equation}
+    so
+    \begin{equation}
+        q\pqty{t} = \sqrt{\frac{E}{m \omega^2} + \sqrt{\frac{E^2}{m^2 \omega^4} - \frac{\lambda}{m \omega^2}} \sin\pqty{2 \omega \pqty{t - t_0}}}.
+    \end{equation}
+
+    We observe the following physical features of motion.
+
+    \begin{itemize}
+        \item Although the restoring force is highly non-linear, oscillation period is still independent of \(E\), as is the case of a simple harmonic oscillator.
+        \item The frequency is \(2 \omega\) (not \(\omega\)), because the particle is confined to \(q > 0\), ``bouncing off'' the barrier.
+        \item As \(\lambda \to 0^+\), we obtain a hard wall potential at \(q = 0\), and the solution limits to
+        \begin{equation}
+            q\pqty{t} = \sqrt{\frac{2E}{m \omega^2}} \abs{\sin \pqty{2 \omega \pqty{t - t_0} + \frac{\pi}{4}}}
+        \end{equation}
+        reflecting elastically off the hard wall.
+    \end{itemize}
+\end{example}
+
+\subsection{Motion of Point-Like Vortices}
+
+An incompressible, inviscid fluid in two dimension is described by a time-dependent velocity field \(\vb{u} \pqty{x, y, t} = \pqty{u_x, u_y}\), obeying Euler's equations
+\begin{equation}
+    \pdv{\vb{u}}{t} + \pqty{\vb{u} \vdot \grad} \vb{u} = - \grad p \qand \div{\vb{u}} = 0,
+\end{equation}
+
+We can solve this using the \term{vorticity} \(\omega = \vu{z} \vdot \pqty{\curl{\vb{u}}}\) (the \(z\)-component of the curl as a scalar), with
+\begin{equation}
+    \omega = \pdv{u_y}{x} - \pdv{u_x}{y},
+\end{equation}
+and the \term{stream function} \(\psi\), defined such that \(u_x = \pdv*{\psi}{y}\) and \(u_y = - \pdv*{\psi}{x}\). Then we have \(\omega = - \laplacian{\psi}\),.
+
+Consider the case that the vorticity is concentrated at the discrete set of points \(\vb{x}_i \pqty{t}\) for \(i = 1, \ldots, n\), so
+\begin{equation}
+    \omega = \sum_{i = 1}^{n} 2 \pi \gamma_i \diracdelta^2 \pqty{\vb{x} - \vb{x}_i \pqty{t}},
+\end{equation}
+and hence
+\begin{equation}
+    \psi = - \sum_{i = 1}^{n} \gamma_i \log \abs{\vb{x} - \vb{x}_i \pqty{t}}
+\end{equation}
+using Green's function for Poisson's equation in two dimensions, so we have
+\begin{equation}
+    \vb{u} \pqty{\vb{x}, t} = \sum_{i = 1}^{n} \gamma_i \frac{\vu{z} \cross \pqty{\vb{x} - \vb{x}_i \pqty{t}}}{\abs{\vb{x} - \vb{x}_i \pqty{t}}^2}.
+\end{equation}
+
+Now, consider the motion of the vortices themselves
+\begin{equation}
+    \dot{\vb{x}}_i \pqty{t} = \vb{u} \pqty{\vb{x}_i} = \sum_{j \neq i} \gamma_j \frac{\vu{z} \cross \pqty{\vb{x}_i - \vb{x}_j}}{\abs{\vb{x}_i - \vb{x}_j}^2},
+\end{equation}
+i.e., in components,
+\begin{equation}
+    \dot{x}_i \pqty{t} = - \sum_{j \neq i} \gamma_j \frac{y_i - y_j}{\abs{\vb{x}_i - \vb{x}_j}^2} \qand \dot{y}_i \pqty{t} = \sum_{j \neq i} \gamma_j \frac{x_i - x_j}{\abs{\vb{x}_i - \vb{x}_j}^2}.
+\end{equation}
+
+We may describe this as a Hamiltonian system with
+\begin{equation}
+    H\pqty{x_i, y_i} = - \sum_{i < j} \gamma_i \gamma_j \log \abs{\vb{x}_i - \vb{x}_j},
+\end{equation}
+using Poisson brackets \(\pb{x_i, y_j} = \flatfrac{\delta_{ij}}{\gamma_i}\), and \(\pb{x_i}{x_j} = \pb{y_i}{y_j} = 0\). Indeed, we gave
+\begin{equation}
+    \dot{x}_i = \pb{x_i}{H} = \frac{1}{\gamma_i} \pdv{H}{y_i} = - \sum_{j \neq i} \frac{\gamma_j \pqty{y_i - y_j}}{\abs{\vb{x}_i - \vb{x}_j}^2} \qand \dot{y}_i = \pb{y_i}{H} = - \frac{1}{\gamma_i} \pdv{H}{x_i} = \sum_{j \neq i} \frac{\gamma_j \pqty{x_i - x_j}}{\abs{\vb{x}_i - \vb{x}_j}^2}.
+\end{equation}
+
+One can check that the \term{centre of vorticity}
+\begin{equation}
+    \vb{X} = \frac{\sum_{i = 1}^{n} \gamma_i \vb{x}_i}{\sum_{i = 1}^{n} \gamma_i}
+\end{equation}
+is constant, since \(\pb{\vb{X}}{H} = 0\) (like conservation of momentum), and the \term{angular inpulse}
+\begin{equation}
+    I = - \frac{1}{2} \sum_{i = 1}^{n} \gamma_i \pqty{x_i^2 + y_i^2}
+\end{equation}
+is also constant and generates overall rotations. with \(\pb{I}{x_i} = - y_i\) and \(\pb{I}{y_i} = x_i\). The Hamiltonian is also invariant under rotations, so \(\pb{H}{I} = 0\).
