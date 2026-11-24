@@ -994,13 +994,20 @@ but since we know \(P_a = - \pdv{F_1}{Q^a}\), we have \(F_2 \pqty{q, P, t} = F_1
 
 The functions \(F_3\) and \(F_4\) may be obtained similarly.
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/potential-harmonic-with-barrier.png}
+    \caption{Potential of Harmonic Oscillator with Centrifugal Barrier}
+    \label{fig:harmonic-oscillator-with-barrier}%
+\end{figure}
+
 \begin{example}
     Consider motion in one dimension with Hamiltonian
     \begin{equation}
         H\pqty{q, p} = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 q^2 + \frac{\lambda}{2 m q^2}.
     \end{equation}
 
-    The \(\flatfrac{\lambda}{2 m q^2}\) term is a centrifugal barrier, ensuring the particle is confined to the region \(q \in \oointv{0}{\infty}\). Our equations of motion read
+    The \(\flatfrac{\lambda}{2 m q^2}\) term is a centrifugal barrier, ensuring the particle is confined to the region \(q \in \oointv{0}{\infty}\). The potential looks like \autoref{fig:harmonic-oscillator-with-barrier}. Our equations of motion read
     \begin{subequations}
         \begin{align}
             \dot{q} = \pdv{H}{p} &= \frac{p}{m}, \\
@@ -1075,7 +1082,7 @@ We can solve this using the \term{vorticity} \(\omega = \vu{z} \vdot \pqty{\curl
 \end{equation}
 and the \term{stream function} \(\psi\), defined such that \(u_x = \pdv*{\psi}{y}\) and \(u_y = - \pdv*{\psi}{x}\). Then we have \(\omega = - \laplacian{\psi}\),.
 
-Consider the case that the vorticity is concentrated at the discrete set of points \(\vb{x}_i \pqty{t}\) for \(i = 1, \ldots, n\), so
+Consider the case that the vorticity is concentrated at the discrete set of points \(\vb{x}_i \pqty{t}\) for \(i = 1, \ldots, n\), as in \autoref{fig:point-vortices}, with strengths \(\gamma_i\). Then we have
 \begin{equation}
     \omega = \sum_{i = 1}^{n} 2 \pi \gamma_i \diracdelta^2 \pqty{\vb{x} - \vb{x}_i \pqty{t}},
 \end{equation}
@@ -1087,6 +1094,13 @@ using Green's function for Poisson's equation in two dimensions, so we have
 \begin{equation}
     \vb{u} \pqty{\vb{x}, t} = \sum_{i = 1}^{n} \gamma_i \frac{\vu{z} \cross \pqty{\vb{x} - \vb{x}_i \pqty{t}}}{\abs{\vb{x} - \vb{x}_i \pqty{t}}^2}.
 \end{equation}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/vorticies.png}
+    \caption{Point Vortices in a Fluid}
+    \label{fig:point-vortices}%
+\end{figure}
 
 Now, consider the motion of the vortices themselves
 \begin{equation}
