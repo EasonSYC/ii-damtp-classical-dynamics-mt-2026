@@ -17,7 +17,7 @@ To describe such a rigid body, we must specify
 
 \subsection{Rotations of a Rigid Body}
 
-Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(R\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\set{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\set{\vb{e}_a}\), as shown in \autoref{fig:space-and-body-frames}.
+Consider a rigid body whose centre of mass is fixed at \(\vb{0} \in \RR^3\). Then the most general motion is a rotation \(\tens{R}\pqty{t} \in \SO\pqty{3}\) around the origin. We can describe this using either the \term{space frame} \(\set{\tilde{\vb{e}}_a}\) or a \term{body frame} \(\set{\vb{e}_a}\), as shown in \autoref{fig:space-and-body-frames}.
 
 The \term{space frame} is simply the standard basis of \(\RR^3\). A \term{body frame} is one whose axes are fixed in the body. The space frame will not change with time, while the body frame will rotate with the body (and remains fixed relative to the body). Regardless, both sets of axes are always orthonormal
 \begin{equation}
@@ -92,7 +92,7 @@ where the \term{inertia tensor} \(\tens{I}\) is defined as
 
 Note that since the locations \(\vb{r}_i\) of each particle are fixed with respect to the body frame, \(\tens{I}\) is constant. Furthermore, \(I_{ab} = I_{ba}\) is symmetric, and it is positive-definite: for any vector \(\vb{c}\), we have
 \begin{equation}
-    c_A I_{Ab} c_B = \sum_{i} m_i \pqty{\abs{\vb{r}_i}^2 \abs{\vb{c}}^2 - \pqty{\vb{r}_i \vdot \vb{c}}^2} = \sum_{i} m_i \abs{\vb{r}_i}^2 \abs{\vb{c}}^2 \pqty{1 - \cos^2 \theta_i} \geq 0,
+    c_a I_{ab} c_b = \sum_{i} m_i \pqty{\abs{\vb{r}_i}^2 \abs{\vb{c}}^2 - \pqty{\vb{r}_i \vdot \vb{c}}^2} = \sum_{i} m_i \abs{\vb{r}_i}^2 \abs{\vb{c}}^2 \pqty{1 - \cos^2 \theta_i} \geq 0,
 \end{equation}
 with equality if and only if all the masses lies along the \(\vb{c}\) direction.
 
@@ -104,7 +104,7 @@ For continuous bodies, we have
 \end{equation}
 or in matrix notation,
 \begin{equation}
-    I = \int \dd[3]{\vb{x}} \rho\pqty{\vb{x}} \pmqty{y^2 + z^2 & -xy & -xz \\ -xy & x^2 + z^2 & -yz \\ -xz & -yz & x^2 + y^2}.
+    \tens{I} = \int \dd[3]{\vb{x}} \rho\pqty{\vb{x}} \pmqty{y^2 + z^2 & -xy & -xz \\ -xy & x^2 + z^2 & -yz \\ -xz & -yz & x^2 + y^2}.
 \end{equation}
 
 \begin{example}[Uniform Disc]
