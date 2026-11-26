@@ -34,20 +34,20 @@ The velocity is therefore given by
 \begin{equation}
     \dv{\vb{r}}{t} = \dv{\tilde{r}_a}{t} \tilde{\vb{e}}_a = r_a \dv{\vb{e}_a}{t} = r_a \dv{R_{ab}\pqty{t}}{t} \tilde{\vb{e}}_b
 \end{equation}
-where \(R\pqty{t}\) is the rotation matrix that rotates the body frame into the space frame, i.e. \(\vb{e}_a\pqty{t} = R_{ab}\pqty{t} \tilde{\vb{e}}_b\). We can write this entirely in the body frame as
+where \(\tens{R}\pqty{t}\) is the rotation matrix that rotates the body frame into the space frame, i.e. \(\vb{e}_a\pqty{t} = R_{ab}\pqty{t} \tilde{\vb{e}}_b\). We can write this entirely in the body frame as
 \begin{equation}
-    \dv{\vb{e}_a}{t} = \dv{R_{ab}\pqty{t}}{t} \pqty{R\inverse}_{bc} \vb{e}_c = A_{ac} \vb{e}_c
+    \dv{\vb{e}_a}{t} = \dv{R_{ab}\pqty{t}}{t} \pqty{\tens{R}\inverse}_{bc} \vb{e}_c = A_{ac} \vb{e}_c
 \end{equation}
 where we denote
 \begin{equation}
-    A = \dot{R} R\inverse.
+    \tens{A} = \dot{\tens{R}} \tens{R}\inverse.
 \end{equation}
 
-But note that \(R \in \SO\pqty{3}\), so \(R R \transpose = I\), and hence \(\dot{R} R\transpose + R \dot{R}\transpose = O\). Hence,
+But note that \(\tens{R} \in \SO\pqty{3}\), so \(\tens{R} \tens{R} \transpose = I\), and hence \(\dot{\tens{R}} \tens{R}\transpose + \tens{R} \dot{\tens{R}}\transpose = O\). Hence,
 \begin{equation}
-    A\transpose = \pqty{\dot{R} R\transpose}\transpose = R \dot{R}\transpose = - \dot{R} R\transpose = - A,
+    \tens{A}\transpose = \pqty{\dot{\tens{R}} \tens{R}\transpose}\transpose = \tens{R} \dot{\tens{R}}\transpose = - \dot{\tens{R}} \tens{R}\transpose = - \tens{A},
 \end{equation}
-so \(A\) is an \emph{anti-symmetric} \(3 \times 3\) matrix. This allows us to define a vector \(\vb*{\omega}\), such that
+so \(\tens{A}\) is an \emph{anti-symmetric} \(3 \times 3\) matrix. This allows us to define a vector \(\vb*{\omega}\), such that
 \begin{equation}
     \omega_a = \frac{1}{2} \levicivita_{abc} A_{bc} \iff A_{ab} = \levicivita_{abc} \omega_c.
 \end{equation}
@@ -148,7 +148,7 @@ The \term{angular momentum} about the centre of mass of the body is given by
 \end{subequations}
 but by \eqref{eq:inertia-tensor}, this is simply
 \begin{equation}
-    \vb{L} = I \vb*{\omega}.
+    \vb{L} = \tens{I} \vb*{\omega}.
 \end{equation}
 
 Note that typically (i.e. if all the eigenvalues \(I_a\) are not all equal), \(\vb{L}\) and \(\vb*{\omega}\) do \emph{not} necessarily point in the same direction. This will be important to remember, since what is conserved is the \emph{angular momentum}, not the most obvious observed quantity \emph{angular velocity}.
@@ -200,7 +200,7 @@ The symmetric top is an object with \(I_1 = I_2 \neq I_3\), and we will discuss 
 
 Then \(\omega_3\) is constant, and the body spins at a fixed rate around its axis of symmetry. Then \(\dot{\omega}_1 = \Omega \omega_2\), and \(\dot{\omega}_2 = - \Omega \omega_1\), where
 \begin{equation}
-    \Omega = \omega_3 = \frac{I_! - I_3}{I_1}.
+    \Omega = \omega_3 = \frac{I_1 - I_3}{I_1}.
 \end{equation}
 
 This solves to
@@ -240,7 +240,7 @@ So differentiating a second time, we have for \(\eta_2\) that
 \begin{equation}
     I_2 \ddot{\eta}_2 = \frac{\Omega^2}{I_3} \pqty{I_3 - I_1} \pqty{I_1 - I_2} \eta_2 = A \eta_2,
 \end{equation}
-for \(A = \frac{\Omega^2}{I_3} \pqty{I_3 - I_1} \pqty{I_1 - I_2}\).
+for \(A = \pqty{\flatfrac{\Omega^2}{I_3}} \pqty{I_3 - I_1} \pqty{I_1 - I_2}\).
 
 Therefore, whether our perturbation remains small depends on the sign of \(A\). The motion is unstable if: \(I_3 > I_1 > I_2\) or \(I_2 > I_1 > I_3\), but otherwise stable.
 
@@ -266,8 +266,8 @@ In other words, rotation about the principal body axes with the \term{greatest} 
 But we do not know what happens as the perturbation that starts to grow, since the approximation simply breaks down. But what we know is, that as the asymmetric top rotates, both its energy \(E\) and the total angular momentum \(\vb{L}^2\) are conserved, so \(\vb*{\omega}\) must lie on the intersection on two ellipsoids:
 \begin{subequations}
     \begin{align}
-        E &= \frac{1}{2} \vb*{\omega} I \vb*{\omega} = \frac{1}{2} \pqty{I_1 \omega_1^2 + I_2 \omega_2^2 + I_3 \omega_3^2}, \\
-        \vb{L}^2 &= \pqty{I \vb*{\omega}}^2 = I_1^2 \omega_1^2 + I_2^2 \omega_2^2 + I_3^2 \omega_3^2.
+        E &= \frac{1}{2} \vb*{\omega} \tens{I} \vb*{\omega} = \frac{1}{2} \pqty{I_1 \omega_1^2 + I_2 \omega_2^2 + I_3 \omega_3^2}, \\
+        \vb{L}^2 &= \pqty{\tens{I} \vb*{\omega}}^2 = I_1^2 \omega_1^2 + I_2^2 \omega_2^2 + I_3^2 \omega_3^2.
     \end{align}
 \end{subequations}
 
@@ -295,7 +295,7 @@ In the principle body frame, \(\vb*{\omega}\pqty{t}\) traces out the curve formi
 
 Since
 \begin{equation}
-    2E = \vb*{\omega} \vdot \pqty{I \vb*{\omega}} = \omega\pqty{t} \vdot \vb{L},
+    2E = \vb*{\omega} \vdot \pqty{\tens{I} \vb*{\omega}} = \omega\pqty{t} \vdot \vb{L},
 \end{equation}
 we see that \(\vb*{\omega}\) lies in a plane, called the \term{invariable plane}, normal to \(\vb{L}\). Also, since \(\vb{L} = \grad_{\vb*{\omega}} E\), we see that the surface of constant energy is perpendicular to \(\vb{L}\), and hence tangent to the invariable plane. But the trace of the contact point of the invariable plane on the ellipsoid is the polhode, which is where the angular velocity vector \(\vb*{\omega}\) is located. The trace of the contact point on the invariable plane is called the \term{herpolhode}. This is shown in \autoref{fig:poinsot-construction}.
 
@@ -313,19 +313,19 @@ So far, we have considered \(\vb*{\omega}\) in the body frame, but we have not p
 \begin{enumerate}[label=(\roman*)]
     \item First, rotate by angle \(\phi\) around the space frame axis \(\tilde{\vb{e}}_3\). This rotation is parametrised by
     \begin{equation}
-        R_{\tilde{\vb{e}}_3}\pqty{\phi} = \pmqty{\cos \phi & \sin \phi & 0 \\ -\sin \phi & \cos \phi & 0 \\ 0 & 0 & 1},
+        \tens{R}_{\tilde{\vb{e}}_3}\pqty{\phi} = \pmqty{\cos \phi & \sin \phi & 0 \\ -\sin \phi & \cos \phi & 0 \\ 0 & 0 & 1},
     \end{equation}
     with \(\vb{e}_a' = R_{\tilde{\vb{e}}_3}\pqty{\phi}_{ab} \tilde{\vb{e}}_a\).
 
     \item Next, rotate by angle \(\theta\) about the new \(\vb{e}_1'\) axis. This rotation is parametrised by
     \begin{equation}
-        R_{\vb{e}_1'}\pqty{\theta} = \pmqty{1 & 0 & 0 \\ 0 & \cos \theta & \sin \theta \\ 0 & -\sin \theta & \cos \theta},
+        \tens{R}_{\vb{e}_1'}\pqty{\theta} = \pmqty{1 & 0 & 0 \\ 0 & \cos \theta & \sin \theta \\ 0 & -\sin \theta & \cos \theta},
     \end{equation}
     with \(\vb{e}_a'' = R_{\vb{e}_1'}\pqty{\theta}_{ab} \vb{e}_b'\).
 
     \item Finally, to lift \(\vb{e}_1''\) out of the \(\tilde{\vb{e}}_1, \tilde{\vb{e}}_2\) plane, rotate by angle \(\psi\) about the new \(\vb{e}_3''\) axis. This rotation is parametrised by
     \begin{equation}
-        R_{\vb{e}_3''}\pqty{\psi} = \pmqty{\cos \psi & \sin \psi & 0 \\ -\sin \psi & \cos \psi & 0 \\ 0 & 0 & 1},
+        \tens{R}_{\vb{e}_3''}\pqty{\psi} = \pmqty{\cos \psi & \sin \psi & 0 \\ -\sin \psi & \cos \psi & 0 \\ 0 & 0 & 1},
     \end{equation}
     with \(\vb{e}_a = R_{\vb{e}_3''}\pqty{\psi}_{ab} \vb{e}_b''\).
 \end{enumerate}
@@ -358,7 +358,7 @@ So far, we have considered \(\vb*{\omega}\) in the body frame, but we have not p
 
 Concatenating these rotations gives
 \begin{align*}
-    R\pqty{\psi, \theta, \phi} &= R_{\vb{e}_3''}\pqty{\psi} R_{\vb{e}_1'}\pqty{\theta} R_{\tilde{\vb{e}}_3}\pqty{\phi} \\
+    \tens{R}\pqty{\psi, \theta, \phi} &= \tens{R}_{\vb{e}_3''}\pqty{\psi} \tens{R}_{\vb{e}_1'}\pqty{\theta} \tens{R}_{\tilde{\vb{e}}_3}\pqty{\phi} \\
     &= \pmqty{\cos \phi \cos \psi - \cos \theta \sin \psi \sin \phi & \sin \phi \cos \psi + \cos \theta \sin \psi \cos \phi & \sin \theta \sin \psi \\
     -\cos \phi \sin \psi - \cos \theta \cos \psi \sin \phi & -\sin \phi \sin \psi + \cos \theta \cos \psi \cos \phi & \sin \theta \cos \psi \\
     \sin \theta \sin \phi & -\sin \theta \cos \phi & \cos \theta},
@@ -367,7 +367,7 @@ with \(\vb{e}_a \pqty{t} = R_{ab}\pqty{\psi, \theta, \phi} \tilde{\vb{e}}_b\).
 
 \subsubsection{Angular Velocity in Terms of Euler Angles}
 
-We recall that \(\omega_a = \kronecker_{abc} \pqty{\dot{R} R\inverse}_{bc}\). In principle, we can now express \(\vb*{\omega} \pqty{t}\) in terms of Euler angles by evaluating \(\dot{R} R\inverse\) using this explicit matrix.
+We recall that \(\omega_a = \kronecker_{abc} \pqty{\dot{\tens{R}} \tens{R}\inverse}_{bc}\). In principle, we can now express \(\vb*{\omega} \pqty{t}\) in terms of Euler angles by evaluating \(\dot{\tens{R}} \tens{R}\inverse\) using this explicit matrix.
 
 Alternatively, note that if we change our Euler angles by a small amount
 \begin{equation}

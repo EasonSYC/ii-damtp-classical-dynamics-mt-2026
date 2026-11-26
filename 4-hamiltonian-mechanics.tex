@@ -538,13 +538,13 @@ First, we pair up the positions and the momenta into \(y^A = \pqty{q^a, p_a}\), 
     \pb{f}{g} = \pdv{f}{y^A} \Omega^{AB} \pdv{g}{y^B}.
 \end{equation}
 
-This is true for \(\Omega\) being a block matrix of the form
+This is true for \(\tens{\Omega}\) being a block matrix of the form
 \begin{equation}
-    \Omega = \pmqty{O & I \\ -I & O},
+    \tens{\Omega} = \pmqty{O & I \\ -I & O},
 \end{equation} 
-where if \(\dim \phaseSpace = 2n\), \(O\) is the \(n \times n\) zero matrix, and \(I\) is the \(n \times n\) identity matrix.
+where \(\dim \phaseSpace = 2n\), \(O\) is the \(n \times n\) zero matrix, and \(I\) is the \(n \times n\) identity matrix.
 
-Note that \(\Omega \transpose = - \Omega\) so \(\Omega\) is anti-symmetric, and \(\Omega^2 = - I_{2n}\) so \(\Omega\) is invertible.
+Note that \(\tens{\Omega} \transpose = - \tens{\Omega}\) so \(\tens{\Omega}\) is anti-symmetric, and \(\tens{\Omega}^2 = - I_{2n}\) so \(\tens{\Omega}\) is invertible.
 
 A general coordinate transformation \(y^A \mapsto Y^A\pqty{y, t}\) is called a \term{canonical} if it leaves all Poisson brackets invariant, i.e., if for all functions \(f\) and \(g\), we have
 \begin{equation}
@@ -569,11 +569,11 @@ If we define the \(\dim\pqty{\phaseSpace} \times \dim\pqty{\phaseSpace}\) matrix
 \end{equation}
 i.e.,
 \begin{equation}
-    J = \pmqty{\pdv*{Q^a}{q^b} & \pdv*{Q^a}{p_b} \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
+    \tens{J} = \pmqty{\pdv*{Q^a}{q^b} & \pdv*{Q^a}{p_b} \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
 \end{equation}
 the condition for a canonical transformation may be written as
 \begin{equation}
-    J \Omega J\transpose = \pmqty{\pb{Q^a}{Q^b} & \pb{Q^a}{P_b} \\ \pb{P_a}{Q^b} & \pb{P_a}{P_b}} = \Omega,
+    \tens{J} \tens{\Omega} \tens{J}\transpose = \pmqty{\pb{Q^a}{Q^b} & \pb{Q^a}{P_b} \\ \pb{P_a}{Q^b} & \pb{P_a}{P_b}} = \tens{\Omega},
 \end{equation}
 where the Poisson brackets are computed in the original coordinates.
 
@@ -584,11 +584,11 @@ Mathematically, such transformations form a group known as the \term{symplectic 
 
     We have
     \begin{equation}
-        J = \pmqty{\pdv*{Q^a}{q^b} & O \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
+        \tens{J} = \pmqty{\pdv*{Q^a}{q^b} & O \\ \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}},
     \end{equation}
     and we have
     \begin{equation}
-        J \Omega J\transpose = \pmqty{O & \displaystyle \pdv{Q^a}{q^c} \pdv{P_b}{p_c} \\ \displaystyle - \pdv{P_a}{p_c} \pdv{Q^b}{q^c} & \pb{P_a}{P_b}}.
+        \tens{J} \tens{\Omega} \tens{J}\transpose = \pmqty{O & \displaystyle \pdv{Q^a}{q^c} \pdv{P_b}{p_c} \\ \displaystyle - \pdv{P_a}{p_c} \pdv{Q^b}{q^c} & \pb{P_a}{P_b}}.
     \end{equation}
 
     The off-diagonal entries require that
