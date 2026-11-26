@@ -1115,7 +1115,7 @@ We may describe this as a Hamiltonian system with
 \begin{equation}
     H\pqty{x_i, y_i} = - \sum_{i < j} \gamma_i \gamma_j \log \abs{\vb{x}_i - \vb{x}_j},
 \end{equation}
-using Poisson brackets \(\pb{x_i, y_j} = \flatfrac{\delta_{ij}}{\gamma_i}\), and \(\pb{x_i}{x_j} = \pb{y_i}{y_j} = 0\). Indeed, we gave
+using Poisson brackets \(\pb{x_i, y_j} = \flatfrac{\kronecker_{ij}}{\gamma_i}\), and \(\pb{x_i}{x_j} = \pb{y_i}{y_j} = 0\). Indeed, we gave
 \begin{equation}
     \dot{x}_i = \pb{x_i}{H} = \frac{1}{\gamma_i} \pdv{H}{y_i} = - \sum_{j \neq i} \frac{\gamma_j \pqty{y_i - y_j}}{\abs{\vb{x}_i - \vb{x}_j}^2} \qand \dot{y}_i = \pb{y_i}{H} = - \frac{1}{\gamma_i} \pdv{H}{x_i} = \sum_{j \neq i} \frac{\gamma_j \pqty{x_i - x_j}}{\abs{\vb{x}_i - \vb{x}_j}^2}.
 \end{equation}
@@ -1124,8 +1124,135 @@ One can check that the \term{centre of vorticity}
 \begin{equation}
     \vb{X} = \frac{\sum_{i = 1}^{n} \gamma_i \vb{x}_i}{\sum_{i = 1}^{n} \gamma_i}
 \end{equation}
-is constant, since \(\pb{\vb{X}}{H} = 0\) (like conservation of momentum), and the \term{angular inpulse}
+is constant, since \(\pb{\vb{X}}{H} = \vb{0}\) (like conservation of momentum), and the \term{angular inpulse}
 \begin{equation}
     I = - \frac{1}{2} \sum_{i = 1}^{n} \gamma_i \pqty{x_i^2 + y_i^2}
 \end{equation}
 is also constant and generates overall rotations. with \(\pb{I}{x_i} = - y_i\) and \(\pb{I}{y_i} = x_i\). The Hamiltonian is also invariant under rotations, so \(\pb{H}{I} = 0\).
+
+\subsection{Liouville's Theorem}
+
+We define the \term{volume} of a region \(U \subseteq \phaseSpace\) to be
+\begin{equation}
+    \vol\pqty{U} = \int_{U} \dd[n]{q} \dd[n]{p} = \int_{U} \dd{q_1} \cdots \dd{q_n} \dd{p_1} \cdots \dd{p_n},
+\end{equation}
+where \(\dim \phaseSpace = 2n\).
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/volume-transform-phase-space.png}
+    \caption{Phase Space Volume}
+    \label{fig:phase-space-volume}%
+\end{figure}
+
+Suppose we have a transformation of the phase space (i.e., a smooth map from \(\phaseSpace \to \phaseSpace\)) described in coordinates by \(\pqty{q, p} \mapsto \pqty{Q, P}\). Then \(U\) will be mapped to some new region \(\tilde{U} \subseteq \phaseSpace\), as illustrated in \autoref{fig:phase-space-volume}, and we have
+\begin{equation}
+    \vol\pqty{\tilde{U}} = \int_{\tilde{U}} \dd[n]{Q} \dd[n]{P} = \int_{U} \abs{\det \tens{J}} \dd[n]{q} \dd[n]{p},
+\end{equation}
+where \(\tens{J}\) is the Jacobian matrix of the transformation, given by
+\begin{equation}
+    \tensor{J}{^A_B} = \pdv{Y^A}{y^B}, \quad \tens{J} = \pmqty{
+        \pdv*{Q^a}{q^b} & \pdv*{Q^a}{p_b} \\
+        \pdv*{P_a}{q^b} & \pdv*{P_a}{p_b}
+    }
+\end{equation}
+
+If this map is canonical, then we know \(\tens{J} \tens{\Omega} \tens{J}\transpose = \tens{\Omega}\), so \(\pqty{\det \tens{J}}^2 = 1\), so \(\abs{\det \tens{J}} = 1\). Hence, the volume of the new region satisfies \(\vol \pqty{\tilde{U}} = \vol\pqty{U}\), if the coordinate transformation is canonical. In other words, canonical transformations preserve phase space volume.
+
+In particular, we know that time evolution
+\begin{equation}
+    \pqty{q^a, p_b} = \pqty{q^a \pqty{0}, p_b \pqty{0}} \quad \mapsto \quad \pqty{Q^a, P_N} = \pqty{q^a \pqty{t}, p_b \pqty{t}},
+\end{equation}
+is determined by the flow along the Hamiltonian vector field, \(\dvOp_H = - \pb{H}{\cdot}\), and hence is a canonical transformation.
+
+Hence, the volume of any region \(U \subseteq \phaseSpace\) is preserved under time evolution of \(U\). This is known as \term{Liouville's Theorem}.
+
+Applications of this often consider \term{ensembles} of particles. We introduce a \term{density function} \(\rho\pqty{q, p, t}\), so that \(\var{N} = \rho\pqty{q, p, t} \var{V}\) is the number of particles in a small region \(\var{V}\) of the phase space centred on \(\pqty{q, p}\) at time \(t\). The total number of particles in our ensemble is therefore
+\begin{equation}
+    N = N\pqty{t} = \int_{\phaseSpace} \rho\pqty{q, p, t} \dd[n]{q} \dd[n]{p}.
+\end{equation}
+
+If particles are neither created nor destroyed, then \(\dv*{N}{t} = 0\). In particular, if this holds locally, then we follow the evolution of \(\var{N}\pqty{0}\) centred at \(\pqty{q\pqty{0}, p\pqty{0}}\) at time \(t = 0\) to a later time \(t\). It will evolve to
+\begin{equation}
+    \var{N}\pqty{t} = \rho\pqty{q\pqty{t}, p\pqty{t}, t} \var{V}\pqty{t},
+\end{equation}
+and since particles are neither created nor destroyed, we have \(\var{N} \pqty{t} = \var{N} \pqty{0}\), and Liouville's theorem tells us \(\var{V}\pqty{t} = \var{V}\pqty{0}\), so we have \(\rho\pqty{q\pqty{t}, p\pqty{t}, t} = \rho\pqty{q\pqty{0}, p\pqty{0}, 0}\). Infinitesimally, this is
+\begin{equation}
+    0 = \dv{\rho}{t} = \pdv{\rho}{t} + \pb{\rho}{H}
+\end{equation}
+and is known as \term{Liouville's equation}.
+
+If our ensemble is in equilibrium, then there is no explicit time dependence \(\pdv*{\rho}{t} = 0\), and a common way to ensure that \(\pb{\rho}{H} = 0\) holds is to simply take \(\rho = \rho\pqty{H}\) as a function of the Hamiltonian.
+
+\begin{example}
+    For an ideal gas in thermal equilibrium at temperature \(T\), we have \term{Boltzmann's distribution}
+    \begin{equation}
+        \rho\pqty{q, p} = Z \exp\pqty{- \beta H}
+    \end{equation}
+    for some normalisation constant \(Z\), and \(\beta = \flatfrac{1}{k_{\text{B}} T}\) for Boltzmann's constant \(k_{\text{B}}\).
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/atmosphere-gravity.png}
+    \caption{Atmosphere under influence of Gravity}
+    \label{fig:atmosphere}%
+\end{figure}
+
+\begin{example}
+    Consider an atmosphere in thermal equilibrium in the presence of gravity, as shown in \autoref{fig:atmosphere}. Then
+    \begin{equation}
+        H = \frac{\vb{p}^2}{2m} + m g z.
+    \end{equation}
+
+    The \term{conditional velocity distirbution} is given by the \term{Maxwell--Boltzmann distribution}
+    \begin{equation}
+        f\pqty{\Conditional{\vb{p}}{z}} = \frac{\rho\pqty{\vb{q}, \vb{p}}}{\iiint \dd[3]{\vb{p}'} \rho\pqty{\vb{q}, \vb{p}'}}
+    \end{equation}
+    which is independent of \(z\). So the speed of the particles is independent of height! The reason why the temperature of the atmosphere in reality decreases with height is because the atmosphere is not in thermal equilibrium, since it is constantly being heated from below by the sun.
+\end{example}
+
+\subsection{Poincar\'{e} Recurrence}
+
+Suppose we have a bounded region \(\Omega \subseteq \phaseSpace\) with finite volume \(\vol\pqty{\Omega} < \infty\) (for example, the region where \(H\pqty{q, p} \leq E\) for some energy \(E\)), and let time evolution map \(\Omega\) to itself. Then for any open region \(U \subseteq \Omega\), no matter how small, almost every point \(y \in U\) returns to \(U\) infinitely often as \(t \to \infty\). This is intuitively true by observing \autoref{fig:poincare-recurrence} and utilising Pigeonhole principle that there is simply finitely many volume.
+
+To prove this, we do the following.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/poincare-recurrence-phase-space.png}
+    \caption{Poincar\'{e} Recurrence in Phase Space}
+    \label{fig:poincare-recurrence}%
+\end{figure}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item Fix a time step \(\tau > 0\), and let \(\phi^\tau\pqty{y}\) be the location of a particle which starts at \(y\) in \(U\) after time \(\tau\).
+    
+    Since time evolution is deterministic, \(\phi^\tau\) is a bijection with \(\pqty{\phi^\tau}\inverse = \phi^{-\tau}\).
+    
+    \item Pick any \(U \subseteq \Omega\) with \(v = \vol\pqty{U} > 0\), and consider the sequence of sets
+    \begin{equation}
+        U, \phi^\tau\pqty{U}, \phi^{2 \tau}\pqty{U}, \phi^{3 \tau}\pqty{U}, \ldots
+    \end{equation}
+
+    Since \(\phi^{k \tau}\pqty{U}\) stays within \(\Omega\) for all \(k\), and by Liouville's theorem, we have \(\vol\pqty{\phi^{k \tau}\pqty{U}} = \vol\pqty{U} = v > 0\) for all \(k\). If all regions \(\phi^{k \tau}\pqty{U}\) were non-overlapping, and they would have total volume
+    \begin{equation}
+        \sum_{k = 0}^{\infty} \vol\pqty{\phi^{k \tau}\pqty{U}} = \sum_{k = 0}^{\infty} v = \infty,
+    \end{equation}
+    which contradicts the fact that \(\Omega\) has finite volume.
+
+    \item Hence, there exists integers \(m > n \geq 0\) such that
+    \begin{equation}
+        \phi^{m \tau}\pqty{U} \cap \phi^{n \tau}\pqty{U} \neq \emptyset,
+    \end{equation}
+    and applying the map \(\phi^{- n \tau}\) to each of these regions, we have
+    \begin{equation}
+        \phi^{\pqty{m - n} \tau} \pqty{U} \cap U \neq \emptyset.
+    \end{equation}
+
+    There exists at least one point \(y_{\ast} \in U\), which returns to \(U\) after time \(\pqty{m - n} \tau\).
+
+    \item Let \(B \subseteq U\) be the set of ``bad'' points that \emph{never} return to \(U\). If \(\vol\pqty{B} > 0\), repeating the previous steps (2) and (3) replacing \(U\) with \(B\) again leads to a contradiction. So \(\vol\pqty{B} = 0\), and hence almost every point in \(U\) returns to \(U\) infinitely often as \(t \to \infty\).
+\end{enumerate}
+
+This phenomenon is known as \term{Poincar\'{e} recurrence}. There is a small catch here: the particle will not necessarily return to the same point in \(U\) -- it may return to a different point in \(U\). For example, consider a particle bouncing around a circular wall. The particle will never return to the original position it started at if the angle of incidence is an irrational time, but it will return to any arbitrarily small neighbourhood of the original position infinitely often. Furthermore, the time it takes to return to \(U\) may be very long.
