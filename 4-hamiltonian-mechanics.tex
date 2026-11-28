@@ -1256,3 +1256,171 @@ To prove this, we do the following.
 \end{enumerate}
 
 This phenomenon is known as \term{Poincar\'{e} recurrence}. There is a small catch here: the particle will not necessarily return to the same point in \(U\) -- it may return to a different point in \(U\). For example, consider a particle bouncing around a circular wall. The particle will never return to the original position it started at if the angle of incidence is an irrational time, but it will return to any arbitrarily small neighbourhood of the original position infinitely often. Furthermore, the time it takes to return to \(U\) may be very long.
+
+\subsection{Integrable Systems and Action-Angle Variables}
+
+Suppose our system is bounded in (configuration) space, for example, a potential that rises arbitrarily high, or simply a mass on a rod, and suppose we can find a canonical coordinate system \(\pqty{Q^a, P_a}\), such that:
+\begin{itemize}
+    \item The Hamiltonian \(\tilde{H} = \tilde{H}\pqty{P}\) (i.e., \(\pdv{\tilde{H}}{Q^a} = 0\)); and
+    \item \(Q^a \sim Q^a + 2 \pi \ZZ^n\), i.e. each \(Q^a\) is identified modulo \(2\pi\).
+\end{itemize}
+
+If this is possible (very often it is not), we say that the system is \term{integrable}, and we call the canonical coordinates \(\pqty{Q^a, P_a} = \pqty{\theta^a, I_a}\) the \term{action-angle variables}.
+
+\begin{remark}
+    In terms of action-angle variables, we have
+    \begin{equation}
+        \dot{I}_n = - \pdv{\tilde{H}}{\theta^b} = 0,
+    \end{equation}
+    so \(I_b\) are constant, and
+    \begin{equation}
+        \dot{\theta}^a = \pdv{\tilde{H}}{I_a} = \text{constant},
+    \end{equation}
+    and hence \(\theta^a \pqty{t} = \theta^a \pqty{0} + \omega^a t\) for some constant \(\omega^a = \omega^a\pqty{I}\). This is known as the \term{angular frequency of the orbit}.
+\end{remark}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig/potential-action-angle-variables.png}
+    \caption{Potential with Action-Angle Variables}
+    \label{fig:potential-action-angle-variables}%
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/phase-space-trajectory-original-variables.png}
+        \caption{In Original Variables}
+        \label{fig:phase-space-trajectory-original-variables}%
+    \end{subfigure}%
+    ~
+    \begin{subfigure}{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig/phase-space-trajectory-action-angle-variables.png}
+        \caption{In Action-Angle Variables}
+        \label{fig:phase-space-trajectory-action-angle-variables}%
+    \end{subfigure}
+    \caption{Phase Space Trajectories in Different Variables}
+    \label{fig:phase-space-trajectories-action-angle}%
+\end{figure}
+
+\begin{example}
+    Suppose we have the potential in \autoref{fig:potential-action-angle-variables}, such that orbits are confined to the region \(q \in \ccintv{q_-}{q_+}\) for some \(q_{\pm}\), and we will have phase space trajectories that are closed loops, as shown in \autoref{fig:phase-space-trajectory-original-variables}. But then in action-angle variables, the trajectory will simply look like horizontal straight lines. So the action-angle variables ``straighten out'' the phase space trajectories, as shown in \autoref{fig:phase-space-trajectory-action-angle-variables}.
+\end{example}
+
+If \(\dim \pqty{\phaseSpace} = 2n\), the orbits lie on surfaces on constant \(I_b\), which have topology of an \(n\)-dimensional torus denoted \(\torus^n = \sphere^1 \times \cdots \times \sphere^1\).
+
+\term{Liouville's theorem of integrable systems} says that if our system has \(n\) algebraically independent conserved quantities \(I_b\) which obey the Poisson brackets relations that \(\pb{I_a}{I_b} = 0\) (i.e., they are \term{in involution}), then the system is integrable. The proof of this will be left to \textit{II Integrable Systems}.
+
+In particular, from this, we see that any one-dimensional system with bounded orbits, and \(\pdv{H}{t} = 0\), is integrable.
+
+Suppose we have
+\begin{equation}
+    H = \frac{p^2}{2m} + V\pqty{q},
+\end{equation}
+then \(H\) is conserved, and \(H = E\) for some constant \(E\) on each orbit. However, this is not yet our action if we set \(P = H\), because in this case, we have \(\dot{Q} = \pb{Q}{H} = 1\), so \(Q\pqty{t} = Q\pqty{0} + t\), which increases by the period \(T\pqty{E}\) during an orbit. So this is not the angle variable.
+
+We instead claim that the correct action variable is instead
+\begin{equation}
+    I = I\pqty{E} = \frac{1}{2\pi} \oint p \dd{q},
+\end{equation}
+where the integral is taken over a closed orbit in phase space.
+
+To see this, on a surface of \(H = E\), we have \(p = \sqrt{2m} \sqrt{E - V\pqty{q}}\), and we know that \(p = m \dot{q}\), so
+\begin{equation}
+    \dd{t} = \sqrt{\frac{m}{2}} \frac{\dd{q}}{\sqrt{E - V\pqty{q}}},
+\end{equation}
+and integrating over an orbit with period \(T\pqty{E} = \flatfrac{2\pi}{\omega\pqty{E}}\), we have
+\begin{equation}
+    \frac{2\pi}{\omega} = \sqrt{\frac{m}{2}} \oint \frac{\dd{q}}{\sqrt{E - V\pqty{q}}} = \sqrt{2m} \oint \dv{E} \sqrt{E - V\pqty{q}} \dd{q}.
+\end{equation}
+
+Assuming we can exchange the order of integration and differentiation, we have
+\begin{subequations}
+    \begin{align}
+        \frac{2\pi}{\omega} &= \dv{E} \oint \sqrt{2m} \sqrt{E - V\pqty{q}} \dd{q} \\
+        &= \dv{E} \pqty{\oint p \dd{q}} \\
+        &= 2\pi \dv{I}{E}.
+    \end{align}
+\end{subequations}
+
+Hence, with this choice of \(I\), we have \(\omega\pqty{I} = \dv*{E}{I}\), and indeed \(\theta\pqty{t} = \theta\pqty{0} + \omega t\) is indeed identified modulo \(2\pi\) after one orbit.
+
+To justify swapping the integral and differentiation operations, consider how the orbit changes under a small change in energy, as shown in \autoref{fig:varying-energy-orbit-change}. As the energy changes, the endpoint \(q_- \leq q \leq q_+\) vary by the amount
+\begin{equation}
+    \var{q} = \rightbar{\pqty{\dv{V}{q}}\inverse}_{\var{E}}.
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig/varying-energy-orbit-change.png}
+    \caption{Change in Phase Space Orbit under Change in Energy}
+    \label{fig:varying-energy-orbit-change}%
+\end{figure}
+
+We neglected this change in endpoints when exchanging, but this is \(\bigO \pqty{\var{E}^2}\), since this \(\bigO\pqty{\var{E}}\) term is given by
+\begin{equation}
+    \int_{q_- + \var{q}} \sqrt{2m} \sqrt{E - V\pqty{q}} \dd{q} \approx \sqrt{2m} \sqrt{E - V\pqty{q}} \rightbar{\pqty{\dv{V}{q}}\inverse}_{q_-} \var{E}
+\end{equation}
+which vanishes since \(E = V\pqty{q_-}\) at the endpoint. A similar argument holds for \(q_+\). Hence, we have justified the exchange of operations.
+
+In \(d > 1\), not every bounded Hamiltonian system is integrable. It remains more of a matter of ``art'' rather than ``science'' to determine whether a system is integrable or not. In general, however, if our system is integrable, then the action variables satisfy
+\begin{equation}
+    I_n = \frac{1}{2\pi} \oint_{\gamma_b} p_a \dd{q^a},
+\end{equation}
+where \(\gamma_b\) is a cycle of the torus \(\torus^n\), and we have
+\begin{equation}
+    \theta^b = \pdv{I_b} \pqty{\int_{\gamma_b} p_a \dd{q^a}}.
+\end{equation}
+
+\begin{example}
+    Consider the Kepler problem. Since the quantities \(H, L_z, L^2\) are conserved and in involution (analogue to in Quantum Mechanics that they commute), this system is integrable. Since motion is confined to the plane \(\vb{r}\pqty{t} \vdot \vb{L} = 0\), we can restrict to this plane, where
+    \begin{equation}
+        H = \frac{p_r^2}{2m} + \frac{p_{\phi}^2}{2 m r^2} - \frac{k}{r},
+    \end{equation}
+    with polar coordinates \(\pqty{r, \phi}\) and \(k > 0\).
+
+    Clearly, \(p_{\phi}\) is constant, and in fact the corresponding action variable is
+    \begin{equation}
+        I_{\phi} = \frac{1}{2\pi} \oint p_{\phi} \dd{\phi} = p_{\phi},
+    \end{equation}
+    and \(\phi\) is itself an angle variable.
+
+    For the radial variables, on a surface of constant \(H = E < 0\), we have
+    \begin{equation}
+        p_r^2 = 2m \pqty{E + \frac{k}{r}} - \frac{I_\phi^2}{r^2},
+    \end{equation}
+    so we have
+    \begin{subequations}
+        \begin{align}
+            I_r &= \frac{1}{2\pi} \oint p_r \dd{r} \\
+            &= \frac{1}{2\pi} 2 \int_{r_{\text{min}}}^{r_{\text{max}}} p_r \dd{r_r} \\
+            &= \frac{1}{\pi} \int_{r_{\text{min}}}^{r_{\text{max}}} \sqrt{2m \pqty{E + \frac{k}{r}} - \frac{I_\phi^2}{r^2}} \dd{r} \\
+            &= \frac{1}{\pi} \int_{r_{\text{min}}}^{r_{\text{max}}} \sqrt{\pqty{1 - \frac{r_{\text{min}}}{r}} \pqty{\frac{r_{\text{max}}}{r} - 1}},
+        \end{align}
+    \end{subequations}
+    where
+    \begin{equation}
+        r_{\text{max}, \text{min}} = \frac{k \pm \sqrt{k^2 - \flatfrac{2 \abs{E} I_\phi^2}{m}}}{2 \abs{E}}.
+    \end{equation}
+
+    Calculating the integral gives
+    \begin{equation}
+        \int_{r_{\text{min}}}^{r_{\text{max}}} \sqrt{\pqty{1 - \frac{r_{\text{min}}}{r}} \pqty{\frac{r_{\text{max}}}{r} - 1}} \dd{r} = \frac{\pi}{2} \pqty{r_{\text{max}} + r_{\text{min}}} - \pi \sqrt{r_{\text{max}} r_{\text{min}}},
+    \end{equation}
+    which then gives
+    \begin{equation}
+        I_r = \sqrt{\frac{m}{2 \abs{E}}} k - I_{\phi},
+    \end{equation}
+    or in other words,
+    \begin{equation}
+        H\pqty{I_r, I_{\phi}} = E = - \frac{m k^2}{2 \pqty{I_r + I_{\phi}}^2}.
+    \end{equation}
+
+    Note that since
+    \begin{equation}
+        \omega_{\phi} = \pdv{H}{I_{\phi}} = \pdv{H}{I_r} = \omega_r,
+    \end{equation}
+    the system completes an orbit in \(\phi \sim \phi + 2\pi\) at the same rate as it completes a radial orbit. In general, the rate could be different, but the since the form of the Hamiltonian is symmetric in \(I_r\) and \(I_{\phi}\), the rates are equal. This means that orbits are closed.
+\end{example}
